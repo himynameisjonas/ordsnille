@@ -11,13 +11,13 @@
       case 0:
         return "text-gray-600 bg-gray-400";
       default:
-        break;
+        return "bg-gray-50"
     }
   }
 </script>
 
 <div
-  class="bg-gray-50 border-2 m-2 h-20 w-20 text-5xl uppercase font-bold flex items-center justify-center {classFromHint(
+  class="border-2 m-2 h-20 w-20 text-5xl uppercase font-bold flex items-center justify-center {classFromHint(
     hint
   )}"
 >
