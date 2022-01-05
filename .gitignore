@@ -7,5 +7,4 @@ node_modules
 .env.*
 !.env.example
 
-words.txt
 raw_words.txt
