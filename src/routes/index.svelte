@@ -6,11 +6,7 @@
   function handleKey({ detail: key }) {
     game.addLetter(key);
   }
-
-  function handleEnter() {
-    console.log("hej enter");
-  }
 </script>
 
 <Board />
-<Keyboard on:delete={game.deleteLetter} on:enter={handleEnter} on:key={handleKey} />
+<Keyboard on:delete={game.deleteLetter} on:enter={game.trySolution} on:key={handleKey} />
