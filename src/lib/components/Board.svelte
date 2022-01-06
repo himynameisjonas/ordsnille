@@ -15,11 +15,12 @@
     }
   }
 </script>
-
-{#each $game.board as row, boardIndex}
-  <div class="flex row justify-center">
-    {#each lettersToArray(row) as letter, letterIndex}
-      <BoardLetter {letter} hint={hintForLetter($game.hints[boardIndex], letterIndex)} />
-    {/each}
-  </div>
-{/each}
+<div>
+  {#each $game.board as row, boardIndex}
+    <div class="flex row justify-center">
+      {#each lettersToArray(row) as letter, letterIndex}
+        <BoardLetter {letter} hint={hintForLetter($game.hints[boardIndex], letterIndex)} />
+      {/each}
+    </div>
+  {/each}
+</div>

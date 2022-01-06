@@ -18,7 +18,7 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("enter")}
-          class="h-14 rounded m-1 bg-slate-400 uppercase text-white font-bold w-20 flex items-center justify-center"
+          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-20 flex items-center justify-center"
         >
           ⏎
         </button>
@@ -26,7 +26,7 @@
       {#each row as key}
         <button
           on:click={() => handleClick(key)}
-          class="h-14 rounded m-1 bg-slate-400 uppercase text-white font-bold w-10 flex items-center justify-center"
+          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-10 flex items-center justify-center"
         >
           {key}
         </button>
@@ -34,7 +34,7 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("delete")}
-          class="h-14 rounded m-1 bg-slate-400 uppercase text-white font-bold w-20 flex items-center justify-center"
+          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-20 flex items-center justify-center"
         >
           ⌫
         </button>
