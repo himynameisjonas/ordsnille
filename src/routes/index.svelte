@@ -1,4 +1,5 @@
 <script>
+  import Top from "$lib/components/Top.svelte";
   import Board from "$lib/components/Board.svelte";
   import Keyboard from "$lib/components/Keyboard.svelte";
   import game from "$lib/stores/game.js";
@@ -22,6 +23,7 @@
   }
 </script>
 
+<Top />
 <Board />
 <Keyboard on:delete={game.deleteLetter} on:enter={trySolution} on:key={handleKey} />
 
