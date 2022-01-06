@@ -2,14 +2,28 @@ import { writable } from "svelte/store";
 import words from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
 
+const defaultValue = {
+  board: ["", "", "", "", ""],
+  hints: [],
+  boardIndex: 0,
+  solution: words[0],
+};
+
 function createGame() {
-  const game = writable({
-    board: ["", "", "", "", ""],
-    hints: [],
-    boardIndex: 0,
-    solution: words[0],
-  });
+  let startValue;
+  if (typeof localStorage !== "undefined") {
+    startValue = JSON.parse(localStorage.getItem("game")) || defaultValue;
+  } else {
+    startValue = defaultValue;
+  }
+
+  const game = writable(startValue);
+
   const { subscribe, update } = game;
+
+  if (typeof localStorage !== "undefined") {
+    game.subscribe((game) => (localStorage.game = JSON.stringify(game)));
+  }
 
   return {
     subscribe,
