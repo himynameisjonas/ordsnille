@@ -11,7 +11,7 @@
     if (hints) {
       return hints[letterIndex];
     } else {
-      return "";
+      return null;
     }
   }
 </script>
