@@ -11,8 +11,8 @@
 <div class="m-auto w-[65ch] max-w-full p-5">
   <h2 class="text-lg font-bold">Försök gissa order på 6 försök</h2>
   <p>
-    Varje försök ger ledtrådar till rätt ord,<span class="text-emerald-500 font-bold uppercase"
-      >gröna</span
+    Varje försök ger ledtrådar till det rätta svaret,<span
+      class="text-emerald-500 font-bold uppercase">gröna</span
     >
     bokstäver betyder att det är rätt bokstav på rätt plats,
     <span class="text-fuchsia-500 font-bold uppercase">lila</span> bokstäver betyder att det bokstaven
