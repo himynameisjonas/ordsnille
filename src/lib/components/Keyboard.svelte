@@ -29,9 +29,10 @@
         <button
           on:click={() => handleClick(key)}
           class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-10 flex items-center justify-center"
-          class:bg-green-500={$correct.has(key)}
-          class:bg-yellow-500={$present.has(key) && !$correct.has(key)}
-          class:bg-gray-400={$absent.has(key)}
+          class:bg-emerald-400={$correct.has(key)}
+          class:bg-fuchsia-400={$present.has(key) && !$correct.has(key)}
+          class:bg-gray-500={$absent.has(key)}
+          class:text-gray-400={$absent.has(key)}
           class:bg-slate-400={!$present.has(key) && !$correct.has(key) && !$absent.has(key)}
         >
           {key}
