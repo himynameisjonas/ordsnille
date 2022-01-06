@@ -15,6 +15,7 @@
     }
   }
 </script>
+
 <div>
   {#each $game.board as row, boardIndex}
     <div class="flex row justify-center">

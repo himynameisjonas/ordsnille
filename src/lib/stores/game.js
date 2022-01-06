@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 import words from "$lib/words";
+import { notifications } from "$lib/stores/notifications.js";
 
 function createGame() {
   const game = writable({
@@ -29,6 +30,9 @@ function createGame() {
               game.hints[i][letterIndex] = 0;
             }
           });
+          if (attempt == game.solution) {
+            notifications.success("Grattis, du klarade det!");
+          }
         }
         return game;
       });
