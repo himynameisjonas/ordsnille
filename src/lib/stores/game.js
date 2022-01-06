@@ -7,6 +7,7 @@ const defaultValue = {
   hints: [],
   boardIndex: 0,
   solution: words[1986],
+  status: "new",
 };
 
 function createGame() {
@@ -68,6 +69,11 @@ function createGame() {
       update((game) => {
         let i = game.boardIndex;
         game.board[i] = game.board[i].slice(0, -1);
+        return game;
+      }),
+    start: () =>
+      update((game) => {
+        game.status = "started";
         return game;
       }),
   };

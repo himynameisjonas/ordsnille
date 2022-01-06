@@ -6,6 +6,14 @@
   import words from "$lib/words";
   import { notifications } from "$lib/stores/notifications.js";
   import Toast from "$lib/components/Toast.svelte";
+  import { beforeUpdate } from "svelte";
+  import { goto } from "$app/navigation";
+
+  beforeUpdate(() => {
+    if ($game.status == "new" || !$game.status) {
+      goto("/instructions");
+    }
+  });
 
   function handleKey({ detail: key }) {
     game.addLetter(key);
