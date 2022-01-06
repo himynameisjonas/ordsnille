@@ -8,3 +8,5 @@ node_modules
 !.env.example
 
 raw_words.txt
+svenska-ord.txt
+dictionary.txt
