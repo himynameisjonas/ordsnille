@@ -6,7 +6,7 @@ const defaultValue = {
   board: ["", "", "", "", ""],
   hints: [],
   boardIndex: 0,
-  solution: words[0],
+  solution: words[1337],
 };
 
 function createGame() {
