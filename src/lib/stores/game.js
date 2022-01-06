@@ -42,6 +42,7 @@ function createGame() {
             if (attemptArray[letterIndex] == letter) {
               game.hints[boardIndex][letterIndex] = 2;
               solutionArray[letterIndex] = "-";
+              attemptArray[letterIndex] = "-";
             } else {
               let i = attemptArray.indexOf(letter);
               if (i > -1) {
