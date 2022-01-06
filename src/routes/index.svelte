@@ -8,7 +8,5 @@
   }
 </script>
 
-<div class="flex flex-col h-screen justify-between py-2">
-  <Board />
-  <Keyboard on:delete={game.deleteLetter} on:enter={game.trySolution} on:key={handleKey} />
-</div>
+<Board />
+<Keyboard on:delete={game.deleteLetter} on:enter={game.trySolution} on:key={handleKey} />
