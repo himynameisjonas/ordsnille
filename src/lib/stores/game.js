@@ -16,13 +16,14 @@ function createGame() {
       update((game) => {
         let i = game.boardIndex;
         let solution = Array.from(game.solution);
-        if (game.board[i].length == 5) {
+        let attempt = game.board[i];
+        if (attempt.length == 5 && words.includes(attempt)) {
           game.boardIndex = game.boardIndex + 1;
           game.hints[i] = [];
-          Array.from(game.board[i]).forEach((letter, letterIndex) => {
+          Array.from(attempt).forEach((letter, letterIndex) => {
             if (solution[letterIndex] == letter) {
               game.hints[i][letterIndex] = 2;
-            } else if (solution.indexOf(letter) > -1) {
+            } else if (solution.includes(letter)) {
               game.hints[i][letterIndex] = 1;
             } else {
               game.hints[i][letterIndex] = 0;
