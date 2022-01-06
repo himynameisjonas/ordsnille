@@ -11,7 +11,7 @@
       case 0:
         return "text-gray-600 bg-gray-400";
       default:
-        return "bg-gray-50"
+        return "bg-gray-50";
     }
   }
 </script>
