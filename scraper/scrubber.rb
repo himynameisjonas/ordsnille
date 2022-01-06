@@ -14,7 +14,7 @@ words.map! do |word|
   "'#{word}'"
 end
 
-open('src/lib/words.js', 'w') do |f|
+open('../src/lib/words.js', 'w') do |f|
   f.puts "export default ["
   f.puts words.compact.shuffle(random: Random.new(1)).join(',')
   f.puts "];"
