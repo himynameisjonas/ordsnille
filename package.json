@@ -7,20 +7,42 @@
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "test": "jest src",
+    "test:watch": "yarn test -- --watch"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/svelte": "^3.0.3",
+    "autoprefixer": "^10.4.0",
+    "babel-jest": "^27.4.6",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
+    "jest": "^27.4.7",
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
     "svelte": "^3.44.0",
+    "svelte-jester": "^2.1.5",
     "svelte-preprocess": "^4.10.1",
-    "autoprefixer": "^10.4.0",
     "tailwindcss": "^3.0.7"
   },
-  "type": "module"
+  "type": "module",
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.svelte$": "svelte-jester"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "svelte"
+    ],
+    "moduleNameMapper": {
+      "^\\$lib(.*)$": "<rootDir>/src/lib$1"
+    }
+  }
 }
