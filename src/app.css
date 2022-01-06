@@ -19,13 +19,11 @@ html {
 }
 
 @keyframes pop {
-  10%,
-  90% {
-    transform: scale(1.1);
+  0% {
+    transform: scale(1.5);
   }
 
-  40%,
-  60% {
-    transform: scale(0.9);
+  90% {
+    transform: scale(0.95);
   }
 }
