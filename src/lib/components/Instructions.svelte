@@ -8,24 +8,23 @@
   }
 </script>
 
-<div class="m-auto w-[65ch] max-w-full p-5">
-  <h2 class="text-2xl font-bold">Försök gissa dagens ord!</h2>
-  <ul class="list-disc list-inside">
-  <li class="mb-5">
-    Du har 6 försök och varje försök ger nya ledtrådar till det rätta svaret.
-  </li>
-  <li class="mb-5">
-    <span
-      class="bg-green-300 p-1 text-green-700 font-bold uppercase">gröna</span
-    >
-    bokstäver betyder att det är rätt bokstav på rätt plats.
-  </li>
-  <li class="mb-5">
+<div class="mx-auto mt-5 w-[65ch] max-w-full px-5">
+  <h2 class="text-3xl font-medium mb-4 text-center">Gissa dagens ord</h2>
+  <ul class="list-disc list-outside ml-4">
+    <li class="mb-5">Du har 6 försök på dig att komma fram till det rätta svaret.</li>
+    <li class="mb-5">Varje försök markerar dom bokstäver som är med i det rätta svaret.</li>
+    <li class="mb-5">
+      <span class="bg-green-300 p-1 text-green-700 font-bold uppercase">gröna</span>
+      bokstäver betyder att det är rätt bokstav på rätt plats.
+    </li>
+    <li>
       En <span class="bg-orange-200 p-1 text-orange-600 font-bold uppercase">orange</span> bokstav betyder
-    att den bokstaven finns med i det rätta svaret men att den är på fel plats.
-  </li>
+      att den bokstaven finns med i det rätta svaret men att den är på fel plats.
+    </li>
   </ul>
+</div>
+<div class="px-5 my-auto">
   <button on:click={start} class="w-full bg-green-500 text-white font-bold p-2 rounded my-5"
-    >Starta</button
+    >Starta spelet och börja gissa</button
   >
 </div>
