@@ -6,7 +6,7 @@ const defaultValue = {
   board: ["", "", "", "", ""],
   hints: [],
   boardIndex: 0,
-  solution: words[1986],
+  solution: words[1936],
   status: "new",
 };
 
