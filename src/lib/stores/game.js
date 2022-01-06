@@ -18,7 +18,6 @@ function createGame() {
   }
 
   const game = writable(startValue);
-
   const { subscribe, update } = game;
 
   if (typeof localStorage !== "undefined") {
@@ -27,21 +26,27 @@ function createGame() {
 
   return {
     subscribe,
+    update,
     trySolution: () => {
       update((game) => {
-        let i = game.boardIndex;
-        let solution = Array.from(game.solution);
-        let attempt = game.board[i];
+        let boardIndex = game.boardIndex;
+        let solutionArray = Array.from(game.solution);
+        let attempt = game.board[boardIndex];
+        let attemptArray = Array.from(attempt);
         if (attempt.length == 5 && words.includes(attempt)) {
           game.boardIndex = game.boardIndex + 1;
-          game.hints[i] = [];
-          Array.from(attempt).forEach((letter, letterIndex) => {
-            if (solution[letterIndex] == letter) {
-              game.hints[i][letterIndex] = 2;
-            } else if (solution.includes(letter)) {
-              game.hints[i][letterIndex] = 1;
+          game.hints[boardIndex] = Array(5).fill(0);
+
+          solutionArray.forEach((letter, letterIndex) => {
+            if (attemptArray[letterIndex] == letter) {
+              game.hints[boardIndex][letterIndex] = 2;
+              solutionArray[letterIndex] = "-";
             } else {
-              game.hints[i][letterIndex] = 0;
+              let i = attemptArray.indexOf(letter);
+              if (i > -1) {
+                game.hints[boardIndex][i] = 1;
+                solutionArray[letterIndex] = "-";
+              }
             }
           });
           if (attempt == game.solution) {
