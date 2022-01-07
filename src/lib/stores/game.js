@@ -2,7 +2,7 @@ import { get, writable } from "svelte/store";
 import words from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
 import { todaysWord } from "$lib/stores/word.js";
-import stats from "$lib/stores/stats.js";
+import { stats } from "$lib/stores/stats.js";
 
 function defaultValues() {
   return {
@@ -54,10 +54,14 @@ function createGame() {
               }
             }
           });
+          console.log("hej boardIndex", boardIndex);
           if (attempt == game.solution) {
             game.status = "completed";
-            stats.addScore(game);
+            stats.logSuccess(game);
             notifications.success("Grattis, du klarade det!");
+          } else if (boardIndex == 5) {
+            stats.logFailure(game);
+            game.status = "completed";
           } else {
             game.boardIndex = boardIndex + 1;
           }
