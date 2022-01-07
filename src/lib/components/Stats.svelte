@@ -30,11 +30,13 @@
   </table>
 </div>
 
+<div class="px-5 my-auto">
 {#if $game.solution != $todaysWord}
-  <div class="px-5 my-auto">
     <button
       on:click={game.restart}
       class="w-full bg-green-500 text-white font-bold p-2 rounded my-5">Spela dagens ord</button
     >
-  </div>
-{/if}
+  {:else}
+    <h3 class="text-xl mb-1 text-center font-abril">Ett nytt ord kommer i morgon</h3>
+  {/if}
+</div>
