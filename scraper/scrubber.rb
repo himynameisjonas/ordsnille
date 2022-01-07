@@ -1,8 +1,9 @@
 require "bundler/setup"
 Bundler.require
 words = []
+words |= File.readlines('saol2018clean.txt').map { _1.split(",")[1]}
 words |= File.readlines('raw_words.txt')
-words |= File.readlines('dictionary.txt')
+# words |= File.readlines('dictionary.txt')
 puts words.size
 words.map! do |word|
   next if word.include?('-')
@@ -16,6 +17,6 @@ end
 
 open('../src/lib/words.js', 'w') do |f|
   f.puts "export default ["
-  f.puts words.compact.shuffle(random: Random.new(1)).join(',')
+  f.puts words.compact.shuffle(random: Random.new(1337)).join(',')
   f.puts "];"
 end
