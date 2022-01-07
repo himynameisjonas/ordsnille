@@ -25,6 +25,7 @@
   class:text-gray-500={hint == 0}
   class:bg-gray-400={hint == 0}
   class:border-gray-300={letter && hint == null}
+  class:text-gray-600={letter && hint == null}
   class:bg-neutral-50={!letter && hint == null}
   class="transition-colors border-2 m-1 h-16 w-16 text-5xl uppercase font-bold flex items-center justify-center"
 >
