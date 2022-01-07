@@ -4,8 +4,8 @@
   import { notifications } from "$lib/stores/notifications.js";
 
   export let themes = {
-    success: "bg-emerald-500 border-2 border-emerald-600",
-    warning: "bg-fuchsia-500 border-2 border-fuchsia-600",
+    success: "bg-green-500 border-2 border-green-600",
+    warning: "bg-orange-500 border-2 border-orange-600",
   };
 </script>
 
