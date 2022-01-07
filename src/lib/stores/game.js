@@ -1,12 +1,13 @@
-import { writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 import words from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
+import { todaysWord } from "$lib/stores/word.js";
 
 const defaultValue = {
   board: ["", "", "", "", ""],
   hints: [],
   boardIndex: 0,
-  solution: words[1986],
+  solution: get(todaysWord),
   status: "new",
 };
 
