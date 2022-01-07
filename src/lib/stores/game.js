@@ -2,21 +2,24 @@ import { get, writable } from "svelte/store";
 import words from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
 import { todaysWord } from "$lib/stores/word.js";
+import stats from "$lib/stores/stats.js";
 
-const defaultValue = {
-  board: ["", "", "", "", ""],
-  hints: [],
-  boardIndex: 0,
-  solution: get(todaysWord),
-  status: "new",
-};
+function defaultValues() {
+  return {
+    board: ["", "", "", "", ""],
+    hints: [],
+    boardIndex: 0,
+    solution: get(todaysWord),
+    status: "new",
+  };
+}
 
 function createGame() {
   let startValue;
   if (typeof localStorage !== "undefined") {
-    startValue = JSON.parse(localStorage.getItem("game")) || defaultValue;
+    startValue = JSON.parse(localStorage.getItem("game")) || defaultValues();
   } else {
-    startValue = defaultValue;
+    startValue = defaultValues();
   }
 
   const game = writable(startValue);
@@ -36,7 +39,6 @@ function createGame() {
         let attempt = game.board[boardIndex];
         let attemptArray = Array.from(attempt);
         if (attempt.length == 5 && words.includes(attempt)) {
-          game.boardIndex = game.boardIndex + 1;
           game.hints[boardIndex] = Array(5).fill(0);
 
           solutionArray.forEach((letter, letterIndex) => {
@@ -53,7 +55,11 @@ function createGame() {
             }
           });
           if (attempt == game.solution) {
+            game.status = "completed";
+            stats.addScore(game);
             notifications.success("Grattis, du klarade det!");
+          } else {
+            game.boardIndex = boardIndex + 1;
           }
         }
         return game;
@@ -75,6 +81,12 @@ function createGame() {
       }),
     start: () =>
       update((game) => {
+        game.status = "started";
+        return game;
+      }),
+    restart: () =>
+      update((game) => {
+        game = defaultValues();
         game.status = "started";
         return game;
       }),
