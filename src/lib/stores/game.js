@@ -6,7 +6,7 @@ import stats from "$lib/stores/stats.js";
 
 function defaultValues() {
   return {
-    board: ["", "", "", "", ""],
+    board: Array(6).fill(""),
     hints: [],
     boardIndex: 0,
     solution: get(todaysWord),
