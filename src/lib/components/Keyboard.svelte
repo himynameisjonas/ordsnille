@@ -14,7 +14,7 @@
   }
 </script>
 
-<div class="mb-3">
+<div class="mb-4">
   {#each rows as row, index}
     <div class="flex justify-center">
       {#if index == 2}
