@@ -54,7 +54,7 @@ function createGame() {
               }
             }
           });
-          console.log("hej boardIndex", boardIndex);
+
           if (attempt == game.solution) {
             game.status = "completed";
             stats.logSuccess(game);
