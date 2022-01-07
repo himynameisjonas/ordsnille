@@ -8,8 +8,8 @@
   }
 </script>
 
-<div class="mx-auto mt-5 w-[65ch] max-w-full px-5">
-  <h2 class="text-3xl font-medium mb-4 text-center">Gissa dagens ord</h2>
+<div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700">
+  <h2 class="text-3xl mb-4 text-center font-abril">Gissa dagens ord</h2>
   <ul class="list-disc list-outside ml-4">
     <li class="mb-5">Du har 6 försök på dig att komma fram till det rätta svaret.</li>
     <li class="mb-5">Varje försök markerar dom bokstäver som är med i det rätta svaret.</li>
