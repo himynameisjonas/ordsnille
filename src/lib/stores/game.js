@@ -66,7 +66,13 @@ function createGame() {
             }, 3000);
           } else if (boardIndex == 5) {
             stats.logFailure(game);
-            game.status = "completed";
+            notifications.warning("Otur, bättre lycka i morgon!");
+            setTimeout(() => {
+              update((game) => {
+                game.status = "completed";
+                return game;
+              });
+            }, 3000);
           } else {
             game.boardIndex = boardIndex + 1;
           }
