@@ -33,8 +33,8 @@
           class:text-green-700={$correct.has(key)}
           class:bg-orange-300={$present.has(key) && !$correct.has(key)}
           class:text-orange-600={$present.has(key) && !$correct.has(key)}
-          class:bg-gray-500={$absent.has(key)}
-          class:text-gray-400={$absent.has(key)}
+          class:bg-gray-500={$absent.has(key) && !$correct.has(key) && !$present.has(key)}
+          class:text-gray-400={$absent.has(key) && !$correct.has(key) && !$present.has(key)}
           class:bg-slate-400={!$present.has(key) && !$correct.has(key) && !$absent.has(key)}
         >
           {key}

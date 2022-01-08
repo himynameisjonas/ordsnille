@@ -14,12 +14,12 @@ function findLetters(game, hintStatus) {
   return letters;
 }
 
-export const present = derived(game, ($game) => {
-  return findLetters($game, 1);
-});
-
 export const correct = derived(game, ($game) => {
   return findLetters($game, 2);
+});
+
+export const present = derived(game, ($game) => {
+  return findLetters($game, 1);
 });
 
 export const absent = derived(game, ($game) => {
