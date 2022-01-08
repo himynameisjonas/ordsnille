@@ -56,9 +56,14 @@ function createGame() {
           });
 
           if (attempt == game.solution) {
-            game.status = "completed";
             stats.logSuccess(game);
             notifications.success("Grattis, du klarade det!");
+            setTimeout(() => {
+              update((game) => {
+                game.status = "completed";
+                return game;
+              });
+            }, 3000);
           } else if (boardIndex == 5) {
             stats.logFailure(game);
             game.status = "completed";
