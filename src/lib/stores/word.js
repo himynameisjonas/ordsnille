@@ -4,7 +4,7 @@ import differenceInCalendarDays from "date-fns/differenceInCalendarDays/index.js
 const startDate = new Date(2022, 0, 7, 0, 0);
 
 function daysFromStart() {
-  return differenceInCalendarDays(startDate, new Date());
+  return differenceInCalendarDays(new Date(), startDate);
 }
 
 function wordIndex() {
@@ -17,6 +17,7 @@ function _todaysWord() {
 }
 
 export const todaysWord = readable(_todaysWord(), function start(set) {
+  set(_todaysWord());
   const interval = setInterval(() => {
     set(_todaysWord());
   }, 10000);
