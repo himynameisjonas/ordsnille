@@ -12,11 +12,12 @@ words.map! do |word|
   next if /[[:upper:]]/.match(word)
   word.strip!
   next unless word.length == 5
+  next if word == "ränta"
   "'#{word}'"
 end
 
 open('../src/lib/words.js', 'w') do |f|
   f.puts "export default ["
-  f.puts words.compact.shuffle(random: Random.new(1337)).join(',')
+  f.puts words.compact.uniq.shuffle(random: Random.new(3)).insert(1, "'ränta'").join(',')
   f.puts "];"
 end
