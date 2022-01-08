@@ -22,9 +22,7 @@
 </script>
 
 <div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
-  <h2 class="text-3xl mb-4 text-center font-abril">Resultat</h2>
-
-  <p class="mb-5 bg-white rounded-lg border shadow p-4">
+  <p class="mb-5 bg-white rounded-lg border shadow-inner p-4">
     Senaste ordet du spelade var <span class="bg-green-300 p-1 text-green-700 font-bold uppercase"
       >{$stats.lastSolution}</span
     >
@@ -53,8 +51,8 @@
     {/if}
   </p>
 
-  <div class="mb-5 bg-white rounded-lg border shadow p-4">
-    <h3 class="text-xl mb-1 text-center font-abril">Statistik</h3>
+  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+    <h2 class="text-xl mb-1 text-center font-abril">Statistik</h2>
     <div class="flex text-center flex-wrap">
       <div class="w-1/2 mb-4">
         <strong class="text-2xl block">{$plays}</strong>
@@ -74,8 +72,8 @@
       </div>
     </div>
   </div>
-  <div class="mb-5 bg-white rounded-lg border shadow p-4">
-    <h3 class="text-xl mb-1 text-center font-abril">Antal vunna spel per antal gissningar</h3>
+  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+    <h2 class="text-xl mb-1 text-center font-abril">Antal vunna spel per antal gissningar</h2>
     <table>
       <tbody>
         {#each $graphs as score}
@@ -101,6 +99,6 @@
       class="w-full bg-green-500 text-white font-bold p-2 rounded-lg my-5">Spela dagens ord</button
     >
   {:else}
-    <h3 class="text-xl mb-1 text-center font-abril">Ett nytt ord kommer i morgon</h3>
+    <h2 class="text-xl mb-1 text-center font-abril">Ett nytt ord kommer i morgon</h2>
   {/if}
 </div>
