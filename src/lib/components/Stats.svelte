@@ -5,9 +5,20 @@
   import { todaysWord } from "$lib/stores/word.js";
 
   async function share() {
+    window.plausible("share", {
+      props: {
+        gameNumber: $gameNumber,
+        boardIndex: $game.boardIndex,
+        solution: $game.solution,
+        currentStreak: $stats.currentStreak,
+        maxStreak: $stats.maxStreak,
+      },
+    });
+
     const shareData = {
       text: `Ordsnille ${$gameNumber} ${$game.boardIndex}/6\n${$emojiResult}\nhttps://ordsnille.brusman.se`,
     };
+
     try {
       if (navigator.share) {
         await navigator.share(shareData);

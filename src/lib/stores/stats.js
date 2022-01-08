@@ -1,4 +1,5 @@
-import { writable, derived } from "svelte/store";
+import { writable, derived, get } from "svelte/store";
+import { gameNumber } from "$lib/stores/game.js";
 
 function defaultValues() {
   return {
@@ -34,6 +35,16 @@ export const stats = (function () {
         $stats.currentStreak = ($stats.currentStreak || (game.lastStatus == "success" ? 1 : 0)) + 1;
         $stats.maxStreak = Math.max($stats.currentStreak, $stats.maxStreak || 0);
 
+        window.plausible("game-won", {
+          props: {
+            gameNumber: get(gameNumber),
+            boardIndex: game.boardIndex,
+            solution: game.solution,
+            currentStreak: $stats.currentStreak,
+            maxStreak: $stats.maxStreak,
+          },
+        });
+
         return $stats;
       }),
     logFailure: (game) =>
@@ -42,6 +53,14 @@ export const stats = (function () {
         $stats.currentStreak = 0;
         $stats.lastSolution = game.solution;
         $stats.lastStatus = "failure";
+
+        window.plausible("game-lost", {
+          props: {
+            gameNumber: get(gameNumber),
+            solution: game.solution,
+          },
+        });
+
         return $stats;
       }),
   };
