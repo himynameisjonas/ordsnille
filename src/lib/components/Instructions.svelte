@@ -24,7 +24,11 @@
   </ul>
 </div>
 <div class="px-5 my-auto">
-  <button on:click={start} class="w-full bg-green-500 text-white font-bold p-2 rounded my-5"
-    >Starta spelet och börja gissa</button
-  >
+  <button on:click={start} class="w-full bg-green-500 text-white font-bold p-2 rounded my-5">
+    {#if $game.status == "new"}
+      Starta spelet och börja gissa
+    {:else}
+      Stäng
+    {/if}
+  </button>
 </div>

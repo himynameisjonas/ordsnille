@@ -96,7 +96,9 @@ function createGame() {
       }),
     start: () =>
       update((game) => {
-        game.status = "started";
+        if (game.status == "new") {
+          game.status = "started";
+        }
         return game;
       }),
     restart: () =>

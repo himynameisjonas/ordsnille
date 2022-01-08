@@ -31,7 +31,7 @@
 </div>
 
 <div class="px-5 my-auto">
-{#if $game.solution != $todaysWord}
+  {#if $game.solution != $todaysWord}
     <button
       on:click={game.restart}
       class="w-full bg-green-500 text-white font-bold p-2 rounded my-5">Spela dagens ord</button

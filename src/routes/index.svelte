@@ -13,7 +13,7 @@
 
   beforeUpdate(() => {
     if ($game.status == "new" || !$game.status) {
-      goto("/instructions");
+      goto("/instruktioner");
     }
   });
 
