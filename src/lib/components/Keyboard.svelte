@@ -1,14 +1,35 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   const dispatch = createEventDispatcher();
 
   import { present, correct, absent } from "$lib/stores/letters.js";
 
-  let rows = [
+  const rows = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"],
     ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
     ["z", "x", "c", "v", "b", "n", "m"],
   ];
+
+  const letters = rows.flat();
+
+  function handleKeyDown(event) {
+    if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
+    if (letters.includes(event.key)) {
+      dispatch("key", event.key);
+    } else if (event.key == "Backspace") {
+      dispatch("delete");
+    } else if (event.key == "Enter") {
+      dispatch("enter");
+    }
+  }
+
+  onMount(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
   function handleClick(key) {
     dispatch("key", key);
   }
