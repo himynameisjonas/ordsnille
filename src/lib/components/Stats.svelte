@@ -1,7 +1,24 @@
 <script>
-  import game from "$lib/stores/game.js";
+  import game, { hasWon, emojiResult, gameNumber } from "$lib/stores/game.js";
   import { stats, graphs, plays, winPercentage } from "$lib/stores/stats";
+  import { notifications } from "$lib/stores/notifications.js";
   import { todaysWord } from "$lib/stores/word.js";
+
+  async function share() {
+    const shareData = {
+      text: `Ordsnille ${$gameNumber} ${$game.boardIndex}/6\n${$emojiResult}\nhttps://ordsnille.brusman.se`,
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(shareData.text);
+        notifications.success("Kopierat resultatet!");
+      }
+    } catch (err) {
+      notifications.warning("Något gick fel!");
+    }
+  }
 </script>
 
 <div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
@@ -12,6 +29,28 @@
       >{$stats.lastSolution}</span
     >
     och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
+    {#if $hasWon}
+      <button
+        on:click={share}
+        class="w-full flex justify-center text-green-500 bg-gray-50 border border-green-500 font-bold p-2 rounded-lg mt-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+          />
+        </svg>
+        Dela ditt resultat</button
+      >
+    {/if}
   </p>
 
   <div class="mb-5 bg-white rounded-lg border shadow p-4">
@@ -59,7 +98,7 @@
   {#if $game.solution != $todaysWord}
     <button
       on:click={game.restart}
-      class="w-full bg-green-500 text-white font-bold p-2 rounded my-5">Spela dagens ord</button
+      class="w-full bg-green-500 text-white font-bold p-2 rounded-lg my-5">Spela dagens ord</button
     >
   {:else}
     <h3 class="text-xl mb-1 text-center font-abril">Ett nytt ord kommer i morgon</h3>

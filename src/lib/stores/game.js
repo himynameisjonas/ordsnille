@@ -1,4 +1,4 @@
-import { get, writable } from "svelte/store";
+import { get, writable, derived } from "svelte/store";
 import words from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
 import { todaysWord } from "$lib/stores/word.js";
@@ -14,7 +14,7 @@ function defaultValues() {
   };
 }
 
-function createGame() {
+const game = (function () {
   let startValue;
   if (typeof localStorage !== "undefined") {
     startValue = JSON.parse(localStorage.getItem("game")) || defaultValues();
@@ -108,6 +108,28 @@ function createGame() {
         return game;
       }),
   };
-}
+})();
 
-export default createGame();
+export default game;
+
+export const hasWon = derived(game, ($game) => {
+  return $game.status == "completed" && $game.board[$game.boardIndex] == $game.solution;
+});
+
+export const gameNumber = derived(game, ($game) => {
+  return words.indexOf($game.solution);
+});
+
+export const emojiResult = derived(game, ($game) => {
+  return $game.hints
+    .map((row) => {
+      return row
+        .map((hint) => {
+          if (hint == 0) return "⬜️";
+          if (hint == 1) return "🟧";
+          if (hint == 2) return "🟩";
+        })
+        .join("");
+    })
+    .join("\n");
+});
