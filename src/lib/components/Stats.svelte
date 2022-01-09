@@ -16,7 +16,9 @@
     });
 
     const shareData = {
-      text: `Ordsnille ${$gameNumber} ${$game.boardIndex}/6\n${$emojiResult}\nhttps://ordsnille.brusman.se`,
+      text: `Ordsnille nr${$gameNumber} (${
+        $game.boardIndex + 1
+      }/6)\n${$emojiResult}\nhttps://ordsnille.brusman.se`,
     };
 
     try {
