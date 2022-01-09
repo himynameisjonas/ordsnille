@@ -31,7 +31,7 @@
     </li>
   </ul>
 </div>
-<div class="px-5 my-auto">
+<div class="px-5 m-auto w-[65ch] max-w-full">
   <button on:click={start} class="w-full bg-green-500 text-white font-bold p-2 rounded my-5">
     {#if $game.status == "new"}
       Starta spelet och börja gissa
@@ -41,7 +41,7 @@
   </button>
 </div>
 
-<div class="p-5 mt-auto text-sm border-t">
+<div class="p-5 mx-auto text-sm border-t w-[65ch] max-w-full px-5">
   Vid frågor, kontakta mig via
   <a class="underline text-blue-400" href="mailto:ordsnille@brusman.se">Email</a> eller
   <a
