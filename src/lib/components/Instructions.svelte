@@ -12,14 +12,22 @@
   <h2 class="text-3xl mb-4 text-center font-abril">Gissa dagens ord</h2>
   <ul class="list-disc list-outside ml-4">
     <li class="mb-5">Du har 6 försök på dig att komma fram till det rätta svaret.</li>
-    <li class="mb-5">Varje försök markerar dom bokstäver som är med i det rätta svaret.</li>
+    <li class="mb-5">Varje försök markerar de bokstäver som är med i det rätta svaret.</li>
     <li class="mb-5">
       <span class="bg-green-300 p-1 text-green-700 font-bold uppercase">gröna</span>
       bokstäver betyder att det är rätt bokstav på rätt plats.
     </li>
-    <li>
+    <li class="mb-5">
       En <span class="bg-orange-200 p-1 text-orange-600 font-bold uppercase">orange</span> bokstav betyder
       att den bokstaven finns med i det rätta svaret men att den är på fel plats.
+    </li>
+    <li>
+      Tryck på <span
+        class="h-7 rounded m-[2px] bg-slate-500 uppercase text-white font-bold w-8 inline-block "
+      >
+        <span class="flex items-center justify-center h-full w-full">⏎</span>
+      </span>
+      för att testa din gissning.
     </li>
   </ul>
 </div>

@@ -41,7 +41,7 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("enter")}
-          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-20 flex items-center justify-center"
+          class="h-14 rounded m-[2px] bg-slate-500 uppercase text-white font-bold w-20 flex items-center justify-center"
         >
           ⏎
         </button>
@@ -64,7 +64,7 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("delete")}
-          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-20 flex items-center justify-center"
+          class="h-14 rounded m-[2px] bg-slate-500 uppercase text-white font-bold w-20 flex items-center justify-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
