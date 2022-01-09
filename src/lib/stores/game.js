@@ -74,6 +74,15 @@ const game = (function () {
               });
             }, 3000);
           } else {
+            window.plausible("guessed", {
+              props: {
+                attempt,
+                gameNumber: get(gameNumber),
+                boardIndex: game.boardIndex,
+                solution: game.solution,
+              },
+            });
+
             game.boardIndex = boardIndex + 1;
           }
         }
