@@ -32,3 +32,14 @@
     {/if}
   </button>
 </div>
+
+<div class="p-5 mt-auto text-sm border-t">
+  Vid frågor, kontakta mig via
+  <a class="underline text-blue-400" href="mailto:ordsnille@brusman.se">Email</a> eller
+  <a
+    class="underline text-blue-400"
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://twitter.com/himynameisjonas">Twitter</a
+  >.
+</div>
