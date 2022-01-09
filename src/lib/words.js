@@ -5108,4 +5108,5 @@ export default [
   "kalva",
   "senap",
   "karel",
+  "stela",
 ];
