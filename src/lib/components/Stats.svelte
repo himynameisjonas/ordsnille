@@ -108,7 +108,7 @@
   </div>
 </div>
 
-<div class="p-5 my-auto">
+<div class="p-5 my-auto pb-safe">
   {#if $game.solution != $todaysWord}
     <button
       on:click={game.restart}

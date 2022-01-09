@@ -35,7 +35,7 @@
   }
 </script>
 
-<div class="mb-4">
+<div class="pb-safe">
   {#each rows as row, index}
     <div class="flex justify-center">
       {#if index == 2}

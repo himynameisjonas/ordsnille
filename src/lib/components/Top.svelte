@@ -4,7 +4,9 @@
   }
 </script>
 
-<div class="py-0.5 bg-green-100 flex justify-center items-center border-b-[3px] border-b-green-400">
+<div
+  class="py-0.5 pt-safe bg-green-100 flex justify-center items-center border-b-[3px] border-b-green-400"
+>
   <span class="flex w-6 h-6" />
   <h1
     on:click={refresh}

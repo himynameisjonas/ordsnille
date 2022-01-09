@@ -9,7 +9,7 @@ const config = {
     },
   },
 
-  plugins: [],
+  plugins: [require("tailwindcss-safe-area")],
 };
 
 module.exports = config;

@@ -41,7 +41,7 @@
   </button>
 </div>
 
-<div class="p-5 mx-auto text-sm border-t w-[65ch] max-w-full px-5">
+<div class="p-5 mx-auto text-sm border-t w-[65ch] max-w-full px-5 pb-safe">
   Vid frågor, kontakta mig via
   <a class="underline text-blue-400" href="mailto:ordsnille@brusman.se">Email</a> eller
   <a
