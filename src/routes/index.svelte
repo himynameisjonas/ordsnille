@@ -4,7 +4,7 @@
   import Keyboard from "$lib/components/Keyboard.svelte";
   import Stats from "$lib/components/Stats.svelte";
   import game from "$lib/stores/game.js";
-  import words from "$lib/words";
+  import { allWords } from "$lib/words";
   import { notifications } from "$lib/stores/notifications.js";
   import { todaysWord } from "$lib/stores/word.js";
   import Toast from "$lib/components/Toast.svelte";
@@ -24,7 +24,7 @@
   function trySolution() {
     let attempt = $game.board[$game.boardIndex];
     if (attempt.length == 5) {
-      if (words.includes(attempt)) {
+      if (allWords.includes(attempt)) {
         game.trySolution();
       } else {
         notifications.warning("Inte med i ordlistan");

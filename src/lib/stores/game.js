@@ -1,5 +1,5 @@
 import { get, writable, derived } from "svelte/store";
-import words from "$lib/words";
+import { allWords } from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
 import { todaysWord, gameNumber } from "$lib/stores/word.js";
 import { stats } from "$lib/stores/stats.js";
@@ -38,7 +38,7 @@ const game = (function () {
         let solutionArray = Array.from(game.solution);
         let attempt = game.board[boardIndex];
         let attemptArray = Array.from(attempt);
-        if (attempt.length == 5 && words.includes(attempt)) {
+        if (attempt.length == 5 && allWords.includes(attempt)) {
           game.hints[boardIndex] = Array(5).fill(0);
 
           solutionArray.forEach((letter, letterIndex) => {

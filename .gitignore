@@ -11,3 +11,6 @@ raw_words.txt
 svenska-ord.txt
 dictionary.txt
 scraper/saol2018clean.txt
+scraper/frequent.txt
+scraper/more.txt
+scraper/scrubbed.txt
