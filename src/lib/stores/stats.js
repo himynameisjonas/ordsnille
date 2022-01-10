@@ -32,7 +32,12 @@ export const stats = (function () {
         $stats.scores[game.boardIndex] = $stats.scores[game.boardIndex] + 1;
         $stats.lastSolution = game.solution;
         $stats.lastStatus = "success";
-        $stats.currentStreak = ($stats.currentStreak || (game.lastStatus == "success" ? 1 : 0)) + 1;
+
+        if ($stats.failures == 0) {
+          $stats.currentStreak = $stats.scores.reduce((score, sum) => score + sum, 0);
+        }
+
+        $stats.currentStreak = ($stats.currentStreak || 0) + 1;
         $stats.maxStreak = Math.max($stats.currentStreak, $stats.maxStreak || 0);
 
         window.plausible("game-won", {
