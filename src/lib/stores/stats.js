@@ -58,6 +58,7 @@ export const stats = (function () {
           props: {
             gameNumber: get(gameNumber),
             solution: game.solution,
+            attempt: game.board[5],
           },
         });
 
