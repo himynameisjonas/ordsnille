@@ -1,7 +1,7 @@
 import { get, writable, derived } from "svelte/store";
 import words from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
-import { todaysWord } from "$lib/stores/word.js";
+import { todaysWord, gameNumber } from "$lib/stores/word.js";
 import { stats } from "$lib/stores/stats.js";
 
 function defaultValues() {
@@ -123,10 +123,6 @@ export default game;
 
 export const hasWon = derived(game, ($game) => {
   return $game.status == "completed" && $game.board[$game.boardIndex] == $game.solution;
-});
-
-export const gameNumber = derived(game, ($game) => {
-  return words.indexOf($game.solution);
 });
 
 export const emojiResult = derived(game, ($game) => {

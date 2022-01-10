@@ -26,3 +26,13 @@ export const todaysWord = readable(_todaysWord(), function start(set) {
     clearInterval(interval);
   };
 });
+
+export const gameNumber = readable(daysFromStart(), function start(set) {
+  const interval = setInterval(() => {
+    set(daysFromStart());
+  }, 10000);
+
+  return function stop() {
+    clearInterval(interval);
+  };
+});

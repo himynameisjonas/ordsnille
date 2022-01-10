@@ -1,5 +1,6 @@
 <script>
-  import game, { hasWon, emojiResult, gameNumber } from "$lib/stores/game.js";
+  import game, { hasWon, emojiResult } from "$lib/stores/game.js";
+  import { gameNumber } from "$lib/stores/word.js";
   import { stats, graphs, plays, winPercentage } from "$lib/stores/stats";
   import { notifications } from "$lib/stores/notifications.js";
   import { todaysWord } from "$lib/stores/word.js";

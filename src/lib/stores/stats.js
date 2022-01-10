@@ -1,5 +1,5 @@
 import { writable, derived, get } from "svelte/store";
-import { gameNumber } from "$lib/stores/game.js";
+import { gameNumber } from "$lib/stores/word.js";
 
 function defaultValues() {
   return {
@@ -7,6 +7,7 @@ function defaultValues() {
     failures: 0,
     currentStreak: 0,
     maxStreak: 0,
+    lastGameNumber: null,
   };
 }
 
@@ -37,8 +38,14 @@ export const stats = (function () {
           $stats.currentStreak = $stats.scores.reduce((score, sum) => score + sum, 0);
         }
 
-        $stats.currentStreak = ($stats.currentStreak || 0) + 1;
+        if ($stats.lastGameNumber && $stats.lastGameNumber == get(gameNumber) - 1) {
+          $stats.currentStreak = ($stats.currentStreak || 0) + 1;
+        } else {
+          $stats.currentStreak = 1;
+        }
+
         $stats.maxStreak = Math.max($stats.currentStreak, $stats.maxStreak || 0);
+        $stats.lastGameNumber = get(gameNumber);
 
         window.plausible("game-won", {
           props: {
@@ -58,6 +65,7 @@ export const stats = (function () {
         $stats.currentStreak = 0;
         $stats.lastSolution = game.solution;
         $stats.lastStatus = "failure";
+        $stats.lastGameNumber = get(gameNumber);
 
         window.plausible("game-lost", {
           props: {
