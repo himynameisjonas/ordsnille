@@ -11,10 +11,33 @@ function defaultValues() {
   };
 }
 
+function fixStreaks($stats, increase = false) {
+  let totalWins = $stats.scores.reduce((score, sum) => score + sum, 0);
+  if ($stats.failures == 0) {
+    $stats.currentStreak = totalWins;
+  }
+
+  if (increase) {
+    if ($stats.lastGameNumber && $stats.lastGameNumber == get(gameNumber) - 1) {
+      $stats.currentStreak = ($stats.currentStreak || 0) + 1;
+    } else {
+      $stats.currentStreak = 1;
+    }
+  }
+
+  $stats.currentStreak = Math.min($stats.currentStreak, totalWins);
+
+  if (increase) {
+    $stats.currentStreak = Math.max($stats.currentStreak, 1);
+  }
+  return $stats;
+}
+
 export const stats = (function () {
   let startValue;
   if (typeof localStorage !== "undefined") {
     startValue = JSON.parse(localStorage.getItem("stats")) || defaultValues();
+    startValue = fixStreaks(startValue, false);
   } else {
     startValue = defaultValues();
   }
@@ -34,15 +57,7 @@ export const stats = (function () {
         $stats.lastSolution = game.solution;
         $stats.lastStatus = "success";
 
-        if ($stats.failures == 0) {
-          $stats.currentStreak = $stats.scores.reduce((score, sum) => score + sum, 0);
-        }
-
-        if ($stats.lastGameNumber && $stats.lastGameNumber == get(gameNumber) - 1) {
-          $stats.currentStreak = ($stats.currentStreak || 0) + 1;
-        } else {
-          $stats.currentStreak = 1;
-        }
+        $stats = fixStreaks($stats, game);
 
         $stats.maxStreak = Math.max($stats.currentStreak, $stats.maxStreak || 0);
         $stats.lastGameNumber = get(gameNumber);
