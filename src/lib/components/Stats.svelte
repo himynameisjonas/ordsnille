@@ -23,9 +23,23 @@
     try {
       if (navigator.share) {
         await navigator.share(shareData);
-      } else {
+      } else if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(shareData.text);
         notifications.success("Kopierat resultatet!");
+      } else {
+        var textarea = document.createElement("textarea");
+        textarea.textContent = shareData.text;
+        textarea.style.position = "fixed";
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          await document.execCommand("copy");
+          notifications.success("Kopierat resultatet!");
+        } catch (ex) {
+          notifications.warning("Något gick fel!");
+        } finally {
+          document.body.removeChild(textarea);
+        }
       }
     } catch (err) {
       notifications.warning("Något gick fel!");
