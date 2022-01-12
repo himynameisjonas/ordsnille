@@ -33,7 +33,7 @@
     </ul>
     <button
       on:click={start}
-      class="w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded my-10"
+      class="w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded my-10 shadow-md shadow-green-500/50"
     >
       {#if $game.status == "new"}
         Starta spelet och börja gissa
