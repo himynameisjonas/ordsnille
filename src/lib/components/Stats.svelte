@@ -34,7 +34,7 @@
 </script>
 
 <div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
-  <p class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
     Senaste ordet du spelade var <a
       rel="noopener noreferrer"
       target="_blank"
@@ -64,7 +64,16 @@
         Dela ditt resultat</button
       >
     {/if}
-  </p>
+    {#if $game.solution != $todaysWord}
+      <button
+        on:click={game.restart}
+        class="w-full bg-green-500 text-white font-bold p-2 rounded-lg mt-3"
+        >Spela dagens ord</button
+      >
+    {:else}
+      <h2 class="text-xl mt-3 mb-1 text-center font-abril">Ett nytt ord kommer i morgon!</h2>
+    {/if}
+  </div>
 
   <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
     <h2 class="text-xl mb-1 text-center font-abril">Statistik</h2>
@@ -105,15 +114,4 @@
       </tbody>
     </table>
   </div>
-</div>
-
-<div class="p-5 my-auto pb-safe">
-  {#if $game.solution != $todaysWord}
-    <button
-      on:click={game.restart}
-      class="w-full bg-green-500 text-white font-bold p-2 rounded-lg my-5">Spela dagens ord</button
-    >
-  {:else}
-    <h2 class="text-xl mb-1 text-center font-abril">Ett nytt ord kommer i morgon</h2>
-  {/if}
 </div>
