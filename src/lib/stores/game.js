@@ -1,7 +1,7 @@
 import { get, writable, derived } from "svelte/store";
 import { allWords } from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
-import { todaysWord, gameNumber } from "$lib/stores/word.js";
+import { todaysWord } from "$lib/stores/word.js";
 import { stats } from "$lib/stores/stats.js";
 
 function defaultValues() {
@@ -128,4 +128,21 @@ export const emojiResult = derived(game, ($game) => {
         .join("");
     })
     .join("\n");
+});
+
+export const currentGuess = derived(game, ($game) => {
+  return $game.board[$game.boardIndex];
+});
+
+let timeForHintTimeout;
+export const timeForHint = derived(currentGuess, ($currentGuess, set) => {
+  clearTimeout(timeForHintTimeout);
+  if ($currentGuess.length === 5) {
+    timeForHintTimeout = setTimeout(() => {
+      set(true);
+    }, 3000);
+  } else {
+    clearTimeout(timeForHintTimeout);
+    set(false);
+  }
 });

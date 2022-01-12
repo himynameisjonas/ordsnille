@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
+  import { timeForHint } from "$lib/stores/game.js";
   const dispatch = createEventDispatcher();
 
   import { present, correct, absent } from "$lib/stores/letters.js";
@@ -43,7 +44,7 @@
           on:click={() => dispatch("enter")}
           class="h-14 rounded m-[2px] bg-slate-500 uppercase text-white font-bold w-20 flex items-center justify-center"
         >
-          ⏎
+          <span class:animate-bounce={$timeForHint}>⏎</span>
         </button>
       {/if}
       {#each row as key}
