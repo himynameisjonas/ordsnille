@@ -71,7 +71,7 @@
       {#each row as key}
         <button
           on:click={() => handleClick(key)}
-          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-10 flex items-center justify-center {classesForKey(
+          class="h-14 rounded m-[2px] uppercase text-white font-bold w-10 flex items-center justify-center {classesForKey(
             key
           )}"
         >
