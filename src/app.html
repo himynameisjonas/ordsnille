@@ -30,16 +30,17 @@
       href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
       rel="stylesheet"
     />
+    <script
+      defer
+      data-domain="ordsnille.brusman.se"
+      data-exclude="/instruktioner, /stats"
+      src="https://plausible.io/js/plausible.exclusions.js"
+    ></script>
 
     %svelte.head%
   </head>
   <body class="bg-green-100 flex flex-col justify-items-stretch h-full">
     <div id="svelte" class="flex flex-col h-full justify-between bg-neutral-100">%svelte.body%</div>
-    <script
-      defer
-      data-domain="ordsnille.brusman.se"
-      src="https://plausible.io/js/plausible.js"
-    ></script>
     <script>
       window.plausible =
         window.plausible ||
