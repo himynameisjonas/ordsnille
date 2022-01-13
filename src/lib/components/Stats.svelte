@@ -16,16 +16,6 @@
   }
 
   async function share() {
-    window.plausible("share", {
-      props: {
-        gameNumber: $gameNumber,
-        boardIndex: $game.boardIndex,
-        solution: $game.solution,
-        currentStreak: $stats.currentStreak,
-        maxStreak: $stats.maxStreak,
-      },
-    });
-
     const shareData = {
       text: `Ordsnille nr${$gameNumber} (${$game.boardIndex + 1}/6)\n${$emojiResult}`,
     };
