@@ -96,7 +96,7 @@
         >
           Spela dagens ord
         </button>
-      {:else if $game.solution == $todaysWord && $game.status == "started"}
+      {:else if $game.solution == $todaysWord && ($game.status == "started" || $game.status == "new")}
         <button
           on:click={goBack}
           class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"

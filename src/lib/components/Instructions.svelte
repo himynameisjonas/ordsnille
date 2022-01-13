@@ -1,9 +1,10 @@
 <script>
-  import game from "$lib/stores/game.js";
+  import game, { firstLoad } from "$lib/stores/game.js";
   import { goto } from "$app/navigation";
 
   function start() {
     game.start();
+    firstLoad.set(false);
     goto("/");
   }
 </script>
