@@ -1,7 +1,14 @@
 <script>
+  import { colorBlindness } from "$lib/stores/settings.js";
+
   export let letter = "";
   export let hint;
+  export let smallSize = false;
+
   let animate = false;
+  let classBorder = "";
+  let classText = "";
+  let classBg = "";
 
   $: {
     if (letter != "") {
@@ -11,23 +18,47 @@
       }, 500);
     }
   }
+
+  $: if (hint == 2) {
+    if ($colorBlindness) {
+      classBorder = "border-sky-600";
+      classText = "text-sky-600";
+      classBg = "bg-sky-300";
+    } else {
+      classBorder = "border-green-600";
+      classText = "text-green-600";
+      classBg = "bg-green-300";
+    }
+  } else if (hint == 1) {
+    if ($colorBlindness) {
+      classBorder = "border-yellow-500";
+      classText = "text-yellow-600";
+      classBg = "bg-yellow-200";
+    } else {
+      classBorder = "border-orange-500";
+      classText = "text-orange-500";
+      classBg = "bg-orange-200";
+    }
+  } else if (hint == 0) {
+    classBorder = "border-gray-500";
+    classText = "text-gray-500";
+    classBg = "bg-gray-400";
+  } else if (letter && hint == null) {
+    classBorder = "border-gray-300";
+    classText = "text-gray-600";
+  } else {
+    classBg = "bg-neutral-50";
+  }
 </script>
 
 <div
-  class:animate-pop={animate}
-  class:border-green-600={hint == 2}
-  class:text-green-600={hint == 2}
-  class:bg-green-300={hint == 2}
-  class:border-orange-500={hint == 1}
-  class:text-orange-500={hint == 1}
-  class:bg-orange-200={hint == 1}
-  class:border-gray-500={hint == 0}
-  class:text-gray-500={hint == 0}
-  class:bg-gray-400={hint == 0}
-  class:border-gray-300={letter && hint == null}
-  class:text-gray-600={letter && hint == null}
-  class:bg-neutral-50={!letter && hint == null}
-  class="rounded transition-colors border-2 m-0.5 h-16 w-16 text-5xl uppercase font-bold flex items-center justify-center"
+  class:h-16={!smallSize}
+  class:w-16={!smallSize}
+  class:text-5xl={!smallSize}
+  class:h-11={smallSize}
+  class:w-11={smallSize}
+  class:text-3xl={smallSize}
+  class="{classBorder} {classText} {classBg} rounded transition-colors border-2 m-0.5 uppercase font-bold flex items-center justify-center"
 >
   {letter}
 </div>

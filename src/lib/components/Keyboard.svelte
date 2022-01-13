@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import game, { timeForHint } from "$lib/stores/game.js";
+  import { colorBlindness } from "$lib/stores/settings.js";
   const dispatch = createEventDispatcher();
 
   import { present, correct, absent } from "$lib/stores/letters.js";
@@ -34,6 +35,26 @@
   function handleClick(key) {
     dispatch("key", key);
   }
+
+  function classesForKey(key) {
+    if ($correct.has(key)) {
+      if ($colorBlindness) {
+        return "bg-sky-400 text-sky-800";
+      } else {
+        return "bg-green-400 text-green-700";
+      }
+    } else if ($present.has(key)) {
+      if ($colorBlindness) {
+        return "bg-yellow-300 text-yellow-700";
+      } else {
+        return "bg-orange-300 text-orange-600";
+      }
+    } else if ($absent.has(key)) {
+      return "bg-gray-500 text-gray-400";
+    } else {
+      return "bg-slate-400";
+    }
+  }
 </script>
 
 <div class="pb-safe">
@@ -50,14 +71,9 @@
       {#each row as key}
         <button
           on:click={() => handleClick(key)}
-          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-10 flex items-center justify-center"
-          class:bg-green-400={$correct.has(key)}
-          class:text-green-700={$correct.has(key)}
-          class:bg-orange-300={$present.has(key) && !$correct.has(key)}
-          class:text-orange-600={$present.has(key) && !$correct.has(key)}
-          class:bg-gray-500={$absent.has(key) && !$correct.has(key) && !$present.has(key)}
-          class:text-gray-400={$absent.has(key) && !$correct.has(key) && !$present.has(key)}
-          class:bg-slate-400={!$present.has(key) && !$correct.has(key) && !$absent.has(key)}
+          class="h-14 rounded m-[2px] bg-slate-400 uppercase text-white font-bold w-10 flex items-center justify-center {classesForKey(
+            key
+          )}"
         >
           {key}
         </button>
