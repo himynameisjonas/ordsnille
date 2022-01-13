@@ -114,6 +114,7 @@ export const plays = derived([totalWins, stats], ([$totalWins, $stats]) => {
 });
 
 export const winPercentage = derived([totalWins, plays], ([$totalWins, $plays]) => {
+  if ($plays == 0) return 0;
   let percentage = ($totalWins / $plays) * 100;
   return Math.round((percentage + Number.EPSILON) * 100) / 100;
 });

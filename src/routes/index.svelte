@@ -3,7 +3,7 @@
   import Board from "$lib/components/Board.svelte";
   import Keyboard from "$lib/components/Keyboard.svelte";
   import Stats from "$lib/components/Stats.svelte";
-  import game from "$lib/stores/game.js";
+  import game, { firstLoad } from "$lib/stores/game.js";
   import { allWords } from "$lib/words";
   import { notifications } from "$lib/stores/notifications.js";
   import { todaysWord } from "$lib/stores/word.js";
@@ -14,14 +14,24 @@
   beforeUpdate(() => {
     if ($game.status == "new" || !$game.status) {
       goto("/instruktioner");
+    } else if ($game.status == "completed" && $firstLoad) {
+      goto("/statistik");
     }
+    firstLoad.set(false);
   });
 
   function handleKey({ detail: key }) {
+    if ($game.status == "completed") return;
     game.addLetter(key);
   }
 
+  function deleteLetter() {
+    if ($game.status == "completed") return;
+    game.deleteLetter();
+  }
+
   function trySolution() {
+    if ($game.status == "completed") return;
     let attempt = $game.board[$game.boardIndex];
     if (attempt.length == 5) {
       if (allWords.includes(attempt)) {
@@ -34,11 +44,7 @@
 </script>
 
 <Top />
-{#if $game.solution == $todaysWord && $game.status != "completed"}
-  <Board />
-  <Keyboard on:delete={game.deleteLetter} on:enter={trySolution} on:key={handleKey} />
-{:else}
-  <Stats />
-{/if}
+<Board />
+<Keyboard on:delete={deleteLetter} on:enter={trySolution} on:key={handleKey} />
 
 <Toast />

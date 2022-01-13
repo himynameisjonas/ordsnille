@@ -4,6 +4,16 @@
   import { stats, graphs, plays, winPercentage } from "$lib/stores/stats";
   import { notifications } from "$lib/stores/notifications.js";
   import { todaysWord } from "$lib/stores/word.js";
+  import { goto } from "$app/navigation";
+
+  function startTodaysGame() {
+    game.restart();
+    goto("/");
+  }
+
+  function goBack() {
+    goto("/");
+  }
 
   async function share() {
     window.plausible("share", {
@@ -48,47 +58,62 @@
 </script>
 
 <div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
-  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
-    Senaste ordet du spelade var <a
-      rel="noopener noreferrer"
-      target="_blank"
-      href="https://svenska.se/tre/?sok={$stats.lastSolution}"
-      class="bg-green-300 p-1 text-green-700 font-bold uppercase">{$stats.lastSolution}</a
-    >
-    och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
-    {#if $hasWon}
-      <button
-        on:click={share}
-        class="w-full flex justify-center text-green-500 bg-gray-50 border border-green-500 font-bold p-2 rounded-lg mt-2"
+  {#if $plays > 0}
+    <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+      Senaste ordet du spelade var <a
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://svenska.se/tre/?sok={$stats.lastSolution}"
+        class="bg-green-300 p-1 text-green-700 font-bold uppercase">{$stats.lastSolution}</a
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 mr-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
+      {#if $hasWon}
+        <button
+          on:click={share}
+          class="w-full flex justify-center text-green-500 bg-gray-50 border border-green-500 font-bold p-2 rounded-lg mt-2"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-          />
-        </svg>
-        Dela ditt resultat</button
-      >
-    {/if}
-    {#if $game.solution != $todaysWord}
-      <button
-        on:click={game.restart}
-        class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
-      >
-        Spela dagens ord
-      </button>
-    {:else}
-      <h2 class="text-xl mt-3 mb-1 text-center font-abril">Ett nytt ord kommer i morgon!</h2>
-    {/if}
-  </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+            />
+          </svg>
+          Dela ditt resultat</button
+        >
+      {/if}
+      {#if $game.solution != $todaysWord}
+        <button
+          on:click={startTodaysGame}
+          class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+        >
+          Spela dagens ord
+        </button>
+      {:else if $game.solution == $todaysWord && $game.status == "started"}
+        <button
+          on:click={goBack}
+          class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+        >
+          Fortsätt spela dagens ord
+        </button>
+      {:else}
+        <h2 class="text-xl mt-3 mb-1 text-center font-abril">Ett nytt ord kommer i morgon!</h2>
+      {/if}
+    </div>
+  {:else}
+    <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+      Du har in inte spelat något spel ännu… <a class="underline text-blue-400" href="/"
+        >Börja med det först</a
+      >.
+    </div>
+  {/if}
 
   <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
     <h2 class="text-xl mb-1 text-center font-abril">Statistik</h2>

@@ -1,20 +1,34 @@
 <script>
+  import { goto } from "$app/navigation";
+
   function refresh() {
-    window.location.reload();
+    goto("/");
   }
 </script>
 
 <div
   class="py-0.5 pt-safe bg-green-100 flex justify-center items-center border-b-[3px] border-b-green-400"
 >
-  <span class="flex w-6 h-6" />
+  <a href="/statistik" class="text-gray-500 ml-3"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"
+      />
+    </svg></a
+  >
+
   <h1
     on:click={refresh}
     class="hover:cursor-pointer text-5xl uppercase text-gray-500 font-abril mx-auto"
   >
     <span class="text-green-500">Ord</span>snille
   </h1>
-  <a href="/instruktioner" class="text-gray-500 mr-2"
+  <a href="/instruktioner" class="text-gray-500 mr-3"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-6 w-6"

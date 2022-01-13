@@ -3,6 +3,7 @@ import { allWords } from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
 import { todaysWord } from "$lib/stores/word.js";
 import { stats } from "$lib/stores/stats.js";
+import { goto } from "$app/navigation";
 
 function defaultValues() {
   return {
@@ -61,6 +62,7 @@ const game = (function () {
             setTimeout(() => {
               update((game) => {
                 game.status = "completed";
+                goto("/statistik");
                 return game;
               });
             }, 3000);
@@ -146,3 +148,5 @@ export const timeForHint = derived(currentGuess, ($currentGuess, set) => {
     set(false);
   }
 });
+
+export const firstLoad = writable(true);
