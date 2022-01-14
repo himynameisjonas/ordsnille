@@ -2,6 +2,8 @@
   import { createEventDispatcher, onMount } from "svelte";
   import game, { timeForHint } from "$lib/stores/game.js";
   import { colorBlindness } from "$lib/stores/settings.js";
+  import KeyboardButton from "./KeyboardButton.svelte";
+
   const dispatch = createEventDispatcher();
 
   import { present, correct, absent } from "$lib/stores/letters.js";
@@ -69,14 +71,7 @@
         </button>
       {/if}
       {#each row as key}
-        <button
-          on:click={() => handleClick(key)}
-          class="h-14 rounded m-[2px] uppercase text-white font-bold w-10 flex items-center justify-center {classesForKey(
-            key
-          )}"
-        >
-          {key}
-        </button>
+        <KeyboardButton {key} on:click={() => handleClick(key)} />
       {/each}
       {#if index == 2}
         <button
