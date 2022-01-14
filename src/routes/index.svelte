@@ -8,28 +8,33 @@
   import Toast from "$lib/components/Toast.svelte";
   import { beforeUpdate } from "svelte";
   import { goto } from "$app/navigation";
+  import { todaysWord } from "$lib/stores/word.js";
 
   beforeUpdate(() => {
     if ($game.status == "new" || !$game.status) {
       goto("/instruktioner");
     } else if ($game.status == "completed" && $firstLoad) {
       goto("/statistik");
+    } else if (game.solution != $todaysWord && $game.status != "completed" && $firstLoad) {
+      goto("/statistik");
     }
     firstLoad.set(false);
   });
 
   function handleKey({ detail: key }) {
-    if ($game.status == "completed") return;
+    if ($game.status == "completed" || $game.solution != $todaysWord) return;
     game.addLetter(key);
   }
 
   function deleteLetter() {
-    if ($game.status == "completed") return;
+    if ($game.status == "completed" || $game.solution != $todaysWord) return;
     game.deleteLetter();
   }
 
   function trySolution() {
-    if ($game.status == "completed") return;
+    if ($game.status == "completed" || $game.solution != $todaysWord) {
+      return goto("/statistik");
+    }
     let attempt = $game.board[$game.boardIndex];
     if (attempt.length == 5) {
       if (allWords.includes(attempt)) {
