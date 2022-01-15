@@ -7,20 +7,13 @@
     let arr = Array.from(string);
     return [...arr, ...emptyArray].slice(0, 5);
   }
-  function hintForLetter(hints, letterIndex) {
-    if (hints) {
-      return hints[letterIndex];
-    } else {
-      return null;
-    }
-  }
 </script>
 
 <div>
   {#each $game.board as row, boardIndex}
     <div class="flex row justify-center">
       {#each lettersToArray(row) as letter, letterIndex}
-        <BoardLetter {letter} hint={hintForLetter($game.hints[boardIndex], letterIndex)} />
+        <BoardLetter {letter} {letterIndex} {boardIndex} />
       {/each}
     </div>
   {/each}

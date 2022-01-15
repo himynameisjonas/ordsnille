@@ -15,7 +15,7 @@
       goto("/instruktioner");
     } else if ($game.status == "completed" && $firstLoad) {
       goto("/statistik");
-    } else if (game.solution != $todaysWord && $game.status != "completed" && $firstLoad) {
+    } else if (game.solution != $todaysWord && $game.status == "completed" && $firstLoad) {
       goto("/statistik");
     }
     firstLoad.set(false);
@@ -44,10 +44,23 @@
       }
     }
   }
+
+  function startTodaysGame() {
+    game.restart();
+  }
 </script>
 
 <Top />
 <Board />
-<Keyboard on:delete={deleteLetter} on:enter={trySolution} on:key={handleKey} />
+{#if $game.solution == $todaysWord}
+  <Keyboard on:delete={deleteLetter} on:enter={trySolution} on:key={handleKey} />
+{:else}
+  <button
+    on:click={startTodaysGame}
+    class="mb-10 px-20 mx-auto flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+  >
+    Spela dagens ord
+  </button>
+{/if}
 
 <Toast />
