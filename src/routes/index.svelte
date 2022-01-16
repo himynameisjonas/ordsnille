@@ -2,10 +2,10 @@
   import Top from "$lib/components/Top.svelte";
   import Board from "$lib/components/Board.svelte";
   import Keyboard from "$lib/components/Keyboard.svelte";
+  import Toast from "$lib/components/Toast.svelte";
   import game, { firstLoad } from "$lib/stores/game.js";
   import { allWords } from "$lib/words";
   import { notifications } from "$lib/stores/notifications.js";
-  import Toast from "$lib/components/Toast.svelte";
   import { beforeUpdate } from "svelte";
   import { goto } from "$app/navigation";
   import { todaysWord } from "$lib/stores/word.js";
