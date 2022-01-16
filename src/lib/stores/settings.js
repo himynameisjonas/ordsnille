@@ -6,7 +6,7 @@ if (typeof localStorage !== "undefined") {
 } else {
   colorBlindnessStart = false;
 }
-export const colorBlindness = writable(colorBlindnessStart);
+export const colorBlindness = writable(true);
 
 if (typeof localStorage !== "undefined") {
   colorBlindness.subscribe(

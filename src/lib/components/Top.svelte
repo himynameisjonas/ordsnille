@@ -7,9 +7,9 @@
 </script>
 
 <div
-  class="py-0.5 pt-safe bg-green-100 flex justify-center items-center border-b-[3px] border-b-green-400"
+  class="py-0.5 pt-safe bg-sky-400 flex justify-center items-center border-b-[3px] border-b-sky-400"
 >
-  <a href="/statistik" class="text-gray-500 ml-3"
+  <a href="/statistik" class="text-sky-50 ml-3"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -24,11 +24,11 @@
 
   <h1
     on:click={refresh}
-    class="hover:cursor-pointer text-5xl uppercase text-gray-500 font-abril mx-auto"
+    class="hover:cursor-pointer text-5xl uppercase text-sky-50 font-abril mx-auto"
   >
-    <span class="text-green-500">Ord</span>snille
+    <span class="text-sky-800">Ord</span>snille
   </h1>
-  <a href="/instruktioner" class="text-gray-500 mr-3"
+  <a href="/instruktioner" class="text-sky-50 mr-3"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-6 w-6"

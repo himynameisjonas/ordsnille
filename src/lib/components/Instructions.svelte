@@ -1,7 +1,6 @@
 <script>
   import game, { firstLoad } from "$lib/stores/game.js";
   import { goto } from "$app/navigation";
-  import { colorBlindness } from "$lib/stores/settings";
   import BoardLetter from "./BoardLetter.svelte";
 
   function start() {
@@ -20,7 +19,7 @@
       <li class="mb-2">Varje gissning måste vara ett giltigt ord på 5 bokstäver.</li>
       <li class="mb-2">
         Tryck på <span
-          class="h-7 rounded m-[2px] bg-slate-500 uppercase text-white font-bold w-8 inline-block "
+          class="h-7 rounded m-[2px] bg-slate-500 uppercase text-sky-50 font-bold w-8 inline-block "
         >
           <span class="flex items-center justify-center h-full w-full">⏎</span>
         </span>
@@ -68,7 +67,7 @@
 
     <button
       on:click={start}
-      class="w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded my-10 shadow-md shadow-green-500/50"
+      class="w-full flex justify-center bg-sky-500 text-sky-50 font-bold p-2 rounded my-10 shadow-md shadow-sky-500/50"
     >
       {#if $game.status == "new"}
         Starta spelet och börja gissa
@@ -76,24 +75,6 @@
         Stäng
       {/if}
     </button>
-    <div class="py-3 text-sm border-t text-center">
-      <h2 class="text-xl mb-1 text-center font-abril">Inställningar</h2>
-
-      <div class="flex justify-center">
-        <div class="form-check form-switch">
-          <input
-            bind:checked={$colorBlindness}
-            class="form-check-input float-left h-5 align-top cursor-pointer mr-2"
-            type="checkbox"
-            role="switch"
-            id="color-blind-checkbox"
-          />
-          <label class="form-check-label inline-block text-gray-800" for="color-blind-checkbox"
-            >Färgblindläge</label
-          >
-        </div>
-      </div>
-    </div>
 
     <div class="py-3 text-sm border-t text-center">
       Vid frågor, kontakta mig via

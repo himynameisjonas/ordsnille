@@ -1,5 +1,4 @@
 <script>
-  import { colorBlindness } from "$lib/stores/settings.js";
   import game from "$lib/stores/game.js";
 
   export let letter = "";
@@ -35,25 +34,13 @@
   }
 
   $: if (internalHint == 2) {
-    if ($colorBlindness) {
-      classBorder = "border-sky-600";
-      classText = "text-sky-600";
-      classBg = "bg-sky-300";
-    } else {
-      classBorder = "border-green-600";
-      classText = "text-green-600";
-      classBg = "bg-green-300";
-    }
+    classBorder = "border-sky-600";
+    classText = "text-sky-600";
+    classBg = "bg-sky-300";
   } else if (internalHint == 1) {
-    if ($colorBlindness) {
-      classBorder = "border-yellow-500";
-      classText = "text-yellow-600";
-      classBg = "bg-yellow-200";
-    } else {
-      classBorder = "border-orange-500";
-      classText = "text-orange-500";
-      classBg = "bg-orange-200";
-    }
+    classBorder = "border-yellow-500";
+    classText = "text-yellow-600";
+    classBg = "bg-yellow-200";
   } else if (internalHint == 0) {
     classBorder = "border-gray-500";
     classText = "text-gray-500";

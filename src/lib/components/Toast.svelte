@@ -4,7 +4,7 @@
   import { notifications } from "$lib/stores/notifications.js";
 
   export let themes = {
-    success: "bg-green-500 border-2 border-green-600",
+    success: "bg-sky-500 border-2 border-sky-600",
     warning: "bg-orange-500 border-2 border-orange-600",
   };
 </script>
@@ -18,7 +18,7 @@
       class="drop-shadow-xl rounded flex mb-2 {themes[notification.type]}"
       transition:fly={{ y: 30 }}
     >
-      <div class="p-2 font-bold text-white">{notification.message}</div>
+      <div class="p-2 font-bold text-sky-50">{notification.message}</div>
     </div>
   {/each}
 </div>

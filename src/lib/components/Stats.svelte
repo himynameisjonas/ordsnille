@@ -73,7 +73,7 @@
   {#if $plays > 0}
     <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
       Senaste ordet du spelade var
-      <span class="bg-green-300 p-1 text-green-700 font-bold uppercase">{$stats.lastSolution}</span>
+      <span class="bg-sky-300 p-1 text-sky-700 font-bold uppercase">{$stats.lastSolution}</span>
       (<a
         rel="noopener noreferrer"
         class="underline text-blue-400"
@@ -84,7 +84,7 @@
         {#if canShare}
           <h2 class="text-xl mt-5 mb-1 text-center font-abril">Dela ditt resultat</h2>
           <div
-            class="w-full flex text-green-500 font-bold mt-2 border border-green-500 rounded-lg mb-7"
+            class="w-full flex text-sky-500 font-bold mt-2 border border-sky-500 rounded-lg mb-7"
           >
             <button
               type="button"
@@ -111,7 +111,7 @@
             <button
               on:click={copy}
               type="button"
-              class="items-center w-full flex justify-center  bg-gray-50  font-bold p-2 rounded-r-lg border-l border-green-500"
+              class="items-center w-full flex justify-center  bg-gray-50  font-bold p-2 rounded-r-lg border-l border-sky-500"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +133,7 @@
         {:else}
           <button
             on:click={share}
-            class="w-full flex justify-center text-green-500 bg-gray-50 border border-green-500 font-bold p-2 rounded-lg mt-2"
+            class="w-full flex justify-center text-sky-500 bg-gray-50 border border-sky-500 font-bold p-2 rounded-lg mt-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -156,14 +156,14 @@
       {#if $game.solution != $todaysWord}
         <button
           on:click={startTodaysGame}
-          class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+          class="mt-3 w-full flex justify-center bg-sky-500 text-sky-50 font-bold p-2 rounded shadow-md shadow-sky-500/50"
         >
           Spela dagens ord
         </button>
       {:else if $game.solution == $todaysWord && ($game.status == "started" || $game.status == "new")}
         <button
           on:click={goBack}
-          class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+          class="mt-3 w-full flex justify-center bg-sky-500 text-sky-50 font-bold p-2 rounded shadow-md shadow-sky-500/50"
         >
           Fortsätt spela dagens ord
         </button>
@@ -209,7 +209,7 @@
             <td class="font-bold pr-1">{score.points}</td>
             <td width="100%">
               <div class="flex items-center">
-                <div class="h-4 bg-green-300 rounded-r" style="width: {score.percentage}%" />
+                <div class="h-4 bg-sky-300 rounded-r" style="width: {score.percentage}%" />
                 <div class="ml-1 text-xs">{score.guesses}</div>
               </div>
             </td>
