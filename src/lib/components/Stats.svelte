@@ -50,13 +50,15 @@
 <div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
   {#if $plays > 0}
     <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
-      Senaste ordet du spelade var <a
-        rel="noopener noreferrer"
-        target="_blank"
-        href="https://svenska.se/tre/?sok={$stats.lastSolution}"
-        class="bg-green-300 p-1 text-green-700 font-bold uppercase">{$stats.lastSolution}</a
+      Senaste ordet du spelade var <span class="bg-green-300 p-1 text-green-700 font-bold uppercase"
+        >{$stats.lastSolution}</span
       >
-      och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
+      (<a
+        rel="noopener noreferrer"
+        class="underline text-blue-400"
+        target="_blank"
+        href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
+      >) och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
       {#if $hasWon}
         <button
           on:click={share}
