@@ -21,7 +21,7 @@
     };
 
     try {
-      if (navigator.share) {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
         await navigator.share(shareData);
       } else if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(shareData.text);
@@ -35,7 +35,7 @@
         try {
           await document.execCommand("copy");
           notifications.success("Kopierat resultatet!");
-        } catch (ex) {
+        } catch (err) {
           notifications.warning("Något gick fel!");
         } finally {
           document.body.removeChild(textarea);
