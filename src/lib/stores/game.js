@@ -72,6 +72,7 @@ const game = (function () {
             setTimeout(() => {
               update((game) => {
                 game.status = "completed";
+                goto("/statistik");
                 return game;
               });
             }, 3000);
