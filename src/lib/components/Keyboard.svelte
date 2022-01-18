@@ -1,12 +1,9 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import game, { timeForHint } from "$lib/stores/game.js";
-  import { colorBlindness } from "$lib/stores/settings.js";
   import KeyboardButton from "./KeyboardButton.svelte";
 
   const dispatch = createEventDispatcher();
-
-  import { present, correct, absent } from "$lib/stores/letters.js";
 
   const rows = [
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"],
@@ -36,26 +33,6 @@
 
   function handleClick(key) {
     dispatch("key", key);
-  }
-
-  function classesForKey(key) {
-    if ($correct.has(key)) {
-      if ($colorBlindness) {
-        return "bg-sky-400 text-sky-800";
-      } else {
-        return "bg-green-400 text-green-700";
-      }
-    } else if ($present.has(key)) {
-      if ($colorBlindness) {
-        return "bg-yellow-300 text-yellow-700";
-      } else {
-        return "bg-orange-300 text-orange-600";
-      }
-    } else if ($absent.has(key)) {
-      return "bg-gray-500 text-gray-400";
-    } else {
-      return "bg-slate-400";
-    }
   }
 </script>
 

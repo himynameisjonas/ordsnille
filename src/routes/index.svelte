@@ -15,7 +15,7 @@
       goto("/instruktioner");
     } else if ($game.status == "completed" && $firstLoad) {
       goto("/statistik");
-    } else if (game.solution != $todaysWord && $game.status == "completed" && $firstLoad) {
+    } else if (game.solution != $todaysWord && $firstLoad) {
       goto("/statistik");
     }
     firstLoad.set(false);
