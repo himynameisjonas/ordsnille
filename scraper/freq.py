@@ -8,7 +8,7 @@ with open("scrubbed.txt") as file:
   words = file.readlines()
   words = [line.rstrip() for line in words]
   for word in words:
-    if zipf_frequency(word, 'sv') >= 2:
+    if zipf_frequency(word, 'sv') >= 3:
       frequent_file.write(word + "\n")
     else:
       more_file.write(word + "\n")

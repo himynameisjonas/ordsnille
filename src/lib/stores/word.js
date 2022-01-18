@@ -13,9 +13,7 @@ function wordIndex() {
 }
 
 function _todaysWord() {
-  if (daysFromStart() === 3) {
-    return "posto";
-  }
+  console.log("hejhej", wordIndex());
   return frequentWords[wordIndex()];
 }
 

@@ -3,6 +3,8 @@ Bundler.require
 words = []
 words |= File.readlines('saol2018clean.txt').map { _1.split(",")[1]}
 words |= File.readlines('raw_words.txt')
+words |= File.readlines('swe_wordlist.txt')
+blocklist = File.readlines('blocklist.txt').map &:strip
 # words |= File.readlines('dictionary.txt')
 puts words.size
 words.map! do |word|
@@ -12,6 +14,7 @@ words.map! do |word|
   next if /[[:upper:]]/.match(word)
   word.strip!
   next unless word.length == 5
+  next if blocklist.include?(word)
   "'#{word}'"
 end
 
