@@ -24,7 +24,6 @@
   }
 
   $: if (hint != null) {
-    console.log("hint inte undefined");
     internalHint = hint;
   } else {
     let hints = $game.hints[boardIndex];

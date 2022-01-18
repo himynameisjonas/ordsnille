@@ -13,7 +13,6 @@ function wordIndex() {
 }
 
 function _todaysWord() {
-  console.log("hejhej", wordIndex());
   return frequentWords[wordIndex()];
 }
 
