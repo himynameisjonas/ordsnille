@@ -133,6 +133,7 @@ export const frequentWords = [
   "skaka",
   "onkel",
   "pussa",
+  "ridån",
   "basun",
   "häfte",
   "samma",

@@ -1,6 +1,9 @@
 import { get } from "svelte/store";
 
 import Game from "./Game.js";
+beforeEach(() => {
+  Game.restart();
+});
 
 test("addLetter should add the leters to board", () => {
   Game.addLetter("b");
@@ -38,5 +41,20 @@ describe("trySolution", () => {
     expect(get(Game).hints).toEqual([]);
     Game.trySolution();
     expect(get(Game).hints[0]).toEqual([2, 1, 0, 1, 0]);
+  });
+
+  it("supports multiple of the same letters on both solution and guess", () => {
+    Game.update(($game) => {
+      $game.board = ["täppt"];
+      $game.solution = "uppåt";
+      $game.boardIndex = 0;
+      $game.hints = [];
+      return $game;
+    });
+    expect(get(Game).solution).toBe("uppåt");
+    expect(get(Game).board[0]).toBe("täppt");
+    expect(get(Game).hints).toEqual([]);
+    Game.trySolution();
+    expect(get(Game).hints[0]).toEqual([0, 0, 2, 1, 2]);
   });
 });

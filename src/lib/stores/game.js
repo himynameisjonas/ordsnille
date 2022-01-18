@@ -47,12 +47,14 @@ const game = (function () {
               game.hints[boardIndex][letterIndex] = 2;
               solutionArray[letterIndex] = "-";
               attemptArray[letterIndex] = "-";
-            } else {
-              let i = attemptArray.indexOf(letter);
-              if (i > -1) {
-                game.hints[boardIndex][i] = 1;
-                solutionArray[letterIndex] = "-";
-              }
+            }
+          });
+          attemptArray.forEach((letter, letterIndex) => {
+            if (letter === "-") return;
+            let i = solutionArray.indexOf(letter);
+            if (i > -1) {
+              game.hints[boardIndex][letterIndex] = 1;
+              solutionArray[i] = "-";
             }
           });
 
