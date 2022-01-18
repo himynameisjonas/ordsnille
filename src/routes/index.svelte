@@ -9,6 +9,7 @@
   import { beforeUpdate } from "svelte";
   import { goto } from "$app/navigation";
   import { todaysWord } from "$lib/stores/word.js";
+  import throttle from "just-throttle";
 
   beforeUpdate(() => {
     if ($game.status == "new" || !$game.status) {
@@ -21,29 +22,40 @@
     firstLoad.set(false);
   });
 
-  function handleKey({ detail: key }) {
-    if ($game.status == "completed" || $game.solution != $todaysWord) return;
-    game.addLetter(key);
-  }
+  const handleKey = throttle(
+    ({ detail: key }) => {
+      if ($game.status == "completed" || $game.solution != $todaysWord) return;
+      game.addLetter(key);
+    },
+    10,
+    { leading: true }
+  );
 
-  function deleteLetter() {
-    if ($game.status == "completed" || $game.solution != $todaysWord) return;
-    game.deleteLetter();
-  }
-
-  function trySolution() {
-    if ($game.status == "completed" || $game.solution != $todaysWord) {
-      return goto("/statistik");
-    }
-    let attempt = $game.board[$game.boardIndex];
-    if (attempt.length == 5) {
-      if (allWords.includes(attempt)) {
-        game.trySolution();
-      } else {
-        notifications.warning("Inte med i ordlistan");
+  const deleteLetter = throttle(
+    () => {
+      if ($game.status == "completed" || $game.solution != $todaysWord) return;
+      game.deleteLetter();
+    },
+    10,
+    { leading: true }
+  );
+  const trySolution = throttle(
+    () => {
+      if ($game.status == "completed" || $game.solution != $todaysWord) {
+        return goto("/statistik");
       }
-    }
-  }
+      let attempt = $game.board[$game.boardIndex];
+      if (attempt.length == 5) {
+        if (allWords.includes(attempt)) {
+          game.trySolution();
+        } else {
+          notifications.warning("Inte med i ordlistan");
+        }
+      }
+    },
+    1000,
+    { leading: true }
+  );
 
   function startTodaysGame() {
     game.restart();
