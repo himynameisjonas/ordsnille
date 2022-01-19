@@ -40,7 +40,7 @@
     { leading: true }
   );
   const trySolution = throttle(
-    () => {
+    async () => {
       if ($game.status == "completed" || $game.solution != $todaysWord) {
         return goto("/statistik");
       }
@@ -50,6 +50,13 @@
           game.trySolution();
         } else {
           notifications.warning("Inte med i ordlistan");
+          fetch("/word", {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ attempt }),
+          });
         }
       }
     },
