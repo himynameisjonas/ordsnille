@@ -50,5 +50,8 @@
       "^\\$lib(.*)$": "<rootDir>/src/lib$1",
       "^\\$app(.*)$": "<rootDir>/.svelte-kit/dev/runtime/app$1"
     }
+  },
+  "volta": {
+    "node": "16.13.2"
   }
 }
