@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 
-import Game from "./Game.js";
+import Game from "./Game";
 beforeEach(() => {
   Game.restart();
 });
