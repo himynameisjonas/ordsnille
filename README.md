@@ -1,8 +1,10 @@
-# Ordsnille
+# Ordsnille – Wordle på Svenska
+
+https://ordsnille.brusman.se
 
 ## Developing
 
-Once you've created a project and installed dependencies with `yarn install`, start a development server:
+Install the dependencies with `yarn install` and start a development server:
 
 ```bash
 yarn dev
