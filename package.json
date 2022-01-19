@@ -29,7 +29,7 @@
     "jest": "27.4.7",
     "just-throttle": "4.0.1",
     "prettier": "2.5.1",
-    "prettier-plugin-svelte": "2.5.1",
+    "prettier-plugin-svelte": "2.6.0",
     "svelte": "3.44.3",
     "svelte-jester": "2.1.5",
     "svelte-preprocess": "4.10.2",
