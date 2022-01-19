@@ -33,7 +33,7 @@
     "svelte": "3.44.3",
     "svelte-jester": "2.1.5",
     "svelte-preprocess": "4.10.2",
-    "tailwindcss": "3.0.11",
+    "tailwindcss": "3.0.15",
     "tailwindcss-safe-area": "0.2.2"
   },
   "type": "module",
