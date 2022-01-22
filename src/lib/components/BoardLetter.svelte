@@ -69,6 +69,7 @@
 </script>
 
 <div
+  class:animate-pop={animate}
   class:h-16={!smallSize}
   class:w-16={!smallSize}
   class:text-5xl={!smallSize}
