@@ -82,7 +82,7 @@
       >) och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
       {#if $hasWon}
         {#if canShare}
-          <h2 class="text-xl mb-1 text-center font-abril">Dela ditt resultat</h2>
+          <h2 class="text-xl mt-5 mb-1 text-center font-abril">Dela ditt resultat</h2>
           <div
             class="w-full flex text-green-500 font-bold mt-2 border border-green-500 rounded-lg mb-7"
           >
