@@ -6,6 +6,8 @@
   import { todaysWord } from "$lib/stores/word.js";
   import { goto } from "$app/navigation";
 
+  let canShare = false;
+
   function startTodaysGame() {
     game.restart();
     goto("/");
@@ -15,20 +17,36 @@
     goto("/");
   }
 
-  async function share() {
-    const shareData = {
+  function shareData() {
+    return {
       text: `Ordsnille nr${$gameNumber} (${$game.boardIndex + 1}/6)\n${$emojiResult}`,
     };
+  }
+
+  async function share() {
+    let share = shareData();
 
     try {
-      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-        await navigator.share(shareData);
-      } else if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(shareData.text);
+      if (navigator.share && navigator.canShare && navigator.canShare(share)) {
+        await navigator.share(share);
+      } else {
+        await copy();
+      }
+    } catch (err) {
+      notifications.warning("Något gick fel!");
+    }
+  }
+
+  async function copy() {
+    let share = shareData();
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(share.text);
         notifications.success("Kopierat resultatet!");
       } else {
         var textarea = document.createElement("textarea");
-        textarea.textContent = shareData.text;
+        textarea.textContent = share.text;
         textarea.style.position = "fixed";
         document.body.appendChild(textarea);
         textarea.select();
@@ -45,14 +63,17 @@
       notifications.warning("Något gick fel!");
     }
   }
+
+  $: if ($emojiResult && navigator.share && navigator.canShare && navigator.canShare(shareData())) {
+    canShare = true;
+  }
 </script>
 
 <div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
   {#if $plays > 0}
     <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
-      Senaste ordet du spelade var <span class="bg-green-300 p-1 text-green-700 font-bold uppercase"
-        >{$stats.lastSolution}</span
-      >
+      Senaste ordet du spelade var
+      <span class="bg-green-300 p-1 text-green-700 font-bold uppercase">{$stats.lastSolution}</span>
       (<a
         rel="noopener noreferrer"
         class="underline text-blue-400"
@@ -60,26 +81,77 @@
         href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
       >) och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
       {#if $hasWon}
-        <button
-          on:click={share}
-          class="w-full flex justify-center text-green-500 bg-gray-50 border border-green-500 font-bold p-2 rounded-lg mt-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 mr-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        {#if canShare}
+          <h2 class="text-xl mb-1 text-center font-abril">Dela ditt resultat</h2>
+          <div
+            class="w-full flex text-green-500 font-bold mt-2 border border-green-500 rounded-lg mb-7"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-            />
-          </svg>
-          Dela ditt resultat</button
-        >
+            <button
+              type="button"
+              on:click={share}
+              class="items-center w-full flex justify-center  bg-gray-50  font-bold p-2 rounded-lg "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                />
+              </svg>
+
+              Dela
+            </button>
+            <button
+              on:click={copy}
+              type="button"
+              class="items-center w-full flex justify-center  bg-gray-50  font-bold p-2 rounded-r-lg border-l border-green-500"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                />
+              </svg>
+              Kopiera
+            </button>
+          </div>
+        {:else}
+          <button
+            on:click={share}
+            class="w-full flex justify-center text-green-500 bg-gray-50 border border-green-500 font-bold p-2 rounded-lg mt-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+              />
+            </svg>
+            Dela ditt resultat
+          </button>
+        {/if}
       {/if}
       {#if $game.solution != $todaysWord}
         <button
