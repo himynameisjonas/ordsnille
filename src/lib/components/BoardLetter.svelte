@@ -34,23 +34,23 @@
   }
 
   $: if (internalHint == 2) {
-    classBorder = "border-sky-600";
-    classText = "text-sky-600";
-    classBg = "bg-sky-300";
+    classBorder = "border-sky-600 dark:border-sky-700";
+    classText = "text-sky-600 dark:text-sky-600";
+    classBg = "bg-sky-300 dark:bg-sky-800";
   } else if (internalHint == 1) {
-    classBorder = "border-yellow-500";
-    classText = "text-yellow-600";
-    classBg = "bg-yellow-200";
+    classBorder = "border-yellow-500 dark:border-yellow-600";
+    classText = "text-yellow-600 dark:text-yellow-600";
+    classBg = "bg-yellow-200 dark:bg-yellow-700";
   } else if (internalHint == 0) {
-    classBorder = "border-gray-500";
+    classBorder = "border-gray-500 dark:border-gray-500 ";
     classText = "text-gray-500";
-    classBg = "bg-gray-400";
+    classBg = "bg-gray-400 dark:bg-gray-800";
   } else if (letter && internalHint == null) {
     classBorder = "border-gray-300";
     classText = "text-gray-600";
   } else {
-    classBg = "bg-neutral-50";
-    classBorder = "";
+    classBg = "bg-neutral-50 dark:bg-slate-800";
+    classBorder = "dark:border-slate-700";
     classText = "";
   }
 </script>

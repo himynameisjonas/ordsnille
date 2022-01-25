@@ -40,7 +40,9 @@
     %svelte.head%
   </head>
   <body class="bg-sky-100 flex flex-col justify-items-stretch h-full">
-    <div id="svelte" class="flex flex-col h-full justify-between bg-neutral-100">%svelte.body%</div>
+    <div id="svelte" class="flex flex-col h-full justify-between bg-neutral-100 dark:bg-slate-900">
+      %svelte.body%
+    </div>
     <script>
       window.plausible =
         window.plausible ||

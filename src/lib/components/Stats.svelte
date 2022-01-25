@@ -71,7 +71,7 @@
 
 <div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
   {#if $plays > 0}
-    <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+    <div class="mb-5 bg-white dark:bg-slate-800 rounded-lg border shadow-inner p-4">
       Senaste ordet du spelade var
       <span class="bg-sky-300 p-1 text-sky-700 font-bold uppercase">{$stats.lastSolution}</span>
       (<a
@@ -172,14 +172,14 @@
       {/if}
     </div>
   {:else}
-    <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+    <div class="mb-5 bg-white dark:bg-slate-800 rounded-lg border shadow-inner p-4">
       Du har in inte spelat något spel ännu… <a class="underline text-blue-400" href="/"
         >Börja med det först</a
       >.
     </div>
   {/if}
 
-  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+  <div class="mb-5 bg-white dark:bg-slate-800 rounded-lg border shadow-inner p-4">
     <h2 class="text-xl mb-1 text-center font-abril">Statistik</h2>
     <div class="flex text-center flex-wrap">
       <div class="w-1/2 mb-4">
@@ -200,7 +200,7 @@
       </div>
     </div>
   </div>
-  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+  <div class="mb-5 bg-white dark:bg-slate-800 rounded-lg border shadow-inner p-4">
     <h2 class="text-xl mb-1 text-center font-abril">Antal vunna spel per antal gissningar</h2>
     <table>
       <tbody>
