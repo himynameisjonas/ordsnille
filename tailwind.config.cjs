@@ -1,3 +1,5 @@
+const withAnimations = require("animated-tailwindcss");
+
 const config = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
 
@@ -12,4 +14,4 @@ const config = {
   plugins: [require("tailwindcss-safe-area")],
 };
 
-module.exports = config;
+module.exports = withAnimations(config);

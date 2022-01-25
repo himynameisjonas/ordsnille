@@ -50,6 +50,7 @@
           game.trySolution();
         } else {
           notifications.warning("Inte med i ordlistan");
+          game.invalidWord();
           fetch("/word", {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {

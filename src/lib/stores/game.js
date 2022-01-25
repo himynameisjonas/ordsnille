@@ -12,6 +12,7 @@ function defaultValues() {
     boardIndex: 0,
     solution: get(todaysWord),
     status: "new",
+    invalidWord: false,
   };
 }
 
@@ -82,6 +83,7 @@ const game = (function () {
             game.boardIndex = boardIndex + 1;
           }
         }
+        game.invalidWord = false;
         return game;
       });
     },
@@ -91,12 +93,14 @@ const game = (function () {
         if (game.board[i].length < 5) {
           game.board[i] += letter;
         }
+        game.invalidWord = false;
         return game;
       }),
     deleteLetter: () =>
       update((game) => {
         let i = game.boardIndex;
         game.board[i] = game.board[i].slice(0, -1);
+        game.invalidWord = false;
         return game;
       }),
     start: () =>
@@ -110,6 +114,11 @@ const game = (function () {
       update((game) => {
         game = defaultValues();
         game.status = "started";
+        return game;
+      }),
+    invalidWord: () =>
+      update((game) => {
+        game.invalidWord = true;
         return game;
       }),
   };
@@ -153,3 +162,7 @@ export const timeForHint = derived(currentGuess, ($currentGuess, set) => {
 });
 
 export const firstLoad = writable(true);
+
+export const currentIndexes = derived(game, ($game) => {
+  return { board: $game.boardIndex, letter: $game.board[$game.boardIndex].length };
+});

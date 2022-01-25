@@ -1,6 +1,8 @@
 <script>
+  import { afterUpdate } from "svelte";
+
   import { colorBlindness } from "$lib/stores/settings.js";
-  import game from "$lib/stores/game.js";
+  import game, { currentIndexes } from "$lib/stores/game.js";
 
   export let letter = "";
   export let hint = null;
@@ -13,14 +15,20 @@
   let classBorder = "";
   let classText = "";
   let classBg = "";
+  let showCursor = false;
+  let animationTimeout;
 
-  $: {
-    if (letter != "") {
+  afterUpdate(() => {
+    clearTimeout(animationTimeout);
+    animationTimeout = setTimeout(() => {
       animate = true;
-      setTimeout(() => {
-        animate = false;
-      }, 500);
-    }
+    }, 500);
+  });
+
+  $: if (internalHint != null) {
+    animate = "animate-flipInX animate-fast";
+  } else if (letter != "") {
+    animate = "animate-bounceIn animate-faster";
   }
 
   $: if (hint != null) {
@@ -66,17 +74,30 @@
     classBorder = "";
     classText = "";
   }
+
+  $: if ($currentIndexes.board == boardIndex && $currentIndexes.letter == letterIndex) {
+    showCursor = true;
+  } else {
+    showCursor = false;
+  }
+  $: if ($currentIndexes.board == boardIndex && $game.invalidWord) {
+    animate = "animate-headShake";
+  }
 </script>
 
 <div
-  class:animate-pop={animate}
   class:h-16={!smallSize}
   class:w-16={!smallSize}
   class:text-5xl={!smallSize}
   class:h-11={smallSize}
   class:w-11={smallSize}
   class:text-3xl={smallSize}
-  class="{classBorder} {classText} {classBg} rounded transition-colors border-2 m-0.5 uppercase font-bold flex items-center justify-center"
+  class="{classBorder} {classText} {classBg} {animate} rounded transition-colors border-2 m-0.5 uppercase font-bold flex items-center justify-center"
 >
+  {#if showCursor}
+    <span
+      class="w-7/12 h-1 bg-neutral-400 mt-auto mb-2 animate-flash animate-infinite animate-slower"
+    />
+  {/if}
   {letter}
 </div>
