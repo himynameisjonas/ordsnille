@@ -77,6 +77,9 @@
 
   $: if ($currentIndexes.board == boardIndex && $currentIndexes.letter == letterIndex) {
     showCursor = true;
+    setTimeout(() => {
+      showCursor = false;
+    }, 2000);
   } else {
     showCursor = false;
   }
