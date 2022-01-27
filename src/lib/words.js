@@ -2883,6 +2883,7 @@ export const frequentWords = [
   "okänt",
   "ordna",
   "ritar",
+  "svamp",
 ];
 export const moreWords = [
   "modal",
