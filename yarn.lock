@@ -4391,10 +4391,10 @@ svelte-hmr@^0.14.9:
   resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.9.tgz#35f277efc789e1a6230185717347cddb2f8e9833"
   integrity sha512-bKE9+4qb4sAnA+TKHiYurUl970rjA0XmlP9TEP7K/ncyWz3m81kA4HOgmlZK/7irGK7gzZlaPDI3cmf8fp/+tg==
 
-svelte-jester@2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/svelte-jester/-/svelte-jester-2.1.5.tgz#c9d47ee202a3676883cd8ea5b85d66fb5b077db1"
-  integrity sha512-T3JoPsNYltlN2MiVFDxAMOulIO4fztFFI3DhOkzbs1yZQCUFp6sqS6aqusBsIEMVmXaEDW4HO/6bX+CuwuEUSw==
+svelte-jester@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/svelte-jester/-/svelte-jester-2.3.1.tgz#fbc9f169ae1ad63c0d815ab757acd0e88d24b934"
+  integrity sha512-Iss/w6EhWRqQ8e3I+UwT4JQCexwnA22jhr+1PcOD8+P99yQh3SsHHK2r2Fvr4bHHjBtvOTgzxhkOyRXP45lj4Q==
 
 svelte-preprocess@4.10.2:
   version "4.10.2"
