@@ -62,6 +62,12 @@ export const stats = (function () {
         $stats.maxStreak = Math.max($stats.currentStreak, $stats.maxStreak || 0);
         $stats.lastGameNumber = get(gameNumber);
 
+        window.goatcounter &&
+          window.goatcounter.count({
+            path: "game-won",
+            title: get(gameNumber),
+            event: true,
+          });
         window.plausible("game-won", {
           props: {
             gameNumber: get(gameNumber),
@@ -81,6 +87,13 @@ export const stats = (function () {
         $stats.lastSolution = game.solution;
         $stats.lastStatus = "failure";
         $stats.lastGameNumber = get(gameNumber);
+
+        window.goatcounter &&
+          window.goatcounter.count({
+            path: "game-lost",
+            title: get(gameNumber),
+            event: true,
+          });
 
         window.plausible("game-lost", {
           props: {
