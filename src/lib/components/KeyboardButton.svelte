@@ -1,10 +1,16 @@
 <script>
   import { present, correct, absent } from "$lib/stores/letters.js";
   import { colorBlindness } from "$lib/stores/settings.js";
+  import { beforeUpdate } from "svelte";
 
   export let key;
-
   let classes = "";
+
+  beforeUpdate(() => {
+    if (key && key.length != 1) {
+      window.location.reload();
+    }
+  });
 
   $: if ($correct.has(key)) {
     if ($colorBlindness) {

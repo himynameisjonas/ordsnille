@@ -37,7 +37,7 @@
 </script>
 
 <div class="pb-safe">
-  {#each rows as row, index}
+  {#each rows as row, index (row)}
     <div class="flex justify-center">
       {#if index == 2}
         <button
@@ -47,7 +47,7 @@
           <span class:animate-bounce={$timeForHint && $game.status != "completed"}>⏎</span>
         </button>
       {/if}
-      {#each row as key}
+      {#each row as key (key)}
         <KeyboardButton {key} on:click={() => handleClick(key)} />
       {/each}
       {#if index == 2}
