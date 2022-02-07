@@ -15,3 +15,6 @@ scraper/frequent.txt
 scraper/more.txt
 scraper/scrubbed.txt
 scraper/swe_wordlist.txt
+scraper/filtered.txt
+scraper/non_filtered.txt
+scraper/swe_wordlist_5.txt

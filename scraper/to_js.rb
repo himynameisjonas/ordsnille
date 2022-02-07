@@ -6,9 +6,11 @@ frequent_words.map! do |word|
   "'#{word.strip}'"
 end
 
-more_words = File.readlines('more.txt')
+more_words = File.readlines('scrubbed.txt')
 more_words.map! do |word|
-  "'#{word.strip}'"
+  w = "'#{word.strip}'"
+  next if frequent_words.include?(w)
+  w
 end
 
 used_words = [
@@ -24,9 +26,29 @@ used_words = [
   "'dröja'",
   "'ambra'",
   "'uppåt'",
+  "'gissa'",
+  "'sugen'",
+  "'oljud'",
+  "'mötet'",
+  "'rapid'",
+  "'härma'",
+  "'gjord'",
+  "'undre'",
+  "'small'",
+  "'huvet'",
+  "'bilen'",
+  "'radie'",
+  "'slick'",
+  "'delen'",
+  "'mesig'",
+  "'naiva'",
+  "'yacht'",
+  "'färja'",
+  "'nacke'",
+  "'pepsi'",
 ]
 
-frequent_words = frequent_words.compact.uniq.shuffle(random: Random.new(3))
+frequent_words = frequent_words.compact.uniq.shuffle(random: Random.new(4))
 used_words.each { frequent_words.delete _1 }
 frequent_words = used_words | frequent_words
 

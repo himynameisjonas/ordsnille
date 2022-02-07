@@ -60,7 +60,6 @@ gökat
 grass
 grass
 Grass
-halva
 hasch
 hasch
 Hasch
@@ -82,10 +81,6 @@ joint
 kabbe
 kabbe
 kabbe
-kaffe
-Kaffe
-kakao
-Kakao
 kasse
 knark
 knull
@@ -115,7 +110,6 @@ patta
 Patta
 patte
 Patte
-penis
 pepap
 pepap
 PEPAP
@@ -145,8 +139,6 @@ smack
 Smack
 sms:a
 Sms:a
-sopor
-Sopor
 speed
 speed
 speed
@@ -157,7 +149,6 @@ stiva
 stiva
 Stiva
 subba
-svamp
 tjack
 tjack
 tjack
@@ -166,9 +157,6 @@ trips
 Trips
 uigur
 Uigur
-vaket
-vaket
-vaket
 whizz
 whizz
 Whizz
