@@ -5,17 +5,47 @@
 
   const dispatch = createEventDispatcher();
 
-  const rows = [
-    ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"],
-    ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
-    ["z", "x", "c", "v", "b", "n", "m"],
-  ];
+  const letters = new Set([
+    "q",
+    "w",
+    "e",
+    "r",
+    "t",
+    "y",
+    "u",
+    "i",
+    "o",
+    "p",
+    "å",
+    "a",
+    "s",
+    "d",
+    "f",
+    "g",
+    "h",
+    "j",
+    "k",
+    "l",
+    "ö",
+    "ä",
+    "z",
+    "x",
+    "c",
+    "v",
+    "b",
+    "n",
+    "m",
+  ]);
 
-  const letters = rows.flat();
+  function* chunks(arr, n) {
+    for (let i = 0; i < arr.length; i += n) {
+      yield arr.slice(i, i + n);
+    }
+  }
 
   function handleKeyDown(event) {
     if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
-    if (letters.includes(event.key)) {
+    if (letters.has(event.key)) {
       dispatch("key", event.key);
     } else if (event.key == "Backspace") {
       dispatch("delete");
@@ -37,7 +67,7 @@
 </script>
 
 <div class="pb-safe">
-  {#each rows as row, index (row)}
+  {#each [...chunks(Array.from(letters), 11)] as row, index (row)}
     <div class="flex justify-center">
       {#if index == 2}
         <button
