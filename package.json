@@ -18,7 +18,7 @@
     "@sveltejs/kit": "next",
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/svelte": "3.0.3",
-    "animated-tailwindcss": "3.1.1",
+    "animated-tailwindcss": "3.2.5",
     "autoprefixer": "10.4.2",
     "babel-jest": "27.5.0",
     "babel-plugin-transform-vite-meta-env": "1.0.3",
