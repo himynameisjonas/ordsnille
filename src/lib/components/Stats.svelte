@@ -19,7 +19,9 @@
 
   function shareData() {
     return {
-      text: `Ordsnille nr${$gameNumber} (${$game.boardIndex + 1}/6)\n${$emojiResult}`,
+      text: `Ordsnille nr${$gameNumber} (${
+        $hasWon ? $game.boardIndex + 1 : "X"
+      }/6)\n${$emojiResult}`,
     };
   }
 
@@ -80,7 +82,7 @@
         target="_blank"
         href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
       >) och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
-      {#if $hasWon}
+      {#if $hasWon || $game.status == "completed"}
         {#if canShare}
           <h2 class="text-xl mt-5 mb-1 text-center font-abril">Dela ditt resultat</h2>
           <div
