@@ -1793,10 +1793,10 @@ ajv@^6.10.0, ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-animated-tailwindcss@3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/animated-tailwindcss/-/animated-tailwindcss-3.2.5.tgz#d9ab82559cee9b0caea06f621840cd207cfabbe1"
-  integrity sha512-X2NB0q/MiJcr0/+0VRx46cLTVBea45F8N6VlUNGw3XqidCS+96xtJf/9lQ9CklHhVe8pSIT1V/gMuXhLOYcX2g==
+animated-tailwindcss@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/animated-tailwindcss/-/animated-tailwindcss-3.3.0.tgz#d6c57c5b0bdefb282994dd4d1795158fb51cc682"
+  integrity sha512-4oxFEuRnuXzpzZtvyMNnlHIXpuiAu7hayJz/NDnYLjENRncQzWSgWy2xKRixwziuI/hqLJ2SVJsyZOmEMDvaTA==
   dependencies:
     csstype "^3"
 
