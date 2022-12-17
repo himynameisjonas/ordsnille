@@ -1,5 +1,37 @@
 import game from "$lib/stores/game.js";
-import { derived } from "svelte/store";
+import { derived, readable } from "svelte/store";
+
+const letters = new Set([
+  "q",
+  "w",
+  "e",
+  "r",
+  "t",
+  "y",
+  "u",
+  "i",
+  "o",
+  "p",
+  "å",
+  "a",
+  "s",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "ö",
+  "ä",
+  "z",
+  "x",
+  "c",
+  "v",
+  "b",
+  "n",
+  "m",
+]);
 
 function findLetters(game, hintStatus) {
   let letters = new Set();
@@ -13,6 +45,7 @@ function findLetters(game, hintStatus) {
   });
   return letters;
 }
+export const all = readable(letters);
 
 export const correct = derived(game, ($game) => {
   return findLetters($game, 2);

@@ -1,41 +1,10 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import game, { timeForHint } from "$lib/stores/game.js";
+  import { all as allLetters } from "$lib/stores/letters.js";
   import KeyboardButton from "./KeyboardButton.svelte";
 
   const dispatch = createEventDispatcher();
-
-  const letters = new Set([
-    "q",
-    "w",
-    "e",
-    "r",
-    "t",
-    "y",
-    "u",
-    "i",
-    "o",
-    "p",
-    "å",
-    "a",
-    "s",
-    "d",
-    "f",
-    "g",
-    "h",
-    "j",
-    "k",
-    "l",
-    "ö",
-    "ä",
-    "z",
-    "x",
-    "c",
-    "v",
-    "b",
-    "n",
-    "m",
-  ]);
 
   function* chunks(arr, n) {
     for (let i = 0; i < arr.length; i += n) {
@@ -45,7 +14,7 @@
 
   function handleKeyDown(event) {
     if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
-    if (letters.has(event.key.toLowerCase())) {
+    if ($allLetters.has(event.key.toLowerCase())) {
       dispatch("key", event.key);
     } else if (event.key == "Backspace") {
       dispatch("delete");
@@ -67,7 +36,7 @@
 </script>
 
 <div class="pb-safe">
-  {#each [...chunks(Array.from(letters), 11)] as row, index (row)}
+  {#each [...chunks(Array.from($allLetters), 11)] as row, index (row)}
     <div class="flex justify-center">
       {#if index == 2}
         <button
