@@ -12,8 +12,8 @@
     "test:watch": "yarn test -- --watch"
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
-    "@babel/preset-env": "7.16.11",
+    "@babel/core": "7.20.2",
+    "@babel/preset-env": "7.20.2",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "@testing-library/jest-dom": "5.16.2",
