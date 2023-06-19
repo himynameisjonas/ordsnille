@@ -3729,10 +3729,10 @@ json5@^2.2.1:
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
   integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
 
-just-throttle@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/just-throttle/-/just-throttle-4.0.1.tgz#10132a9ca787e248e744f8e96c595596b14e86b7"
-  integrity sha512-BC3LgilNVj4WQt2vj4//4n/UHSQtkl5P5fz+aOZ+c0t1sjIzBeIFL2+5T32MhTs4YrKjAgNo2DT/VRh/NwQOZA==
+just-throttle@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/just-throttle/-/just-throttle-4.2.0.tgz#5a22da10a4bdb906d2583400eff2fe3fbd9f9662"
+  integrity sha512-/iAZv1953JcExpvsywaPKjSzfTiCLqeguUTE6+VmK15mOcwxBx7/FHrVvS4WEErMR03TRazH8kcBSHqMagYIYg==
 
 kleur@^3.0.3:
   version "3.0.3"
