@@ -16,7 +16,7 @@
     "@babel/preset-env": "7.20.2",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
-    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/jest-dom": "5.17.0",
     "@testing-library/svelte": "3.2.2",
     "animated-tailwindcss": "3.3.0",
     "autoprefixer": "10.4.13",
