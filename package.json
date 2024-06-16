@@ -28,7 +28,7 @@
     "eslint-plugin-jest": "26.1.1",
     "eslint-plugin-svelte3": "3.4.1",
     "jest": "27.5.1",
-    "just-throttle": "4.0.1",
+    "just-throttle": "4.2.0",
     "prettier": "2.5.1",
     "prettier-plugin-svelte": "2.6.0",
     "svelte": "3.55.0",
