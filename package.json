@@ -19,7 +19,7 @@
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/svelte": "3.2.2",
     "animated-tailwindcss": "3.3.0",
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.20",
     "babel-jest": "27.5.1",
     "babel-plugin-transform-vite-meta-env": "1.0.3",
     "date-fns": "2.28.0",
