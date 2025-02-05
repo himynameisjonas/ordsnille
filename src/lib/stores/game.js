@@ -4,6 +4,7 @@ import { notifications } from "$lib/stores/notifications.js";
 import { todaysWord } from "$lib/stores/word.js";
 import { stats } from "$lib/stores/stats.js";
 import { goto } from "$app/navigation";
+import { getUnixTime } from "date-fns";
 
 function defaultValues() {
   return {
@@ -13,6 +14,7 @@ function defaultValues() {
     solution: get(todaysWord),
     status: "new",
     invalidWord: false,
+    startedAt: null,
   };
 }
 
@@ -36,6 +38,11 @@ const game = (function () {
     update,
     trySolution: () => {
       update((game) => {
+        update((game) => {
+          game.startedAt = game.startedAt || getUnixTime(new Date());
+          return game;
+        });
+
         let boardIndex = game.boardIndex;
         let solutionArray = Array.from(game.solution);
         let attempt = game.board[boardIndex];

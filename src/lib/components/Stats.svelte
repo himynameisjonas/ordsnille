@@ -81,7 +81,8 @@
         class="underline text-blue-400"
         target="_blank"
         href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
-      >) och du {#if $stats.lastStatus == "success"}gissade rätt{:else}hann inte gissa rätt{/if}.
+      >) och du {#if $stats.lastStatus == "success"}gissade rätt på {$stats.duration ||
+          "okänd tid"}{:else}hann inte gissa rätt{/if}.
       {#if $hasWon || $game.status == "completed"}
         {#if canShare}
           <h2 class="text-xl mt-5 mb-1 text-center font-abril">Dela ditt resultat</h2>
@@ -91,7 +92,7 @@
             <button
               type="button"
               on:click={share}
-              class="items-center w-full flex justify-center  bg-gray-50  font-bold p-2 rounded-lg "
+              class="items-center w-full flex justify-center bg-gray-50 font-bold p-2 rounded-lg"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +114,7 @@
             <button
               on:click={copy}
               type="button"
-              class="items-center w-full flex justify-center  bg-gray-50  font-bold p-2 rounded-r-lg border-l border-green-500"
+              class="items-center w-full flex justify-center bg-gray-50 font-bold p-2 rounded-r-lg border-l border-green-500"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
