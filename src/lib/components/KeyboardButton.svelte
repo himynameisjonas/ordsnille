@@ -33,7 +33,7 @@
 
 <button
   on:click
-  class="h-14 rounded m-[2px] uppercase text-white font-bold w-10 flex items-center justify-center {classes}"
+  class="m-[2px] flex h-14 w-10 items-center justify-center rounded font-bold uppercase text-white {classes}"
 >
   {key}
 </button>

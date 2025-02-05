@@ -1,4 +1,5 @@
 import { get } from "svelte/store";
+import { expect, test, beforeEach, describe } from "vitest";
 
 import Game from "./game.js";
 beforeEach(() => {
@@ -15,7 +16,7 @@ test("addLetter should add the leters to board", () => {
 });
 
 describe("trySolution", () => {
-  it("only counts letters once", () => {
+  test("only counts letters once", () => {
     Game.update(($game) => {
       $game.board = ["lamma"];
       $game.solution = "drama";
@@ -28,7 +29,7 @@ describe("trySolution", () => {
     expect(get(Game).hints[0]).toEqual([0, 1, 0, 2, 2]);
   });
 
-  it("only counts letters once, check 2", () => {
+  test("only counts letters once, check 2", () => {
     Game.update(($game) => {
       $game.board = ["ridån"];
       $game.solution = "råris";
@@ -43,7 +44,7 @@ describe("trySolution", () => {
     expect(get(Game).hints[0]).toEqual([2, 1, 0, 1, 0]);
   });
 
-  it("supports multiple of the same letters on both solution and guess", () => {
+  test("supports multiple of the same letters on both solution and guess", () => {
     Game.update(($game) => {
       $game.board = ["täppt"];
       $game.solution = "uppåt";

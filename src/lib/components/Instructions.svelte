@@ -11,25 +11,25 @@
   }
 </script>
 
-<div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
-  <div class="bg-white rounded-lg border shadow-inner p-4">
-    <h2 class="text-3xl mb-4 text-center font-abril">Gissa dagens ord</h2>
-    <h3 class="text-xl mb-2 font-abril">Instruktioner</h3>
-    <ul class="list-disc list-outside ml-4">
+<div class="mx-auto mb-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700">
+  <div class="rounded-lg border bg-white p-4 shadow-inner">
+    <h2 class="mb-4 text-center font-abril text-3xl">Gissa dagens ord</h2>
+    <h3 class="mb-2 font-abril text-xl">Instruktioner</h3>
+    <ul class="ml-4 list-outside list-disc">
       <li class="mb-2">Du har 6 försök på dig att komma fram till det rätta svaret.</li>
       <li class="mb-2">Varje gissning måste vara ett giltigt ord på 5 bokstäver.</li>
       <li class="mb-2">
         Tryck på <span
-          class="h-7 rounded m-[2px] bg-slate-500 uppercase text-white font-bold w-8 inline-block "
+          class="m-[2px] inline-block h-7 w-8 rounded bg-slate-500 font-bold uppercase text-white"
         >
-          <span class="flex items-center justify-center h-full w-full">⏎</span>
+          <span class="flex h-full w-full items-center justify-center">⏎</span>
         </span>
         för att testa din gissning.
       </li>
       <li class="mb-2">Efter varje försök markeras bokstäverna som är med i det rätta svaret.</li>
     </ul>
 
-    <h3 class="text-xl mb-2 mt-5 font-abril">Exempel</h3>
+    <h3 class="mb-2 mt-5 font-abril text-xl">Exempel</h3>
     <div class="mb-5">
       <div class="flex">
         <BoardLetter smallSize={true} letter="r" hint={null} />
@@ -68,7 +68,7 @@
 
     <button
       on:click={start}
-      class="w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded my-10 shadow-md shadow-green-500/50"
+      class="my-10 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
     >
       {#if $game.status == "new"}
         Starta spelet och börja gissa
@@ -76,14 +76,14 @@
         Stäng
       {/if}
     </button>
-    <div class="py-3 text-sm border-t text-center">
-      <h2 class="text-xl mb-1 text-center font-abril">Inställningar</h2>
+    <div class="border-t py-3 text-center text-sm">
+      <h2 class="mb-1 text-center font-abril text-xl">Inställningar</h2>
 
       <div class="flex justify-center">
         <div class="form-check form-switch">
           <input
             bind:checked={$colorBlindness}
-            class="form-check-input float-left h-5 align-top cursor-pointer mr-2"
+            class="form-check-input float-left mr-2 h-5 cursor-pointer align-top"
             type="checkbox"
             role="switch"
             id="color-blind-checkbox"
@@ -95,11 +95,11 @@
       </div>
     </div>
 
-    <div class="py-3 text-sm border-t text-center">
+    <div class="border-t py-3 text-center text-sm">
       Vid frågor, kontakta mig via
-      <a class="underline text-blue-400" href="mailto:ordsnille@brusman.se">Email</a> eller
+      <a class="text-blue-400 underline" href="mailto:ordsnille@brusman.se">Email</a> eller
       <a
-        class="underline text-blue-400"
+        class="text-blue-400 underline"
         target="_blank"
         rel="noopener noreferrer"
         href="https://twitter.com/himynameisjonas">Twitter</a

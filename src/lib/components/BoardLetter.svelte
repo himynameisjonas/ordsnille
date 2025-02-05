@@ -95,12 +95,12 @@
   class:h-11={smallSize}
   class:w-11={smallSize}
   class:text-3xl={smallSize}
-  class="{classBorder} {classText} {classBg} {animate} rounded transition-colors border-2 m-0.5 uppercase font-bold flex items-center justify-center"
+  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded border-2 font-bold uppercase transition-colors"
 >
   {#if showCursor}
     <span
-      class="w-7/12 h-1 bg-neutral-400 mt-auto mb-2 animate-flash animate-infinite animate-slower"
-    />
+      class="mb-2 mt-auto h-1 w-7/12 animate-flash bg-neutral-400 animate-slower animate-infinite"
+    ></span>
   {/if}
   {letter}
 </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Ordsnille - Wordle på svenska</title>
@@ -42,10 +42,12 @@
       src="/count.js"
     ></script>
 
-    %svelte.head%
+    %sveltekit.head%
   </head>
-  <body class="bg-green-100 flex flex-col justify-items-stretch h-full">
-    <div id="svelte" class="flex flex-col h-full justify-between bg-neutral-100">%svelte.body%</div>
+  <body class="flex h-full flex-col justify-items-stretch bg-green-100">
+    <div id="svelte" class="flex h-full flex-col justify-between bg-neutral-100">
+      %sveltekit.body%
+    </div>
     <script>
       window.plausible =
         window.plausible ||
