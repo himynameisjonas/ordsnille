@@ -1,6 +1,6 @@
 import { frequentWords } from "$lib/words.js";
 import { readable } from "svelte/store";
-import differenceInCalendarDays from "date-fns/differenceInCalendarDays/index.js";
+import { differenceInCalendarDays } from "date-fns";
 const startDate = new Date(2022, 0, 7, 0, 0);
 
 function daysFromStart() {
