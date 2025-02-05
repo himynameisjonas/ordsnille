@@ -8,7 +8,7 @@
   import { notifications } from "$lib/stores/notifications.js";
   import { beforeUpdate } from "svelte";
   import { goto } from "$app/navigation";
-  import { todaysWord } from "$lib/stores/word.js";
+  import { todaysWord, gameNumber } from "$lib/stores/word.js";
   import throttle from "just-throttle";
 
   beforeUpdate(() => {
@@ -78,6 +78,7 @@
   <button
     on:click={startTodaysGame}
     class="mb-10 px-20 mx-auto flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+    title={`Spela ord nummer ${$gameNumber}`}
   >
     Spela dagens ord
   </button>
