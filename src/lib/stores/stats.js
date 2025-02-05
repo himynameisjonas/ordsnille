@@ -1,7 +1,6 @@
 import { writable, derived, get } from "svelte/store";
 import { gameNumber } from "$lib/stores/word.js";
-import { fromUnixTime, intervalToDuration, formatDuration } from "date-fns";
-import { sv } from "date-fns/locale";
+import { fromUnixTime, intervalToDuration } from "date-fns";
 
 function defaultValues() {
   return {
@@ -34,10 +33,10 @@ export const stats = (function () {
       update(($stats) => {
         if (game.startedAt) {
           let interval = intervalToDuration({
-            start: new Date(),
-            end: fromUnixTime(game.startedAt),
+            start: fromUnixTime(game.startedAt),
+            end: new Date(),
           });
-          $stats.duration = formatDuration(interval, { locale: sv });
+          $stats.duration = interval;
         }
 
         $stats.scores[game.boardIndex] = $stats.scores[game.boardIndex] + 1;

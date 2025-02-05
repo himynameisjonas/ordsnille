@@ -5,6 +5,8 @@
   import { notifications } from "$lib/stores/notifications.js";
   import { todaysWord } from "$lib/stores/word.js";
   import { goto } from "$app/navigation";
+  import { sv } from "date-fns/locale";
+  import { formatDuration } from "date-fns";
 
   let canShare = false;
 
@@ -81,8 +83,10 @@
         class="underline text-blue-400"
         target="_blank"
         href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
-      >) och du {#if $stats.lastStatus == "success"}gissade rätt på {$stats.duration ||
-          "okänd tid"}{:else}hann inte gissa rätt{/if}.
+      >) och du {#if $stats.lastStatus == "success"}gissade rätt
+        {#if $stats.duration}
+          på {formatDuration($stats.duration, { locale: sv, delimiter: ", " })}{/if}{:else}hann inte
+        gissa rätt{/if}.
       {#if $hasWon || $game.status == "completed"}
         {#if canShare}
           <h2 class="text-xl mt-5 mb-1 text-center font-abril">Dela ditt resultat</h2>
