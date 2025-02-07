@@ -37,6 +37,7 @@
         await copy();
       }
     } catch (err) {
+      console.error(err);
       notifications.warning("Något gick fel!");
     }
   }
@@ -58,12 +59,14 @@
           await document.execCommand("copy");
           notifications.success("Kopierat resultatet!");
         } catch (err) {
+          console.error(err);
           notifications.warning("Något gick fel!");
         } finally {
           document.body.removeChild(textarea);
         }
       }
     } catch (err) {
+      console.error(err);
       notifications.warning("Något gick fel!");
     }
   }
@@ -73,14 +76,14 @@
   }
 </script>
 
-<div class="mx-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700 mb-auto">
+<div class="mx-auto mb-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700">
   {#if $plays > 0}
-    <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
+    <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
       Senaste ordet du spelade var
-      <span class="bg-green-300 p-1 text-green-700 font-bold uppercase">{$stats.lastSolution}</span>
+      <span class="bg-green-300 p-1 font-bold uppercase text-green-700">{$stats.lastSolution}</span>
       (<a
         rel="noopener noreferrer"
-        class="underline text-blue-400"
+        class="text-blue-400 underline"
         target="_blank"
         href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
       >) och du {#if $stats.lastStatus == "success"}gissade rätt
@@ -89,18 +92,18 @@
         gissa rätt{/if}.
       {#if $hasWon || $game.status == "completed"}
         {#if canShare}
-          <h2 class="text-xl mt-5 mb-1 text-center font-abril">Dela ditt resultat</h2>
+          <h2 class="mb-1 mt-5 text-center font-abril text-xl">Dela ditt resultat</h2>
           <div
-            class="w-full flex text-green-500 font-bold mt-2 border border-green-500 rounded-lg mb-7"
+            class="mb-7 mt-2 flex w-full rounded-lg border border-green-500 font-bold text-green-500"
           >
             <button
               type="button"
               on:click={share}
-              class="items-center w-full flex justify-center bg-gray-50 font-bold p-2 rounded-lg"
+              class="flex w-full items-center justify-center rounded-lg bg-gray-50 p-2 font-bold"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 mr-2"
+                class="mr-2 h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -118,11 +121,11 @@
             <button
               on:click={copy}
               type="button"
-              class="items-center w-full flex justify-center bg-gray-50 font-bold p-2 rounded-r-lg border-l border-green-500"
+              class="flex w-full items-center justify-center rounded-r-lg border-l border-green-500 bg-gray-50 p-2 font-bold"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 mr-2"
+                class="mr-2 h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -140,11 +143,11 @@
         {:else}
           <button
             on:click={share}
-            class="w-full flex justify-center text-green-500 bg-gray-50 border border-green-500 font-bold p-2 rounded-lg mt-2"
+            class="mt-2 flex w-full justify-center rounded-lg border border-green-500 bg-gray-50 p-2 font-bold text-green-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 mr-2"
+              class="mr-2 h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -163,60 +166,60 @@
       {#if $game.solution != $todaysWord}
         <button
           on:click={startTodaysGame}
-          class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+          class="mt-3 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
         >
           Spela dagens ord
         </button>
       {:else if $game.solution == $todaysWord && ($game.status == "started" || $game.status == "new")}
         <button
           on:click={goBack}
-          class="mt-3 w-full flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+          class="mt-3 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
         >
           Fortsätt spela dagens ord
         </button>
       {:else}
-        <h2 class="text-xl mt-3 mb-1 text-center font-abril">Ett nytt ord kommer i morgon!</h2>
+        <h2 class="mb-1 mt-3 text-center font-abril text-xl">Ett nytt ord kommer i morgon!</h2>
       {/if}
     </div>
   {:else}
-    <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
-      Du har in inte spelat något spel ännu… <a class="underline text-blue-400" href="/"
+    <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
+      Du har in inte spelat något spel ännu… <a class="text-blue-400 underline" href="/"
         >Börja med det först</a
       >.
     </div>
   {/if}
 
-  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
-    <h2 class="text-xl mb-1 text-center font-abril">Statistik</h2>
-    <div class="flex text-center flex-wrap">
-      <div class="w-1/2 mb-4">
-        <strong class="text-2xl block">{$plays}</strong>
+  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
+    <h2 class="mb-1 text-center font-abril text-xl">Statistik</h2>
+    <div class="flex flex-wrap text-center">
+      <div class="mb-4 w-1/2">
+        <strong class="block text-2xl">{$plays}</strong>
         <span class="text-xs uppercase">antal spel</span>
       </div>
-      <div class="w-1/2 mb-4">
-        <strong class="text-2xl block">{$winPercentage}</strong>
+      <div class="mb-4 w-1/2">
+        <strong class="block text-2xl">{$winPercentage}</strong>
         <span class="text-xs uppercase">% vinster</span>
       </div>
-      <div class="w-1/2 mb-4">
-        <strong class="text-2xl block">{$stats.currentStreak}</strong>
+      <div class="mb-4 w-1/2">
+        <strong class="block text-2xl">{$stats.currentStreak}</strong>
         <span class="text-xs uppercase">nuvarande segerserie</span>
       </div>
-      <div class="w-1/2 mb-4">
-        <strong class="text-2xl block">{$stats.maxStreak}</strong>
+      <div class="mb-4 w-1/2">
+        <strong class="block text-2xl">{$stats.maxStreak}</strong>
         <span class="text-xs uppercase">högsta segerserie</span>
       </div>
     </div>
   </div>
-  <div class="mb-5 bg-white rounded-lg border shadow-inner p-4">
-    <h2 class="text-xl mb-1 text-center font-abril">Antal vunna spel per antal gissningar</h2>
+  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
+    <h2 class="mb-1 text-center font-abril text-xl">Antal vunna spel per antal gissningar</h2>
     <table>
       <tbody>
         {#each $graphs as score}
           <tr class="border-b">
-            <td class="font-bold pr-1">{score.points}</td>
+            <td class="pr-1 font-bold">{score.points}</td>
             <td width="100%">
               <div class="flex items-center">
-                <div class="h-4 bg-green-300 rounded-r" style="width: {score.percentage}%" />
+                <div class="h-4 rounded-r bg-green-300" style="width: {score.percentage}%"></div>
                 <div class="ml-1 text-xs">{score.guesses}</div>
               </div>
             </td>

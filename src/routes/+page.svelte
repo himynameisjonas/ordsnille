@@ -77,7 +77,7 @@
 {:else}
   <button
     on:click={startTodaysGame}
-    class="mb-10 px-20 mx-auto flex justify-center bg-green-500 text-white font-bold p-2 rounded shadow-md shadow-green-500/50"
+    class="mx-auto mb-10 flex justify-center rounded bg-green-500 p-2 px-20 font-bold text-white shadow-md shadow-green-500/50"
     title={`Spela ord nummer ${$gameNumber}`}
   >
     Spela dagens ord

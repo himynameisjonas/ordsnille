@@ -1,15 +1,16 @@
 <script>
   import { goto } from "$app/navigation";
 
-  function refresh() {
+  function refresh(event) {
+    event.preventDefault();
     goto("/");
   }
 </script>
 
 <div
-  class="py-0.5 pt-safe bg-green-100 flex justify-center items-center border-b-[3px] border-b-green-400"
+  class="flex items-center justify-center border-b-[3px] border-b-green-400 bg-green-100 py-0.5 pt-safe"
 >
-  <a href="/statistik" class="text-gray-500 ml-3"
+  <a href="/statistik" class="ml-3 text-gray-500" aria-label="Statistik"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -22,13 +23,12 @@
     </svg></a
   >
 
-  <h1
-    on:click={refresh}
-    class="hover:cursor-pointer text-5xl uppercase text-gray-500 font-abril mx-auto"
-  >
-    <span class="text-green-500">Ord</span>snille
+  <h1 class="mx-auto font-abril text-5xl uppercase text-gray-500 hover:cursor-pointer">
+    <a href="/" on:click={refresh}>
+      <span class="text-green-500">Ord</span>snille
+    </a>
   </h1>
-  <a href="/instruktioner" class="text-gray-500 mr-3"
+  <a href="/instruktioner" class="mr-3 text-gray-500" aria-label="Instruktioner"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-6 w-6"
