@@ -9,7 +9,7 @@
   }
 </script>
 
-<div>
+<div translate="no">
   {#each $game.board as row, boardIndex}
     <div class="row flex justify-center">
       {#each lettersToArray(row) as letter, letterIndex}

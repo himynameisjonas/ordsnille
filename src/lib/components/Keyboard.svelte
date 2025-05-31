@@ -35,7 +35,7 @@
   }
 </script>
 
-<div class="pb-safe">
+<div class="pb-safe" translate="no">
   {#each [...chunks(Array.from($allLetters), 11)] as row, index (row)}
     <div class="flex justify-center">
       {#if index == 2}
