@@ -102,7 +102,7 @@
         class="text-blue-400 underline"
         target="_blank"
         rel="noopener noreferrer"
-        href="https://tacocat.space/@jonas">Mastodon/Fediverse</a
+        href="https://tacocat.space/@jonas">Mastodon</a
       >.
     </div>
   </div>
