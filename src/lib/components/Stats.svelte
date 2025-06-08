@@ -166,14 +166,14 @@
       {#if $game.solution != $todaysWord}
         <button
           on:click={startTodaysGame}
-          class="mt-3 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+          class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
         >
           Spela dagens ord
         </button>
       {:else if $game.solution == $todaysWord && ($game.status == "started" || $game.status == "new")}
         <button
           on:click={goBack}
-          class="mt-3 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+          class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
         >
           Fortsätt spela dagens ord
         </button>

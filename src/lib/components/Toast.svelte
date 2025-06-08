@@ -15,7 +15,7 @@
   {#each $notifications as notification (notification.id)}
     <div
       animate:flip
-      class="mb-2 flex rounded drop-shadow-xl {themes[notification.type]}"
+      class="mb-2 flex rounded-sm drop-shadow-xl {themes[notification.type]}"
       transition:fly|global={{ y: 30 }}
     >
       <div class="p-2 font-bold text-white">{notification.message}</div>

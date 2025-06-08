@@ -20,7 +20,7 @@
       <li class="mb-2">Varje gissning måste vara ett giltigt ord på 5 bokstäver.</li>
       <li class="mb-2">
         Tryck på <span
-          class="m-[2px] inline-block h-7 w-8 rounded bg-slate-500 font-bold uppercase text-white"
+          class="m-[2px] inline-block h-7 w-8 rounded-sm bg-slate-500 font-bold uppercase text-white"
         >
           <span class="flex h-full w-full items-center justify-center">⏎</span>
         </span>
@@ -68,7 +68,7 @@
 
     <button
       on:click={start}
-      class="my-10 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+      class="my-10 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
     >
       {#if $game.status == "new"}
         Starta spelet och börja gissa

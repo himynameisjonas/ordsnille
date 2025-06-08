@@ -41,9 +41,9 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("enter")}
-          class="m-[2px] flex h-14 w-20 items-center justify-center rounded bg-slate-500 font-bold uppercase text-white"
+          class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase"
         >
-          <span class:animate-bounce={$timeForHint && $game.status != "completed"}>⏎</span>
+          <span class:animate__bounce={$timeForHint && $game.status != "completed"}>⏎</span>
         </button>
       {/if}
       {#each row as key (key)}
@@ -52,7 +52,7 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("delete")}
-          class="m-[2px] flex h-14 w-20 items-center justify-center rounded bg-slate-500 font-bold uppercase text-white"
+          class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase"
           aria-label="Delete"
         >
           <svg

@@ -26,9 +26,9 @@
   });
 
   $: if (internalHint != null) {
-    animate = "animate-flipInX animate-fast";
+    animate = "animate__animated animate__flipInX animate__fast";
   } else if (letter != "") {
-    animate = "animate-bounceIn animate-faster";
+    animate = "animate__bounceIn animate__faster";
   }
 
   $: if (hint != null) {
@@ -84,7 +84,7 @@
     showCursor = false;
   }
   $: if ($currentIndexes.board == boardIndex && $game.invalidWord) {
-    animate = "animate-headShake";
+    animate = "animate__headShake";
   }
 </script>
 
@@ -95,11 +95,11 @@
   class:h-11={smallSize}
   class:w-11={smallSize}
   class:text-3xl={smallSize}
-  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded border-2 font-bold uppercase transition-colors"
+  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded-sm border-2 font-bold uppercase transition-colors"
 >
   {#if showCursor}
     <span
-      class="mb-2 mt-auto h-1 w-7/12 animate-flash bg-neutral-400 animate-slower animate-infinite"
+      class="animate__flash animate__slower animate__infinite mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
     ></span>
   {/if}
   {letter}

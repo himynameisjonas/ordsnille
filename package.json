@@ -23,7 +23,6 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.6",
     "@vitest/ui": "^3.0.5",
-    "animated-tailwindcss": "3.3.0",
     "autoprefixer": "10.4.20",
     "babel-jest": "27.5.1",
     "babel-plugin-transform-vite-meta-env": "1.0.3",
@@ -36,10 +35,10 @@
     "just-throttle": "4.0.1",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "svelte": "^5.19.8",
     "svelte-jester": "2.3.2",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.8",
     "tailwindcss-safe-area": "0.2.2",
     "vite": "^6.1.0",
     "vitest": "^3.0.5"
@@ -68,5 +67,9 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.8",
+    "animate.css": "^4.1.1"
   }
 }
