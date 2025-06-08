@@ -39,7 +39,7 @@
     "svelte": "^5.19.8",
     "svelte-jester": "2.3.2",
     "tailwindcss": "^4.1.8",
-    "tailwindcss-safe-area": "0.2.2",
+    "tailwindcss-safe-area": "0.6.0",
     "vite": "^6.1.0",
     "vitest": "^3.0.5"
   },
