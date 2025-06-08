@@ -41,7 +41,9 @@
     "svelte-jester": "2.3.2",
     "tailwindcss": "^4.1.8",
     "vite": "^6.1.0",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "@tailwindcss/vite": "^4.1.8",
+    "animate.css": "^4.1.1"
   },
   "type": "module",
   "jest": {
@@ -67,9 +69,5 @@
   },
   "engines": {
     "node": ">=20"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.8",
-    "animate.css": "^4.1.1"
   }
 }

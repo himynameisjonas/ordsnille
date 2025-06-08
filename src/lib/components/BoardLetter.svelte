@@ -21,12 +21,21 @@
   afterUpdate(() => {
     clearTimeout(animationTimeout);
     animationTimeout = setTimeout(() => {
-      animate = true;
-    }, 500);
+      // animate = "";
+    }, 5000);
   });
 
+  const delays = [
+    "",
+    "animate__delay-2s",
+    "animate__delay-3s",
+    "animate__delay-4s",
+    "animate__delay-5s",
+    "animate__delay-6s",
+  ];
+
   $: if (internalHint != null) {
-    animate = "animate__animated animate__flipInX animate__fast";
+    animate = `animate__animated animate__flipInX animate__fast ${delays[letterIndex]}`;
   } else if (letter != "") {
     animate = "animate__bounceIn animate__faster";
   }
@@ -95,12 +104,10 @@
   class:h-11={smallSize}
   class:w-11={smallSize}
   class:text-3xl={smallSize}
-  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded-sm border-2 font-bold uppercase transition-colors"
+  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded-sm border-2 font-bold uppercase"
 >
   {#if showCursor}
-    <span
-      class="animate__flash animate__slower animate__infinite mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
-    ></span>
+    <span class="animate__tada mt-auto mb-2 h-1 w-7/12 bg-neutral-400"></span>
   {/if}
   {letter}
 </div>

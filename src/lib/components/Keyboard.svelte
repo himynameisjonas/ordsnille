@@ -43,7 +43,7 @@
           on:click={() => dispatch("enter")}
           class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase"
         >
-          <span class:animate__bounce={$timeForHint && $game.status != "completed"}>⏎</span>
+          <span class:animate__jello={$timeForHint && $game.status != "completed"}>⏎</span>
         </button>
       {/if}
       {#each row as key (key)}
