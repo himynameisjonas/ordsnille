@@ -24,10 +24,37 @@
   }
 }
 
+@utility pt-safe {
+  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top));
+}
+
+@utility pb-safe {
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
+}
+
+@utility pl-safe {
+  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left));
+}
+
+@utility pr-safe {
+  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right));
+}
+
+@utility py-safe {
+  @apply pt-safe pb-safe;
+}
+
+@utility px-safe {
+  @apply pl-safe pr-safe;
+}
+
+@utility p-safe {
+  @apply px-safe py-safe;
+}
+
 body,
 #svelte {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  @apply min-h-svh;
   touch-action: manipulation;
 }
 body.standalone,
@@ -36,5 +63,5 @@ body.standalone #svelte  {
 }
 
 html {
-  height: -webkit-fill-available;
+  @apply h-svh;
 }
