@@ -76,11 +76,11 @@
   }
 </script>
 
-<div class="mx-auto mb-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700">
+<div class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
   {#if $plays > 0}
     <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
       Senaste ordet du spelade var
-      <span class="bg-green-300 p-1 font-bold uppercase text-green-700">{$stats.lastSolution}</span>
+      <span class="bg-green-300 p-1 font-bold text-green-700 uppercase">{$stats.lastSolution}</span>
       (<a
         rel="noopener noreferrer"
         class="text-blue-400 underline"
@@ -92,9 +92,9 @@
         gissa rätt{/if}.
       {#if $hasWon || $game.status == "completed"}
         {#if canShare}
-          <h2 class="mb-1 mt-5 text-center font-abril text-xl">Dela ditt resultat</h2>
+          <h2 class="font-abril mt-5 mb-1 text-center text-xl">Dela ditt resultat</h2>
           <div
-            class="mb-7 mt-2 flex w-full rounded-lg border border-green-500 font-bold text-green-500"
+            class="mt-2 mb-7 flex w-full rounded-lg border border-green-500 font-bold text-green-500"
           >
             <button
               type="button"
@@ -166,19 +166,19 @@
       {#if $game.solution != $todaysWord}
         <button
           on:click={startTodaysGame}
-          class="mt-3 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+          class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
         >
           Spela dagens ord
         </button>
       {:else if $game.solution == $todaysWord && ($game.status == "started" || $game.status == "new")}
         <button
           on:click={goBack}
-          class="mt-3 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+          class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
         >
           Fortsätt spela dagens ord
         </button>
       {:else}
-        <h2 class="mb-1 mt-3 text-center font-abril text-xl">Ett nytt ord kommer i morgon!</h2>
+        <h2 class="font-abril mt-3 mb-1 text-center text-xl">Ett nytt ord kommer i morgon!</h2>
       {/if}
     </div>
   {:else}
@@ -190,7 +190,7 @@
   {/if}
 
   <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
-    <h2 class="mb-1 text-center font-abril text-xl">Statistik</h2>
+    <h2 class="font-abril mb-1 text-center text-xl">Statistik</h2>
     <div class="flex flex-wrap text-center">
       <div class="mb-4 w-1/2">
         <strong class="block text-2xl">{$plays}</strong>
@@ -211,7 +211,7 @@
     </div>
   </div>
   <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
-    <h2 class="mb-1 text-center font-abril text-xl">Antal vunna spel per antal gissningar</h2>
+    <h2 class="font-abril mb-1 text-center text-xl">Antal vunna spel per antal gissningar</h2>
     <table>
       <tbody>
         {#each $graphs as score}

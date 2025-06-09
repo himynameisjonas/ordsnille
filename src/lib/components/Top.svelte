@@ -8,7 +8,7 @@
 </script>
 
 <div
-  class="flex items-center justify-center border-b-[3px] border-b-green-400 bg-green-100 py-0.5 pt-safe"
+  class="pt-safe flex items-center justify-center border-b-[3px] border-b-green-400 bg-green-100 py-0.5"
 >
   <a href="/statistik" class="ml-3 text-gray-500" aria-label="Statistik"
     ><svg
@@ -23,7 +23,7 @@
     </svg></a
   >
 
-  <h1 class="mx-auto font-abril text-5xl uppercase text-gray-500 hover:cursor-pointer">
+  <h1 class="font-abril mx-auto text-5xl text-gray-500 uppercase hover:cursor-pointer">
     <a href="/" on:click={refresh}>
       <span class="text-green-500">Ord</span>snille
     </a>

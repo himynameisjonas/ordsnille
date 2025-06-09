@@ -1,12 +1,60 @@
 /* Write your global styles here, in PostCSS syntax */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "animate.css";
+
+@theme {
+  --font-abril: "Abril Fatface", cursive;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility pt-safe {
+  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top));
+}
+
+@utility pb-safe {
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
+}
+
+@utility pl-safe {
+  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left));
+}
+
+@utility pr-safe {
+  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right));
+}
+
+@utility py-safe {
+  @apply pt-safe pb-safe;
+}
+
+@utility px-safe {
+  @apply pl-safe pr-safe;
+}
+
+@utility p-safe {
+  @apply px-safe py-safe;
+}
 
 body,
 #svelte {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  @apply min-h-svh;
   touch-action: manipulation;
 }
 body.standalone,
@@ -15,5 +63,5 @@ body.standalone #svelte  {
 }
 
 html {
-  height: -webkit-fill-available;
+  @apply h-svh;
 }

@@ -11,16 +11,16 @@
   }
 </script>
 
-<div class="mx-auto mb-auto mt-5 w-[65ch] max-w-full px-5 text-gray-700">
+<div class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
   <div class="rounded-lg border bg-white p-4 shadow-inner">
-    <h2 class="mb-4 text-center font-abril text-3xl">Gissa dagens ord</h2>
-    <h3 class="mb-2 font-abril text-xl">Instruktioner</h3>
+    <h2 class="font-abril mb-4 text-center text-3xl">Gissa dagens ord</h2>
+    <h3 class="font-abril mb-2 text-xl">Instruktioner</h3>
     <ul class="ml-4 list-outside list-disc">
       <li class="mb-2">Du har 6 försök på dig att komma fram till det rätta svaret.</li>
       <li class="mb-2">Varje gissning måste vara ett giltigt ord på 5 bokstäver.</li>
       <li class="mb-2">
         Tryck på <span
-          class="m-[2px] inline-block h-7 w-8 rounded bg-slate-500 font-bold uppercase text-white"
+          class="m-[2px] inline-block h-7 w-8 rounded-sm bg-slate-500 font-bold text-white uppercase"
         >
           <span class="flex h-full w-full items-center justify-center">⏎</span>
         </span>
@@ -29,7 +29,7 @@
       <li class="mb-2">Efter varje försök markeras bokstäverna som är med i det rätta svaret.</li>
     </ul>
 
-    <h3 class="mb-2 mt-5 font-abril text-xl">Exempel</h3>
+    <h3 class="font-abril mt-5 mb-2 text-xl">Exempel</h3>
     <div class="mb-5">
       <div class="flex">
         <BoardLetter smallSize={true} letter="r" hint={null} />
@@ -68,7 +68,7 @@
 
     <button
       on:click={start}
-      class="my-10 flex w-full justify-center rounded bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+      class="my-10 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
     >
       {#if $game.status == "new"}
         Starta spelet och börja gissa
@@ -77,7 +77,7 @@
       {/if}
     </button>
     <div class="border-t py-3 text-center text-sm">
-      <h2 class="mb-1 text-center font-abril text-xl">Inställningar</h2>
+      <h2 class="font-abril mb-1 text-center text-xl">Inställningar</h2>
 
       <div class="flex justify-center">
         <div class="form-check form-switch">
