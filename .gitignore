@@ -18,3 +18,5 @@ scraper/swe_wordlist.txt
 scraper/filtered.txt
 scraper/non_filtered.txt
 scraper/swe_wordlist_5.txt
+
+static/version.json
