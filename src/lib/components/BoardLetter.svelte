@@ -123,7 +123,9 @@
   class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded-sm border-2 font-bold uppercase"
 >
   {#if showCursor}
-    <span class="animate__tada mt-auto mb-2 h-1 w-7/12 bg-neutral-400"></span>
+    <span
+      class="animate__flash animate__animated animate__infinite animate__slow mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
+    ></span>
   {/if}
   {letter}
 </div>
