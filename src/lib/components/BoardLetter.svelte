@@ -1,5 +1,5 @@
 <script>
-  import { afterUpdate } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
 
   import { colorBlindness } from "$lib/stores/settings.js";
   import game, { currentIndexes } from "$lib/stores/game.js";
@@ -17,12 +17,25 @@
   let classBg = "";
   let showCursor = false;
   let animationTimeout;
+  let mounted = false;
+  let prevHint = null;
+  let prevLetter = "";
+
+  onMount(() => {
+    mounted = true;
+    prevHint = hint;
+    prevLetter = letter;
+  });
 
   afterUpdate(() => {
     clearTimeout(animationTimeout);
     animationTimeout = setTimeout(() => {
       // animate = "";
     }, 5000);
+
+    // Track previous values after update
+    prevHint = internalHint;
+    prevLetter = letter;
   });
 
   const delays = [
@@ -34,10 +47,14 @@
     "animate__delay-6s",
   ];
 
-  $: if (internalHint != null) {
-    animate = `animate__animated animate__flipInX animate__fast ${delays[letterIndex]}`;
-  } else if (letter != "") {
-    animate = "animate__bounceIn animate__faster";
+  $: if (mounted) {
+    if (internalHint != null && prevHint !== internalHint) {
+      animate = `animate__animated animate__flipInX animate__fast ${delays[letterIndex]}`;
+    } else if (letter != "" && prevLetter !== letter) {
+      animate = "animate__bounceIn animate__faster";
+    }
+  } else {
+    animate = "";
   }
 
   $: if (hint != null) {
