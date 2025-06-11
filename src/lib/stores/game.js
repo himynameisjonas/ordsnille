@@ -158,15 +158,11 @@ export const currentGuess = derived(game, ($game) => {
 let timeForHintTimeout;
 export const timeForHint = derived(currentGuess, ($currentGuess, set) => {
   clearTimeout(timeForHintTimeout);
-  console.log("hej timeForHint 1");
   if ($currentGuess.length === 5) {
-    console.log("hej timeForHint 2");
     timeForHintTimeout = setTimeout(() => {
-      console.log("hej timeForHint 3");
       set(true);
     }, 3000);
   } else {
-    console.log("hej timeForHint 4");
     clearTimeout(timeForHintTimeout);
     set(false);
   }
