@@ -7,6 +7,7 @@
   import { goto } from "$app/navigation";
   import { sv } from "date-fns/locale";
   import { formatDuration } from "date-fns";
+  import { slide } from "svelte/transition";
 
   let canShare = false;
 
@@ -76,7 +77,7 @@
   }
 </script>
 
-<div class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
+<div in:slide class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
   {#if $plays > 0}
     <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
       Senaste ordet du spelade var
