@@ -40,11 +40,11 @@
 
   const delays = [
     "",
+    "animate__delay-1s",
     "animate__delay-2s",
     "animate__delay-3s",
     "animate__delay-4s",
     "animate__delay-5s",
-    "animate__delay-6s",
   ];
 
   $: if (mounted) {
