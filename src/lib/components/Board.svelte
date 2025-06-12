@@ -14,7 +14,9 @@
   {#each $game.board as row, boardIndex}
     <div class="row flex justify-center">
       {#each lettersToArray(row) as letter, letterIndex}
-        <BoardLetter {letter} {letterIndex} {boardIndex} />
+        {#key letter + "-" + letterIndex + "-" + boardIndex}
+          <BoardLetter {letter} {letterIndex} {boardIndex} />
+        {/key}
       {/each}
     </div>
   {/each}
