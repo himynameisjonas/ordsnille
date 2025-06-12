@@ -1,5 +1,6 @@
 <script>
   import BoardLetter from "./BoardLetter.svelte";
+  import { fade } from "svelte/transition";
   import game from "$lib/stores/game.js";
   const emptyArray = ["", "", "", "", ""];
 
@@ -9,11 +10,13 @@
   }
 </script>
 
-<div translate="no">
+<div in:fade translate="no">
   {#each $game.board as row, boardIndex}
     <div class="row flex justify-center">
       {#each lettersToArray(row) as letter, letterIndex}
-        <BoardLetter {letter} {letterIndex} {boardIndex} />
+        {#key letter + "-" + letterIndex + "-" + boardIndex}
+          <BoardLetter {letter} {letterIndex} {boardIndex} />
+        {/key}
       {/each}
     </div>
   {/each}

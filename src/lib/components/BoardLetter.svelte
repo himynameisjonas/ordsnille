@@ -1,6 +1,4 @@
 <script>
-  import { afterUpdate } from "svelte";
-
   import { colorBlindness } from "$lib/stores/settings.js";
   import game, { currentIndexes } from "$lib/stores/game.js";
 
@@ -16,19 +14,20 @@
   let classText = "";
   let classBg = "";
   let showCursor = false;
-  let animationTimeout;
 
-  afterUpdate(() => {
-    clearTimeout(animationTimeout);
-    animationTimeout = setTimeout(() => {
-      animate = true;
-    }, 500);
-  });
+  const delays = [
+    "",
+    "animate__delay-1s",
+    "animate__delay-2s",
+    "animate__delay-3s",
+    "animate__delay-4s",
+    "animate__delay-5s",
+  ];
 
   $: if (internalHint != null) {
-    animate = "animate__animated animate__flipInX animate__fast";
+    animate = `animate__animated animate__flipInX animate__fast ${delays[letterIndex]}`;
   } else if (letter != "") {
-    animate = "animate__bounceIn animate__faster";
+    animate = "animate__bounceIn animate__faster animate__animated";
   }
 
   $: if (hint != null) {
@@ -95,11 +94,11 @@
   class:h-11={smallSize}
   class:w-11={smallSize}
   class:text-3xl={smallSize}
-  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded-sm border-2 font-bold uppercase transition-colors"
+  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded-sm border-2 font-bold uppercase"
 >
   {#if showCursor}
     <span
-      class="animate__flash animate__slower animate__infinite mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
+      class="animate__flash animate__animated animate__infinite animate__slow mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
     ></span>
   {/if}
   {letter}
