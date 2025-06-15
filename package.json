@@ -21,12 +21,15 @@
     "@sveltejs/adapter-auto": "^4.0.0",
     "@sveltejs/kit": "^2.16.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tailwindcss/vite": "^4.1.8",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.6",
     "@vitest/ui": "^3.0.5",
+    "animate.css": "^4.1.1",
     "autoprefixer": "10.4.20",
     "babel-jest": "27.5.1",
     "babel-plugin-transform-vite-meta-env": "1.0.3",
+    "canvas-confetti": "^1.9.3",
     "date-fns": "4.1.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
@@ -41,9 +44,7 @@
     "svelte-jester": "2.3.2",
     "tailwindcss": "^4.1.8",
     "vite": "^6.1.0",
-    "vitest": "^3.0.5",
-    "@tailwindcss/vite": "^4.1.8",
-    "animate.css": "^4.1.1"
+    "vitest": "^3.0.5"
   },
   "type": "module",
   "jest": {

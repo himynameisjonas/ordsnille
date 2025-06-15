@@ -5,6 +5,7 @@ import { todaysWord } from "$lib/stores/word.js";
 import { stats } from "$lib/stores/stats.js";
 import { goto } from "$app/navigation";
 import { getUnixTime } from "date-fns";
+import confetti from "canvas-confetti";
 
 function defaultValues() {
   return {
@@ -68,7 +69,20 @@ const game = (function () {
 
           if (attempt == game.solution) {
             stats.logSuccess(game);
-            notifications.success("Grattis, du klarade det!");
+
+            setTimeout(() => {
+              notifications.success("Grattis, du klarade det!");
+              confetti({
+                spread: 55,
+                gravity: 0.5,
+                ticks: 225,
+                scalar: 1.2,
+                particleCount: 200,
+                colors: ["#00C950", "#06DF73", "#B9F8CF", "#D0FAE5"],
+                origin: { y: 0.8 },
+              });
+            }, 1000);
+
             setTimeout(() => {
               update((game) => {
                 game.status = "completed";
