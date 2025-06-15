@@ -25,7 +25,7 @@
   ];
 
   $: if (internalHint != null) {
-    animate = `animate__animated animate__flipInX animate__fast ${delays[letterIndex]}`;
+    animate = `animate__animated animate__slideInDown animate__faster ${delays[letterIndex]}`;
   } else if (letter != "") {
     animate = "animate__bounceIn animate__faster animate__animated";
   }
@@ -94,12 +94,24 @@
   class:h-11={smallSize}
   class:w-11={smallSize}
   class:text-3xl={smallSize}
-  class="{classBorder} {classText} {classBg} {animate} m-0.5 flex items-center justify-center rounded-sm border-2 font-bold uppercase"
+  class="relative m-0.5 overflow-hidden font-bold uppercase"
 >
-  {#if showCursor}
-    <span
-      class="animate__flash animate__animated animate__infinite animate__slow mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
-    ></span>
+  <div
+    class="animate__bounceIn animate__faster animate__animated flex h-full w-full items-center justify-center rounded-sm border-2 bg-neutral-50 text-gray-700"
+  >
+    {letter}
+    {#if showCursor}
+      <span
+        class="animate__flash animate__animated animate__infinite animate__slow mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
+      ></span>
+    {/if}
+  </div>
+
+  {#if internalHint != null}
+    <div
+      class="absolute inset-0 flex items-center justify-center rounded-sm border-2 {classBorder} {classText} {classBg} {animate}"
+    >
+      {letter}
+    </div>
   {/if}
-  {letter}
 </div>

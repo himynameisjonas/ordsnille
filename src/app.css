@@ -67,7 +67,7 @@ html {
 }
 
 :root {
-  --animate-delay: 0.3s;
+  --animate-delay: 0.2s;
 }
 
 .animate__animated.animate__delay-6s {
