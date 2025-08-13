@@ -30,7 +30,7 @@ export const frequentWords = [
   "yacht",
   "färja",
   "nacke",
-  "pepsi",
+  "kvack",
   "fatta",
   "karma",
   "sanna",
