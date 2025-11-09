@@ -58,15 +58,14 @@ export const stats = (function () {
             title: get(gameNumber),
             event: true,
           });
-        window.plausible("game-won", {
-          props: {
+        window.umami &&
+          window.umami.track("game-won", {
             gameNumber: get(gameNumber),
             boardIndex: game.boardIndex,
             solution: game.solution,
             currentStreak: $stats.currentStreak,
             maxStreak: $stats.maxStreak,
-          },
-        });
+          });
 
         return $stats;
       }),
@@ -85,14 +84,12 @@ export const stats = (function () {
             event: true,
           });
 
-        window.plausible("game-lost", {
-          props: {
+        window.umami &&
+          window.umami.track("game-lost", {
             gameNumber: get(gameNumber),
             solution: game.solution,
             attempt: game.board[5],
-          },
-        });
-
+          });
         return $stats;
       }),
   };

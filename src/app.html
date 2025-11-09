@@ -31,29 +31,20 @@
       rel="stylesheet"
     />
     <script
-      defer
-      data-domain="ordsnille.brusman.se"
-      data-exclude="/instruktioner, /statistik"
-      src="https://plausible.io/js/plausible.exclusions.js"
-    ></script>
-    <script
       data-goatcounter="https://ordsnille.goatcounter.com/count"
       async
       src="/count.js"
     ></script>
-
+    <script
+      defer
+      src="https://um.brusman.se/script.js"
+      data-website-id="c765d498-ed9f-47c9-b393-11b7b13698ba"
+    ></script>
     %sveltekit.head%
   </head>
   <body class="flex h-full flex-col justify-items-stretch bg-green-100">
     <div id="svelte" class="flex h-full flex-col justify-between bg-neutral-100">
       %sveltekit.body%
     </div>
-    <script>
-      window.plausible =
-        window.plausible ||
-        function () {
-          (window.plausible.q = window.plausible.q || []).push(arguments);
-        };
-    </script>
   </body>
 </html>
