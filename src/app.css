@@ -57,10 +57,6 @@ body,
   @apply min-h-svh;
   touch-action: manipulation;
 }
-body.standalone,
-body.standalone #svelte  {
-  min-height: 100vh;
-}
 
 html {
   @apply h-svh;
