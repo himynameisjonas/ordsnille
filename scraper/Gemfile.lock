@@ -10,20 +10,16 @@ GEM
       multi_xml (>= 0.5.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
-    nokogiri (1.13.3)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.19.0-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.3-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.3-x86_64-linux)
+    nokogiri (1.19.0-x86_64-linux-gnu)
       racc (~> 1.4)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    racc (1.6.0)
+    racc (1.8.1)
 
 PLATFORMS
   arm64-darwin-21
