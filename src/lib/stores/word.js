@@ -1,50 +1,27 @@
-import { frequentWords, answers } from "$lib/words.js";
-import { readable } from "svelte/store";
-import { differenceInCalendarDays } from "date-fns";
-const startDate = new Date(2022, 0, 7, 0, 0);
-const secondStartDate = new Date(2025, 5, 9, 0, 0);
+import { answers } from "$lib/words.js";
+import { derived, writable } from "svelte/store";
 
-function useMoreWords() {
-  return new Date() >= secondStartDate;
+function initialGamesPlayed() {
+  if (typeof localStorage === "undefined") return 0;
+  return Number(localStorage.getItem("gamesPlayed")) || 0;
 }
 
-function daysFromStart() {
-  return differenceInCalendarDays(new Date(), startDate);
+export const gamesPlayed = writable(initialGamesPlayed());
+
+if (typeof localStorage !== "undefined") {
+  gamesPlayed.subscribe((value) => {
+    localStorage.setItem("gamesPlayed", String(value));
+  });
 }
 
-function wordIndex() {
-  let index = daysFromStart();
-  if (useMoreWords()) {
-    return index - answers.length * Math.floor(index / answers.length);
-  } else {
-    return index - frequentWords.length * Math.floor(index / frequentWords.length);
-  }
+export const totalWords = answers.length;
+export const currentWord = derived(gamesPlayed, ($gamesPlayed) => answers[$gamesPlayed]);
+export const allWordsPlayed = derived(gamesPlayed, ($gamesPlayed) => $gamesPlayed >= totalWords);
+
+export function advanceToNextWord() {
+  gamesPlayed.update((count) => Math.min(count + 1, totalWords));
 }
 
-function _todaysWord() {
-  if (useMoreWords()) {
-    return answers[wordIndex()];
-  } else {
-    return frequentWords[wordIndex()];
-  }
+export function resetProgress() {
+  gamesPlayed.set(0);
 }
-
-export const todaysWord = readable(_todaysWord(), function start(set) {
-  const interval = setInterval(() => {
-    set(_todaysWord());
-  }, 10000);
-
-  return function stop() {
-    clearInterval(interval);
-  };
-});
-
-export const gameNumber = readable(daysFromStart(), function start(set) {
-  const interval = setInterval(() => {
-    set(daysFromStart());
-  }, 10000);
-
-  return function stop() {
-    clearInterval(interval);
-  };
-});

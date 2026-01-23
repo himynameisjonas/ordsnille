@@ -1,8 +1,7 @@
 import { get, writable, derived } from "svelte/store";
 import { allWords } from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
-import { todaysWord } from "$lib/stores/word.js";
-import { stats } from "$lib/stores/stats.js";
+import { currentWord, advanceToNextWord } from "$lib/stores/word.js";
 import { goto } from "$app/navigation";
 import { getUnixTime } from "date-fns";
 import confetti from "canvas-confetti";
@@ -12,7 +11,7 @@ function defaultValues() {
     board: Array(6).fill(""),
     hints: [],
     boardIndex: 0,
-    solution: get(todaysWord),
+    solution: get(currentWord),
     status: "new",
     invalidWord: false,
     startedAt: null,
@@ -68,8 +67,6 @@ const game = (function () {
           });
 
           if (attempt == game.solution) {
-            stats.logSuccess(game);
-
             setTimeout(() => {
               notifications.success("Grattis, du klarade det!");
               confetti({
@@ -86,17 +83,18 @@ const game = (function () {
             setTimeout(() => {
               update((game) => {
                 game.status = "completed";
-                goto("/statistik");
+                advanceToNextWord();
+                goto("/resultat");
                 return game;
               });
             }, 3000);
           } else if (boardIndex == 5) {
-            stats.logFailure(game);
-            notifications.warning("Otur, bättre lycka i morgon!");
+            notifications.warning("Tyvärr, det blev fel!");
             setTimeout(() => {
               update((game) => {
                 game.status = "completed";
-                goto("/statistik");
+                advanceToNextWord();
+                goto("/resultat");
                 return game;
               });
             }, 3000);
@@ -149,6 +147,10 @@ export default game;
 
 export const hasWon = derived(game, ($game) => {
   return $game.status == "completed" && $game.board[$game.boardIndex] == $game.solution;
+});
+
+export const hasPlayed = derived(game, ($game) => {
+  return $game.hints.length > 0;
 });
 
 export const emojiResult = derived(game, ($game) => {
