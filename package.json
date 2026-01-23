@@ -27,7 +27,7 @@
     "@testing-library/svelte": "^5.2.6",
     "@vitest/ui": "^3.0.5",
     "animate.css": "^4.1.1",
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.23",
     "babel-jest": "27.5.1",
     "babel-plugin-transform-vite-meta-env": "1.0.3",
     "canvas-confetti": "^1.9.3",
