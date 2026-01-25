@@ -9,20 +9,23 @@
   import { beforeUpdate } from "svelte";
   import { goto } from "$app/navigation";
   import {
-    currentWord,
+    currentWordText,
+    currentWordDescription,
+    currentWordImage,
     allWordsPlayed,
     gamesPlayed,
     totalWords,
     resetProgress,
+    advanceToNextWord,
   } from "$lib/stores/word.js";
   import throttle from "just-throttle";
 
   beforeUpdate(() => {
     if ($game.status == "new" || !$game.status) {
       goto("/instruktioner");
-    } else if ($game.status == "completed" && $firstLoad) {
+    } else if ($game.status == "completed" && $firstLoad && !$game.showCompletionModal) {
       goto("/resultat");
-    } else if (game.solution != $currentWord && $firstLoad) {
+    } else if ($game.solution != $currentWordText && $firstLoad) {
       goto("/resultat");
     }
     firstLoad.set(false);
@@ -30,7 +33,8 @@
 
   const handleKey = throttle(
     ({ detail: key }) => {
-      if ($game.status == "completed" || $game.solution != $currentWord) return;
+      if ($game.showCompletionModal) return;
+      if ($game.status == "completed" || $game.solution != $currentWordText) return;
       game.addLetter(key);
     },
     10,
@@ -39,7 +43,8 @@
 
   const deleteLetter = throttle(
     () => {
-      if ($game.status == "completed" || $game.solution != $currentWord) return;
+      if ($game.showCompletionModal) return;
+      if ($game.status == "completed" || $game.solution != $currentWordText) return;
       game.deleteLetter();
     },
     10,
@@ -47,7 +52,10 @@
   );
   const trySolution = throttle(
     async () => {
-      if ($game.status == "completed" || $game.solution != $currentWord) {
+      if ($game.showCompletionModal) {
+        return;
+      }
+      if ($game.status == "completed" || $game.solution != $currentWordText) {
         return goto("/resultat");
       }
       let attempt = $game.board[$game.boardIndex];
@@ -74,13 +82,25 @@
     game.restart();
     goto("/");
   }
+
+  function completeAndNextWord() {
+    game.closeCompletionModal();
+    advanceToNextWord();
+    game.restart();
+    goto("/");
+  }
 </script>
 
 <Top />
+{#if $currentWordDescription}
+  <p class="mx-auto mt-4 mb-2 max-w-[65ch] px-5 text-center text-gray-700">
+    {$currentWordDescription}
+  </p>
+{/if}
 <Board />
-{#if $game.solution == $currentWord && !$allWordsPlayed}
+{#if $game.solution == $currentWordText && !$allWordsPlayed && !$game.showCompletionModal}
   <Keyboard on:delete={deleteLetter} on:enter={trySolution} on:key={handleKey} />
-{:else if !$allWordsPlayed}
+{:else if !$allWordsPlayed && !$game.showCompletionModal}
   <button
     on:click={startNextGame}
     class="mx-auto mb-10 flex justify-center rounded-sm bg-green-500 p-2 px-20 font-bold text-white shadow-md shadow-green-500/50"
@@ -88,7 +108,7 @@
   >
     Spela nästa ord
   </button>
-{:else}
+{:else if $allWordsPlayed && !$game.showCompletionModal}
   <div class="mx-auto mb-10 text-center text-gray-600">
     <p class="text-lg font-semibold">Du har spelat alla ord!</p>
     <button
@@ -97,6 +117,27 @@
     >
       Börja om från början
     </button>
+  </div>
+{/if}
+
+{#if $game.showCompletionModal}
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+    <div class="w-full max-w-xl rounded-lg bg-white p-6 text-center shadow-lg">
+      <p class="text-lg font-semibold text-gray-700">{$currentWordDescription}</p>
+      {#if $currentWordImage}
+        <img
+          class="mx-auto mt-4 max-h-[60vh] w-auto rounded-md"
+          src={$currentWordImage}
+          alt={$currentWordText}
+        />
+      {/if}
+      <button
+        on:click={completeAndNextWord}
+        class="mt-5 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+      >
+        Spela nästa ord
+      </button>
+    </div>
   </div>
 {/if}
 

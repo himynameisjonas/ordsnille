@@ -16,6 +16,12 @@ if (typeof localStorage !== "undefined") {
 
 export const totalWords = answers.length;
 export const currentWord = derived(gamesPlayed, ($gamesPlayed) => answers[$gamesPlayed]);
+export const currentWordText = derived(currentWord, ($currentWord) => $currentWord?.word ?? "");
+export const currentWordDescription = derived(
+  currentWord,
+  ($currentWord) => $currentWord?.description ?? ""
+);
+export const currentWordImage = derived(currentWord, ($currentWord) => $currentWord?.image ?? "");
 export const allWordsPlayed = derived(gamesPlayed, ($gamesPlayed) => $gamesPlayed >= totalWords);
 
 export function advanceToNextWord() {

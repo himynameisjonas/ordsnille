@@ -9600,5 +9600,19 @@ export const moreWords2 = [
   "krock",
 ];
 
-export const answers = ["spela", "dåtid", "hemma", "shrek"];
-export const allWords = [...frequentWords, ...moreWords, ...moreWords2, ...answers];
+export const answers = [
+  { word: "harry", description: "Favoritbok", image: "/images/harry.png" },
+  { word: "zelda", description: "Favoritfilm/spel", image: "/images/zelda.png" },
+  {
+    word: "dåtid",
+    description: "Favoritämne i skolan är historia och då gillar man",
+    image: "/images/datid.png",
+  },
+  { word: "beach", description: "Favoritplats", image: "/images/beach.png" },
+];
+export const allWords = [
+  ...frequentWords,
+  ...moreWords,
+  ...moreWords2,
+  ...answers.map((answer) => answer.word),
+];

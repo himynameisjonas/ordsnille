@@ -1,7 +1,7 @@
 import { get, writable, derived } from "svelte/store";
 import { allWords } from "$lib/words";
 import { notifications } from "$lib/stores/notifications.js";
-import { currentWord, advanceToNextWord } from "$lib/stores/word.js";
+import { currentWordText, advanceToNextWord } from "$lib/stores/word.js";
 import { goto } from "$app/navigation";
 import { getUnixTime } from "date-fns";
 import confetti from "canvas-confetti";
@@ -11,9 +11,10 @@ function defaultValues() {
     board: Array(6).fill(""),
     hints: [],
     boardIndex: 0,
-    solution: get(currentWord),
+    solution: get(currentWordText),
     status: "new",
     invalidWord: false,
+    showCompletionModal: false,
     startedAt: null,
   };
 }
@@ -83,8 +84,7 @@ const game = (function () {
             setTimeout(() => {
               update((game) => {
                 game.status = "completed";
-                advanceToNextWord();
-                goto("/resultat");
+                game.showCompletionModal = true;
                 return game;
               });
             }, 3000);
@@ -133,6 +133,11 @@ const game = (function () {
       update((game) => {
         game = defaultValues();
         game.status = "started";
+        return game;
+      }),
+    closeCompletionModal: () =>
+      update((game) => {
+        game.showCompletionModal = false;
         return game;
       }),
     invalidWord: () =>
