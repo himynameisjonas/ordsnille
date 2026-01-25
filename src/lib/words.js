@@ -9601,8 +9601,8 @@ export const moreWords2 = [
 ];
 
 export const answers = [
-  { word: "harry", description: "Favoritbok", image: "/images/harry.png" },
-  { word: "zelda", description: "Favoritfilm/spel", image: "/images/zelda.png" },
+  { word: "kvast", description: "Favoritbok", image: "/images/harry.png" },
+  { word: "svärd", description: "Favoritfilm/spel", image: "/images/zelda.png" },
   {
     word: "dåtid",
     description: "Favoritämne i skolan är historia och då gillar man",
