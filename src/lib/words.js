@@ -9603,12 +9603,8 @@ export const moreWords2 = [
 export const answers = [
   { word: "kvast", description: "Favoritbok", image: "/images/harry.png" },
   { word: "svärd", description: "Favoritfilm/spel", image: "/images/zelda.png" },
-  {
-    word: "dåtid",
-    description: "Favoritämne i skolan är historia och då gillar man",
-    image: "/images/datid.png",
-  },
-  { word: "beach", description: "Favoritplats", image: "/images/beach.png" },
+  { word: "målar", description: "Favoritämne i skolan", image: "/images/malar.png" },
+  { word: "havet", description: "Favoritplats", image: "/images/beach.png" },
 ];
 export const allWords = [
   ...frequentWords,
