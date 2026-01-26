@@ -9600,11 +9600,15 @@ export const moreWords2 = [
   "krock",
 ];
 
-export const allWords = [...frequentWords, ...moreWords, ...moreWords2];
-// export const answers = [...frequentWords, ...moreWords2];
-
-export const answers = [];
-for (let i = 0; i < Math.max(frequentWords.length, moreWords2.length); i++) {
-  if (i < frequentWords.length) answers.push(frequentWords[i]);
-  if (i < moreWords2.length) answers.push(moreWords2[i]);
-}
+export const answers = [
+  { word: "kvast", description: "Favoritbok", image: "/images/harry.png" },
+  { word: "svärd", description: "Favoritfilm/spel", image: "/images/zelda.png" },
+  { word: "målar", description: "Favoritämne i skolan", image: "/images/malar.png" },
+  { word: "havet", description: "Favoritplats", image: "/images/beach.png" },
+];
+export const allWords = [
+  ...frequentWords,
+  ...moreWords,
+  ...moreWords2,
+  ...answers.map((answer) => answer.word),
+];

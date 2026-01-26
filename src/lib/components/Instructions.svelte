@@ -14,7 +14,7 @@
 
 <div in:slide class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
   <div class="rounded-lg border bg-white p-4 shadow-inner">
-    <h2 class="font-abril mb-4 text-center text-3xl">Gissa dagens ord</h2>
+    <h2 class="font-abril mb-4 text-center text-3xl">Gissa ordet</h2>
     <h3 class="font-abril mb-2 text-xl">Instruktioner</h3>
     <ul class="ml-4 list-outside list-disc">
       <li class="mb-2">Du har 6 försök på dig att komma fram till det rätta svaret.</li>
