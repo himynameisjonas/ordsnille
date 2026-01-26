@@ -6,6 +6,23 @@ import { goto } from "$app/navigation";
 import { getUnixTime } from "date-fns";
 import confetti from "canvas-confetti";
 
+const emptyRow = ["", "", "", "", ""];
+const normalizeRow = (row) => {
+  const arr = Array.from(row || "");
+  return [...arr, ...emptyRow].slice(0, 5);
+};
+const rowToString = (row) => row.map((letter) => (letter === "" ? " " : letter)).join("");
+const rowToLetters = (row) => row.map((letter) => (letter === " " ? "" : letter));
+const getFirstEmptyIndex = (row) => {
+  const index = row.findIndex((letter) => letter === "" || letter === " ");
+  return index === -1 ? 5 : index;
+};
+const isRowComplete = (row) => rowToLetters(row).every((letter) => letter);
+const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+export const currentIndexes = writable({ board: 0, letter: 0 });
+let cursorMovedManually = false;
+
 function defaultValues() {
   return {
     board: Array(6).fill(""),
@@ -28,6 +45,10 @@ const game = (function () {
   }
 
   const game = writable(startValue);
+  currentIndexes.set({
+    board: startValue.boardIndex,
+    letter: Math.min(getFirstEmptyIndex(normalizeRow(startValue.board[startValue.boardIndex])), 4),
+  });
   const { subscribe, update } = game;
 
   if (typeof localStorage !== "undefined") {
@@ -47,8 +68,9 @@ const game = (function () {
         let boardIndex = game.boardIndex;
         let solutionArray = Array.from(game.solution);
         let attempt = game.board[boardIndex];
-        let attemptArray = Array.from(attempt);
-        if (attempt.length == 5 && allWords.includes(attempt)) {
+        let attemptArray = rowToLetters(normalizeRow(attempt));
+        let attemptString = attemptArray.join("");
+        if (isRowComplete(attemptArray) && allWords.includes(attemptString)) {
           game.hints[boardIndex] = Array(5).fill(0);
 
           solutionArray.forEach((letter, letterIndex) => {
@@ -67,7 +89,7 @@ const game = (function () {
             }
           });
 
-          if (attempt == game.solution) {
+          if (attemptString == game.solution) {
             setTimeout(() => {
               notifications.success("Grattis, du klarade det!");
               confetti({
@@ -100,6 +122,10 @@ const game = (function () {
             }, 3000);
           } else {
             game.boardIndex = boardIndex + 1;
+            currentIndexes.set({
+              board: game.boardIndex,
+              letter: Math.min(getFirstEmptyIndex(normalizeRow(game.board[game.boardIndex])), 4),
+            });
           }
         }
         game.invalidWord = false;
@@ -109,8 +135,25 @@ const game = (function () {
     addLetter: (letter) =>
       update((game) => {
         let i = game.boardIndex;
-        if (game.board[i].length < 5) {
-          game.board[i] += letter;
+        const { letter: cursorIndex } = get(currentIndexes);
+        const nextIndex = clamp(cursorIndex + 1, 0, 4);
+        if (letter === " ") {
+          if (cursorIndex < 5) {
+            const row = normalizeRow(game.board[i]);
+            row[cursorIndex] = "";
+            game.board[i] = rowToString(row);
+          }
+          currentIndexes.set({ board: i, letter: nextIndex });
+          cursorMovedManually = false;
+          game.invalidWord = false;
+          return game;
+        }
+        if (cursorIndex < 5) {
+          const row = normalizeRow(game.board[i]);
+          row[cursorIndex] = letter;
+          game.board[i] = rowToString(row);
+          currentIndexes.set({ board: i, letter: nextIndex });
+          cursorMovedManually = false;
         }
         game.invalidWord = false;
         return game;
@@ -118,14 +161,55 @@ const game = (function () {
     deleteLetter: () =>
       update((game) => {
         let i = game.boardIndex;
-        game.board[i] = game.board[i].slice(0, -1);
+        const { letter: cursorIndex } = get(currentIndexes);
+        const row = normalizeRow(game.board[i]);
+        if (cursorMovedManually) {
+          const targetIndex = clamp(cursorIndex, 0, 4);
+          row[targetIndex] = "";
+          game.board[i] = rowToString(row);
+          currentIndexes.set({ board: i, letter: targetIndex });
+          cursorMovedManually = false;
+        } else {
+          let targetIndex;
+          if (cursorIndex === 4 && (row[4] === "" || row[4] === " ")) {
+            targetIndex = 3;
+          } else {
+            targetIndex = cursorIndex === 4 ? 4 : clamp(cursorIndex - 1, 0, 4);
+          }
+          row[targetIndex] = "";
+          game.board[i] = rowToString(row);
+          currentIndexes.set({ board: i, letter: targetIndex });
+        }
         game.invalidWord = false;
+        return game;
+      }),
+    setCursor: (letterIndex) =>
+      update((game) => {
+        cursorMovedManually = true;
+        currentIndexes.set({
+          board: game.boardIndex,
+          letter: clamp(letterIndex, 0, 4),
+        });
+        return game;
+      }),
+    moveCursor: (delta) =>
+      update((game) => {
+        const { letter: cursorIndex } = get(currentIndexes);
+        cursorMovedManually = true;
+        currentIndexes.set({
+          board: game.boardIndex,
+          letter: clamp(cursorIndex + delta, 0, 4),
+        });
         return game;
       }),
     start: () =>
       update((game) => {
         if (game.status == "new") {
           game.status = "started";
+          currentIndexes.set({
+            board: game.boardIndex,
+            letter: Math.min(getFirstEmptyIndex(normalizeRow(game.board[game.boardIndex])), 4),
+          });
         }
         return game;
       }),
@@ -133,6 +217,7 @@ const game = (function () {
       update((game) => {
         game = defaultValues();
         game.status = "started";
+        currentIndexes.set({ board: 0, letter: 0 });
         return game;
       }),
     closeCompletionModal: () =>
@@ -179,7 +264,8 @@ export const currentGuess = derived(game, ($game) => {
 let timeForHintTimeout;
 export const timeForHint = derived(currentGuess, ($currentGuess, set) => {
   clearTimeout(timeForHintTimeout);
-  if ($currentGuess.length === 5) {
+  const row = normalizeRow($currentGuess);
+  if (isRowComplete(row)) {
     timeForHintTimeout = setTimeout(() => {
       set(true);
     }, 3000);
@@ -190,7 +276,3 @@ export const timeForHint = derived(currentGuess, ($currentGuess, set) => {
 });
 
 export const firstLoad = writable(true);
-
-export const currentIndexes = derived(game, ($game) => {
-  return { board: $game.boardIndex, letter: $game.board[$game.boardIndex].length };
-});

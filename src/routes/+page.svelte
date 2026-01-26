@@ -50,6 +50,15 @@
     10,
     { leading: true }
   );
+  const moveCursor = throttle(
+    ({ detail: delta }) => {
+      if ($game.showCompletionModal) return;
+      if ($game.status == "completed" || $game.solution != $currentWordText) return;
+      game.moveCursor(delta);
+    },
+    10,
+    { leading: true }
+  );
   const trySolution = throttle(
     async () => {
       if ($game.showCompletionModal) {
@@ -59,8 +68,9 @@
         return goto("/resultat");
       }
       let attempt = $game.board[$game.boardIndex];
-      if (attempt.length == 5) {
-        if (allWords.includes(attempt)) {
+      let attemptString = attempt.replaceAll(" ", "");
+      if (attemptString.length == 5) {
+        if (allWords.includes(attemptString)) {
           game.trySolution();
         } else {
           notifications.warning("Inte med i ordlistan");
@@ -95,7 +105,12 @@
 
 <Board />
 {#if $game.solution == $currentWordText && !$allWordsPlayed && !$game.showCompletionModal}
-  <Keyboard on:delete={deleteLetter} on:enter={trySolution} on:key={handleKey} />
+  <Keyboard
+    on:delete={deleteLetter}
+    on:enter={trySolution}
+    on:key={handleKey}
+    on:move={moveCursor}
+  />
 {:else if !$allWordsPlayed && !$game.showCompletionModal}
   <button
     on:click={startNextGame}
