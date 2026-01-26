@@ -92,11 +92,7 @@
 </script>
 
 <Top />
-{#if $currentWordDescription}
-  <p class="mx-auto mt-4 mb-2 max-w-[65ch] px-5 text-center text-gray-700">
-    {$currentWordDescription}
-  </p>
-{/if}
+
 <Board />
 {#if $game.solution == $currentWordText && !$allWordsPlayed && !$game.showCompletionModal}
   <Keyboard on:delete={deleteLetter} on:enter={trySolution} on:key={handleKey} />
