@@ -9600,9 +9600,7 @@ export const moreWords2 = [
   "krock",
 ];
 
-export const answers = [
-  { word: "häxor", description: "Favoritbok", image: "/images/harry.png" }
-];
+export const answers = [{ word: "häxor" }];
 export const allWords = [
   ...frequentWords,
   ...moreWords,
