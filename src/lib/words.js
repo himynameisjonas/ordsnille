@@ -9600,7 +9600,7 @@ export const moreWords2 = [
   "krock",
 ];
 
-export const answers = [{ word: "häxor" }];
+export const answers = [{ word: "gruva" }];
 export const allWords = [
   ...frequentWords,
   ...moreWords,
