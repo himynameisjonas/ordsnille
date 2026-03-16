@@ -6454,7 +6454,6 @@ export const moreWords2 = [
   "senil",
   "socka",
   "kalka",
-  "señor",
   "disco",
   "påsig",
   "avsky",
