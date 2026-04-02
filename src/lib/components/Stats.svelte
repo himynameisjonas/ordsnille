@@ -1,17 +1,19 @@
 <script>
-  import game, { hasWon, emojiResult } from "$lib/stores/game.js";
-  import { gameNumber } from "$lib/stores/word.js";
-  import { stats, graphs, plays, winPercentage } from "$lib/stores/stats";
+  import game, { hasPlayed, hasWon, emojiResult } from "$lib/stores/game.js";
+  import { gamesPlayed, totalWords, allWordsPlayed, resetProgress } from "$lib/stores/word.js";
   import { notifications } from "$lib/stores/notifications.js";
-  import { todaysWord } from "$lib/stores/word.js";
   import { goto } from "$app/navigation";
-  import { sv } from "date-fns/locale";
-  import { formatDuration } from "date-fns";
   import { slide } from "svelte/transition";
 
   let canShare = false;
 
-  function startTodaysGame() {
+  function startNextGame() {
+    game.restart();
+    goto("/");
+  }
+
+  function restartAll() {
+    resetProgress();
     game.restart();
     goto("/");
   }
@@ -20,9 +22,12 @@
     goto("/");
   }
 
+  $: wordsCompleted = Math.min($gamesPlayed, totalWords);
+  $: nextWordNumber = Math.min(wordsCompleted + 1, totalWords);
+
   function shareData() {
     return {
-      text: `Ordsnille nr${$gameNumber} (${
+      text: `Ordsnille ord ${wordsCompleted}/${totalWords} (${
         $hasWon ? $game.boardIndex + 1 : "X"
       }/6)\n${$emojiResult}`,
     };
@@ -74,24 +79,23 @@
 
   $: if ($emojiResult && navigator.share && navigator.canShare && navigator.canShare(shareData())) {
     canShare = true;
+  } else {
+    canShare = false;
   }
 </script>
 
 <div in:slide class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
-  {#if $plays > 0}
+  {#if $hasPlayed}
     <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
-      Senaste ordet du spelade var
-      <span class="bg-green-300 p-1 font-bold text-green-700 uppercase">{$stats.lastSolution}</span>
+      Senaste ordet var
+      <span class="bg-green-300 p-1 font-bold text-green-700 uppercase">{$game.solution}</span>
       (<a
         rel="noopener noreferrer"
         class="text-blue-400 underline"
         target="_blank"
-        href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
-      >) och du {#if $stats.lastStatus == "success"}gissade rätt
-        {#if $stats.duration}
-          på {formatDuration($stats.duration, { locale: sv, delimiter: ", " })}{/if}{:else}hann inte
-        gissa rätt{/if}.
-      {#if $hasWon || $game.status == "completed"}
+        href="https://svenska.se/tre/?sok={$game.solution}">svenska.se</a
+      >) och du {#if $hasWon}gissade rätt{:else}gissade inte rätt{/if}.
+      {#if $game.status == "completed"}
         {#if canShare}
           <h2 class="font-abril mt-5 mb-1 text-center text-xl">Dela ditt resultat</h2>
           <div
@@ -164,69 +168,38 @@
           </button>
         {/if}
       {/if}
-      {#if $game.solution != $todaysWord}
-        <button
-          on:click={startTodaysGame}
-          class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
-        >
-          Spela dagens ord
-        </button>
-      {:else if $game.solution == $todaysWord && ($game.status == "started" || $game.status == "new")}
+      <p class="mt-4 text-center font-semibold">
+        Du har klarat {wordsCompleted} av {totalWords} ord.
+      </p>
+      {#if $game.status != "completed"}
         <button
           on:click={goBack}
           class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
         >
-          Fortsätt spela dagens ord
+          Fortsätt spela
+        </button>
+      {:else if $allWordsPlayed}
+        <h2 class="font-abril mt-3 mb-1 text-center text-xl">Alla ord är spelade!</h2>
+        <button
+          on:click={restartAll}
+          class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+        >
+          Börja om från början
         </button>
       {:else}
-        <h2 class="font-abril mt-3 mb-1 text-center text-xl">Ett nytt ord kommer i morgon!</h2>
+        <button
+          on:click={startNextGame}
+          class="mt-3 flex w-full justify-center rounded-sm bg-green-500 p-2 font-bold text-white shadow-md shadow-green-500/50"
+        >
+          Spela ord {nextWordNumber} av {totalWords}
+        </button>
       {/if}
     </div>
   {:else}
     <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
-      Du har in inte spelat något spel ännu… <a class="text-blue-400 underline" href="/"
+      Du har inte spelat något spel ännu… <a class="text-blue-400 underline" href="/"
         >Börja med det först</a
       >.
     </div>
   {/if}
-
-  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
-    <h2 class="font-abril mb-1 text-center text-xl">Statistik</h2>
-    <div class="flex flex-wrap text-center">
-      <div class="mb-4 w-1/2">
-        <strong class="block text-2xl">{$plays}</strong>
-        <span class="text-xs uppercase">antal spel</span>
-      </div>
-      <div class="mb-4 w-1/2">
-        <strong class="block text-2xl">{$winPercentage}</strong>
-        <span class="text-xs uppercase">% vinster</span>
-      </div>
-      <div class="mb-4 w-1/2">
-        <strong class="block text-2xl">{$stats.currentStreak}</strong>
-        <span class="text-xs uppercase">nuvarande segerserie</span>
-      </div>
-      <div class="mb-4 w-1/2">
-        <strong class="block text-2xl">{$stats.maxStreak}</strong>
-        <span class="text-xs uppercase">högsta segerserie</span>
-      </div>
-    </div>
-  </div>
-  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
-    <h2 class="font-abril mb-1 text-center text-xl">Antal vunna spel per antal gissningar</h2>
-    <table>
-      <tbody>
-        {#each $graphs as score}
-          <tr class="border-b">
-            <td class="pr-1 font-bold">{score.points}</td>
-            <td width="100%">
-              <div class="flex items-center">
-                <div class="h-4 rounded-r bg-green-300" style="width: {score.percentage}%"></div>
-                <div class="ml-1 text-xs">{score.guesses}</div>
-              </div>
-            </td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-  </div>
 </div>

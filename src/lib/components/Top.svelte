@@ -1,5 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
+  import { gamesPlayed, totalWords } from "$lib/stores/word.js";
 
   function refresh(event) {
     event.preventDefault();
@@ -10,7 +11,7 @@
 <div
   class="pt-safe flex items-center justify-center border-b-[3px] border-b-green-400 bg-green-100 py-0.5"
 >
-  <a href="/statistik" class="ml-3 text-gray-500" aria-label="Statistik"
+  <a href="/resultat" class="ml-3 text-gray-500" aria-label="Resultat"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -23,11 +24,16 @@
     </svg></a
   >
 
-  <h1 class="font-abril mx-auto text-5xl text-gray-500 uppercase hover:cursor-pointer">
-    <a href="/" on:click={refresh}>
-      <span class="text-green-500">Ord</span>snille
-    </a>
-  </h1>
+  <div class="mx-auto flex flex-col items-center">
+    <h1 class="font-abril text-5xl text-gray-500 uppercase hover:cursor-pointer">
+      <a href="/" on:click={refresh}>
+        <span class="text-green-500">Ord</span>snille
+      </a>
+    </h1>
+    <span class="text-xs font-semibold text-gray-500 uppercase">
+      Ord {Math.min($gamesPlayed + 1, totalWords)} av {totalWords}
+    </span>
+  </div>
   <a href="/instruktioner" class="mr-3 text-gray-500" aria-label="Instruktioner"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +46,7 @@
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
-        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 0 0118 0z"
       />
     </svg></a
   >

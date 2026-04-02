@@ -16,6 +16,15 @@
     if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
     if ($allLetters.has(event.key.toLowerCase())) {
       dispatch("key", event.key);
+    } else if (event.key == " ") {
+      event.preventDefault();
+      dispatch("key", " ");
+    } else if (event.key == "ArrowLeft") {
+      event.preventDefault();
+      dispatch("move", -1);
+    } else if (event.key == "ArrowRight") {
+      event.preventDefault();
+      dispatch("move", 1);
     } else if (event.key == "Backspace") {
       dispatch("delete");
     } else if (event.key == "Enter") {

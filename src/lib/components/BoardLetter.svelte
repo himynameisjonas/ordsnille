@@ -24,9 +24,16 @@
     "animate__delay-5s",
   ];
 
+  function handleClick() {
+    if ($game.boardIndex !== boardIndex) return;
+    game.setCursor(letterIndex);
+  }
+
+  $: displayLetter = letter === " " ? "" : letter;
+
   $: if (internalHint != null) {
     animate = `animate__animated animate__slideInDown animate__faster ${delays[letterIndex]}`;
-  } else if (letter != "") {
+  } else if (displayLetter != "") {
     animate = "animate__bounceIn animate__faster animate__animated";
   }
 
@@ -65,7 +72,7 @@
     classBorder = "border-gray-500";
     classText = "text-gray-500";
     classBg = "bg-gray-400";
-  } else if (letter && internalHint == null) {
+  } else if (displayLetter && internalHint == null) {
     classBorder = "border-gray-300";
     classText = "text-gray-600";
   } else {
@@ -94,15 +101,17 @@
   class:h-11={smallSize}
   class:w-11={smallSize}
   class:text-3xl={smallSize}
+  class:cursor-pointer={$game.boardIndex == boardIndex}
   class="relative m-0.5 overflow-hidden font-bold uppercase"
+  on:click={handleClick}
 >
   <div
-    class="animate__bounceIn animate__faster animate__animated flex h-full w-full items-center justify-center rounded-sm border-2 bg-neutral-50 text-gray-700"
+    class="animate__bounceIn animate__faster animate__animated relative flex h-full w-full items-center justify-center rounded-sm border-2 bg-neutral-50 text-gray-700"
   >
-    {letter}
+    {displayLetter}
     {#if showCursor}
       <span
-        class="animate__flash animate__animated animate__infinite animate__slow mt-auto mb-2 h-1 w-7/12 bg-neutral-400"
+        class="animate__flash animate__animated animate__infinite animate__slow absolute bottom-2 left-1/2 h-1 w-7/12 -translate-x-1/2 bg-neutral-400"
       ></span>
     {/if}
   </div>
@@ -111,7 +120,7 @@
     <div
       class="absolute inset-0 flex items-center justify-center rounded-sm border-2 {classBorder} {classText} {classBg} {animate}"
     >
-      {letter}
+      {displayLetter}
     </div>
   {/if}
 </div>
