@@ -86,7 +86,8 @@
         rel="noopener noreferrer"
         class="text-blue-400 underline"
         target="_blank"
-        href="https://svenska.se/tre/?sok={$stats.lastSolution}">svenska.se</a
+        href="https://svenska.se/?exactMatch=true&activeTab=alla&q={$stats.lastSolution}"
+        >svenska.se</a
       >) och du {#if $stats.lastStatus == "success"}gissade rätt
         {#if $stats.duration}
           på {formatDuration($stats.duration, { locale: sv, delimiter: ", " })}{/if}{:else}hann inte
