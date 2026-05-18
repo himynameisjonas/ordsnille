@@ -14,8 +14,9 @@
 
   function handleKeyDown(event) {
     if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
-    if ($allLetters.has(event.key.toLowerCase())) {
-      dispatch("key", event.key);
+    const key = event.key.toLowerCase();
+    if ($allLetters.has(key)) {
+      dispatch("key", key);
     } else if (event.key == "Backspace") {
       dispatch("delete");
     } else if (event.key == "Enter") {
