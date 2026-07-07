@@ -3,6 +3,7 @@
   import game, { timeForHint } from "$lib/stores/game.js";
   import { all as allLetters } from "$lib/stores/letters.js";
   import KeyboardButton from "./KeyboardButton.svelte";
+  import { hapticTrigger } from "ios-haptics";
 
   const dispatch = createEventDispatcher();
 
@@ -42,6 +43,7 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("enter")}
+          {@attach hapticTrigger}
           class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase"
         >
           <span
@@ -56,6 +58,7 @@
       {#if index == 2}
         <button
           on:click={() => dispatch("delete")}
+          {@attach hapticTrigger}
           class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase"
           aria-label="Delete"
         >

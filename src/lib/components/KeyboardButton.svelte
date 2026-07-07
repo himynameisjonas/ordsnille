@@ -2,6 +2,7 @@
   import { present, correct, absent } from "$lib/stores/letters.js";
   import { colorBlindness } from "$lib/stores/settings.js";
   import { beforeUpdate } from "svelte";
+  import { hapticTrigger } from "ios-haptics";
 
   export let key;
   let classes = "";
@@ -33,6 +34,7 @@
 
 <button
   on:click
+  {@attach hapticTrigger}
   class="m-[2px] flex h-14 w-10 items-center justify-center rounded-sm font-bold text-white uppercase {classes}"
 >
   {key}
