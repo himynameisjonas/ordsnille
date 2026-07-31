@@ -58,4 +58,18 @@ describe("trySolution", () => {
     Game.trySolution();
     expect(get(Game).hints[0]).toEqual([0, 0, 2, 1, 2]);
   });
+
+  test("keeps the winning row intact when keys arrive before status is completed", () => {
+    Game.update(($game) => {
+      $game.board = ["drama"];
+      $game.solution = "drama";
+      $game.boardIndex = 0;
+      $game.hints = [];
+      return $game;
+    });
+    Game.trySolution();
+    Game.deleteLetter();
+    Game.addLetter("x");
+    expect(get(Game).board[0]).toBe("drama");
+  });
 });

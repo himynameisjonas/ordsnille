@@ -111,6 +111,8 @@ const game = (function () {
     addLetter: (letter) =>
       update((game) => {
         let i = game.boardIndex;
+        // a row with hints is already submitted and must not change
+        if (game.hints[i]) return game;
         if (game.board[i].length < 5) {
           game.board[i] += letter;
         }
@@ -120,6 +122,7 @@ const game = (function () {
     deleteLetter: () =>
       update((game) => {
         let i = game.boardIndex;
+        if (game.hints[i]) return game;
         game.board[i] = game.board[i].slice(0, -1);
         game.invalidWord = false;
         return game;
