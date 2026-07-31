@@ -22,6 +22,8 @@ export default [
       },
     },
     rules: {
+      // the app is served from the domain root, so plain goto() is fine
+      "svelte/no-navigation-without-resolve": "off",
       "no-unused-vars": [
         "error",
         {

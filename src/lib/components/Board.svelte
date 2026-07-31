@@ -11,9 +11,9 @@
 </script>
 
 <div in:fade translate="no">
-  {#each $game.board as row, boardIndex}
+  {#each $game.board as row, boardIndex (boardIndex)}
     <div class="row flex justify-center">
-      {#each lettersToArray(row) as letter, letterIndex}
+      {#each lettersToArray(row) as letter, letterIndex (letterIndex)}
         {#key letter + "-" + letterIndex + "-" + boardIndex}
           <BoardLetter {letter} {letterIndex} {boardIndex} />
         {/key}

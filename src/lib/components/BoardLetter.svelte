@@ -77,6 +77,7 @@
   $: if ($currentIndexes.board == boardIndex && $currentIndexes.letter == letterIndex) {
     showCursor = true;
     setTimeout(() => {
+      // eslint-disable-next-line svelte/infinite-reactive-loop -- hiding the cursor does not re-trigger this block
       showCursor = false;
     }, 2000);
   } else {

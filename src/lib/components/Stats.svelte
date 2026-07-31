@@ -216,7 +216,7 @@
     <h2 class="font-abril mb-1 text-center text-xl">Antal vunna spel per antal gissningar</h2>
     <table>
       <tbody>
-        {#each $graphs as score}
+        {#each $graphs as score (score.points)}
           <tr class="border-b">
             <td class="pr-1 font-bold">{score.points}</td>
             <td width="100%">
