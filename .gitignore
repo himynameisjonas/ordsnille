@@ -20,3 +20,7 @@ scraper/non_filtered.txt
 scraper/swe_wordlist_5.txt
 
 static/version.json
+
+.pnp.*
+/.yarn/install-state.gz
+/.yarn/unplugged

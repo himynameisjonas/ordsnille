@@ -38,7 +38,7 @@
     "globals": "^15.14.0",
     "jsdom": "^26.0.0",
     "just-throttle": "4.0.1",
-    "prettier": "^3.4.2",
+    "prettier": "^3.9.6",
     "prettier-plugin-svelte": "^4.1.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "svelte": "^5.19.8",
@@ -65,12 +65,12 @@
       ]
     }
   },
+  "packageManager": "yarn@4.6.0",
   "volta": {
-    "node": "20.14.0",
-    "yarn": "1.22.17"
+    "node": "22.23.2"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "dependencies": {
     "ios-haptics": "^3.1.1"
