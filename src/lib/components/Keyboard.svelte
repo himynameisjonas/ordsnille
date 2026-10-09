@@ -44,7 +44,7 @@
         <button
           on:click={() => dispatch("enter")}
           {@attach hapticTrigger}
-          class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase"
+          class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase dark:bg-slate-700"
         >
           <span
             class="animate__animated animate__infinite animate__slow animate__repeat-3"
@@ -59,7 +59,7 @@
         <button
           on:click={() => dispatch("delete")}
           {@attach hapticTrigger}
-          class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase"
+          class="m-[2px] flex h-14 w-20 items-center justify-center rounded-sm bg-slate-500 font-bold text-white uppercase dark:bg-slate-700"
           aria-label="Delete"
         >
           <svg

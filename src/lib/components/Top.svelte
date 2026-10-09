@@ -8,9 +8,9 @@
 </script>
 
 <div
-  class="pt-safe flex items-center justify-center border-b-[3px] border-b-green-400 bg-green-100 py-0.5"
+  class="pt-safe flex items-center justify-center border-b-[3px] border-b-green-400 bg-green-100 py-0.5 dark:border-b-green-700 dark:bg-green-950"
 >
-  <a href="/statistik" class="ml-3 text-gray-500" aria-label="Statistik"
+  <a href="/statistik" class="ml-3 text-gray-500 dark:text-gray-400" aria-label="Statistik"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -23,12 +23,14 @@
     </svg></a
   >
 
-  <h1 class="font-abril mx-auto text-5xl text-gray-500 uppercase hover:cursor-pointer">
+  <h1
+    class="font-abril mx-auto text-5xl text-gray-500 uppercase hover:cursor-pointer dark:text-gray-400"
+  >
     <a href="/" on:click={refresh}>
       <span class="text-green-500">Ord</span>snille
     </a>
   </h1>
-  <a href="/instruktioner" class="mr-3 text-gray-500" aria-label="Instruktioner"
+  <a href="/instruktioner" class="mr-3 text-gray-500 dark:text-gray-400" aria-label="Instruktioner"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-6 w-6"

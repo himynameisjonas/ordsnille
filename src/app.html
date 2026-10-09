@@ -8,7 +8,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#E2FBE8" />
+    <meta name="theme-color" content="#E2FBE8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#032E15" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta property="og:title" content="Ordsnille – ett dagligt ordspel" />
     <meta property="og:site_name" content="Ordsnille" />
@@ -42,8 +43,11 @@
     ></script>
     %sveltekit.head%
   </head>
-  <body class="flex h-full flex-col justify-items-stretch bg-green-100">
-    <div id="svelte" class="flex h-full flex-col justify-between bg-neutral-100">
+  <body class="flex h-full flex-col justify-items-stretch bg-green-100 dark:bg-green-950">
+    <div
+      id="svelte"
+      class="flex h-full flex-col justify-between bg-neutral-100 dark:bg-neutral-900"
+    >
       %sveltekit.body%
     </div>
   </body>

@@ -21,6 +21,10 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
+
+    @variant dark {
+      border-color: var(--color-neutral-700, currentcolor);
+    }
   }
 }
 
@@ -67,6 +71,7 @@ html {
 }
 
 :root {
+  color-scheme: light dark;
   --animate-delay: 0.2s;
 }
 
