@@ -12,8 +12,11 @@
   }
 </script>
 
-<div in:slide class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
-  <div class="rounded-lg border bg-white p-4 shadow-inner">
+<div
+  in:slide
+  class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700 dark:text-gray-200"
+>
+  <div class="rounded-lg border bg-white p-4 shadow-inner dark:bg-neutral-800">
     <h2 class="font-abril mb-4 text-center text-3xl">Gissa dagens ord</h2>
     <h3 class="font-abril mb-2 text-xl">Instruktioner</h3>
     <ul class="ml-4 list-outside list-disc">
@@ -89,8 +92,9 @@
             role="switch"
             id="color-blind-checkbox"
           />
-          <label class="form-check-label inline-block text-gray-800" for="color-blind-checkbox"
-            >Färgblindläge</label
+          <label
+            class="form-check-label inline-block text-gray-800 dark:text-gray-200"
+            for="color-blind-checkbox">Färgblindläge</label
           >
         </div>
       </div>

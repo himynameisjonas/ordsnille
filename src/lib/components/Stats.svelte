@@ -77,9 +77,12 @@
   }
 </script>
 
-<div in:slide class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700">
+<div
+  in:slide
+  class="mx-auto mt-5 mb-auto w-[65ch] max-w-full px-5 text-gray-700 dark:text-gray-200"
+>
   {#if $plays > 0}
-    <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
+    <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner dark:bg-neutral-800">
       Senaste ordet du spelade var
       <span class="bg-green-300 p-1 font-bold text-green-700 uppercase">{$stats.lastSolution}</span>
       (<a
@@ -101,7 +104,7 @@
             <button
               type="button"
               on:click={share}
-              class="flex w-full items-center justify-center rounded-lg bg-gray-50 p-2 font-bold"
+              class="flex w-full items-center justify-center rounded-lg bg-gray-50 p-2 font-bold dark:bg-neutral-800"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +126,7 @@
             <button
               on:click={copy}
               type="button"
-              class="flex w-full items-center justify-center rounded-r-lg border-l border-green-500 bg-gray-50 p-2 font-bold"
+              class="flex w-full items-center justify-center rounded-r-lg border-l border-green-500 bg-gray-50 p-2 font-bold dark:bg-neutral-800"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +148,7 @@
         {:else}
           <button
             on:click={share}
-            class="mt-2 flex w-full justify-center rounded-lg border border-green-500 bg-gray-50 p-2 font-bold text-green-500"
+            class="mt-2 flex w-full justify-center rounded-lg border border-green-500 bg-gray-50 p-2 font-bold text-green-500 dark:bg-neutral-800"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -184,14 +187,14 @@
       {/if}
     </div>
   {:else}
-    <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
+    <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner dark:bg-neutral-800">
       Du har in inte spelat något spel ännu… <a class="text-blue-400 underline" href="/"
         >Börja med det först</a
       >.
     </div>
   {/if}
 
-  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
+  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner dark:bg-neutral-800">
     <h2 class="font-abril mb-1 text-center text-xl">Statistik</h2>
     <div class="flex flex-wrap text-center">
       <div class="mb-4 w-1/2">
@@ -212,7 +215,7 @@
       </div>
     </div>
   </div>
-  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner">
+  <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner dark:bg-neutral-800">
     <h2 class="font-abril mb-1 text-center text-xl">Antal vunna spel per antal gissningar</h2>
     <table>
       <tbody>

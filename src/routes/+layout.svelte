@@ -33,9 +33,11 @@
 {#if showReload}
   <div class="fixed top-[33.3vh] right-0 left-0 z-50 flex justify-center">
     <div
-      class="mx-4 flex flex-wrap items-center justify-center gap-4 space-x-4 rounded border border-green-400 bg-green-100 p-6 shadow-lg"
+      class="mx-4 flex flex-wrap items-center justify-center gap-4 space-x-4 rounded border border-green-400 bg-green-100 p-6 shadow-lg dark:border-green-700 dark:bg-green-950"
     >
-      <span class="font-medium text-green-800">En ny version finns tillgänglig</span>
+      <span class="font-medium text-green-800 dark:text-green-200"
+        >En ny version finns tillgänglig</span
+      >
       <button
         class="flex rounded-sm bg-green-500 p-2 px-4 font-bold text-white shadow-md shadow-green-500/50"
         onclick={() => location.reload()}
