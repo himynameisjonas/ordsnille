@@ -26,9 +26,9 @@
       classes = "bg-orange-300 text-orange-600";
     }
   } else if ($absent.has(key)) {
-    classes = "bg-gray-500 text-gray-400";
+    classes = "bg-gray-500 text-gray-400 dark:bg-neutral-800 dark:text-neutral-600";
   } else {
-    classes = "bg-slate-400";
+    classes = "bg-slate-400 dark:bg-slate-600";
   }
 </script>
 

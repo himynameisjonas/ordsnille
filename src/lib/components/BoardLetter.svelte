@@ -64,12 +64,12 @@
   } else if (internalHint == 0) {
     classBorder = "border-gray-500";
     classText = "text-gray-500";
-    classBg = "bg-gray-400";
+    classBg = "bg-gray-400 dark:bg-gray-600";
   } else if (letter && internalHint == null) {
-    classBorder = "border-gray-300";
-    classText = "text-gray-600";
+    classBorder = "border-gray-300 dark:border-gray-600";
+    classText = "text-gray-600 dark:text-gray-400";
   } else {
-    classBg = "bg-neutral-50";
+    classBg = "bg-neutral-50 dark:bg-neutral-800";
     classBorder = "";
     classText = "";
   }
@@ -98,7 +98,7 @@
   class="relative m-0.5 overflow-hidden font-bold uppercase"
 >
   <div
-    class="animate__bounceIn animate__faster animate__animated flex h-full w-full items-center justify-center rounded-sm border-2 bg-neutral-50 text-gray-700"
+    class="animate__bounceIn animate__faster animate__animated flex h-full w-full items-center justify-center rounded-sm border-2 bg-neutral-50 text-gray-700 dark:bg-neutral-800 dark:text-gray-300"
   >
     {letter}
     {#if showCursor}
