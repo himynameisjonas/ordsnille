@@ -4087,10 +4087,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"just-throttle@npm:4.0.1":
-  version: 4.0.1
-  resolution: "just-throttle@npm:4.0.1"
-  checksum: 10c0/22387b4abc6382852e354767a01507c2063d78f208d4d0d77a8da1ce27243a760faf4e41bbeff2626add5ae6a883ded26344514a76cbe562c798e711e84c2b94
+"just-throttle@npm:4.2.0":
+  version: 4.2.0
+  resolution: "just-throttle@npm:4.2.0"
+  checksum: 10c0/53004eecd4833e8d476cf099f11fbfc7b46463675973dd77cd70dff7f2844a3cc5878779ab524440a7bf4ebb2d74b37680f11393606f789035ac868ad3b153d4
   languageName: node
   linkType: hard
 
@@ -4586,7 +4586,7 @@ __metadata:
     globals: "npm:^15.14.0"
     ios-haptics: "npm:^3.1.1"
     jsdom: "npm:^26.0.0"
-    just-throttle: "npm:4.0.1"
+    just-throttle: "npm:4.2.0"
     prettier: "npm:^3.9.6"
     prettier-plugin-svelte: "npm:^4.1.1"
     prettier-plugin-tailwindcss: "npm:^0.8.1"
