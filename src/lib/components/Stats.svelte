@@ -1,4 +1,5 @@
 <script>
+  import WordListNotice from "./WordListNotice.svelte";
   import game, { hasWon, emojiResult } from "$lib/stores/game.js";
   import { gameNumber } from "$lib/stores/word.js";
   import { stats, graphs, plays, winPercentage } from "$lib/stores/stats";
@@ -168,6 +169,8 @@
           </button>
         {/if}
       {/if}
+      <WordListNotice />
+
       {#if $game.solution != $todaysWord}
         <button
           on:click={startTodaysGame}
@@ -188,9 +191,9 @@
     </div>
   {:else}
     <div class="mb-5 rounded-lg border bg-white p-4 shadow-inner dark:bg-neutral-800">
-      Du har in inte spelat något spel ännu… <a class="text-blue-400 underline" href="/"
-        >Börja med det först</a
-      >.
+      <WordListNotice />
+      Du har in inte spelat något spel ännu…
+      <a class="text-blue-400 underline" href="/">Börja med det först</a>.
     </div>
   {/if}
 
