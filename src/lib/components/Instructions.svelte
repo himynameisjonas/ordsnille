@@ -1,4 +1,5 @@
 <script>
+  import WordListNotice from "./WordListNotice.svelte";
   import game, { firstLoad } from "$lib/stores/game.js";
   import { goto } from "$app/navigation";
   import { colorBlindness } from "$lib/stores/settings";
@@ -69,6 +70,8 @@
       Här betyder det att bokstaven
       <strong>N</strong> inte är med i det rätta svaret över huvud taget.
     </div>
+
+    <WordListNotice />
 
     <button
       on:click={start}
