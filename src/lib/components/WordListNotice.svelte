@@ -19,6 +19,5 @@
       > får dagens ord en genomgången ordlista med mer vanliga ord. Ord som varit med tidigare får återkomma
       efter ett par år.
     </p>
-    <p class="mt-2 leading-relaxed">Tack för att ni hörde av er och fortsätter spela! /Jonas</p>
   </aside>
 {/if}
