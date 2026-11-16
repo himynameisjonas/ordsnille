@@ -11,13 +11,13 @@
     class="my-5 border-y border-green-300 bg-green-50 px-4 py-4 text-green-950 dark:border-green-800 dark:bg-green-950 dark:text-green-100"
   >
     <h2 id="word-list-notice-title" class="font-abril text-xl text-balance">
-      Vanligare ord i Ordsnille
+      En ny blandning av ord
     </h2>
     <p class="mt-2 leading-relaxed">
-      Det blev lite väl svårt ibland med allt ovanligare ord. Från <time datetime="2026-11-16"
-        >16 november 2026</time
-      > får dagens ord en genomgången ordlista med mer vanliga ord. Ord som varit med tidigare får återkomma
-      efter ett par år.
+      Det blev lite väl många ovanliga ord på rad. Från <time datetime="2026-11-20"
+        >20 november 2026</time
+      > får dagens ord en genomgången ordlista. Både välbekanta ord och klurigare bekantskaper ska få
+      plats, och tidigare ord får återkomma efter ett par år.
     </p>
   </aside>
 {/if}

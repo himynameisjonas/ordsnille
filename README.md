@@ -12,20 +12,9 @@ yarn dev
 
 ## Daily answers
 
-Guesses use the broad `allWords` dictionary. From **16 November 2026 (local
-midnight)**, answers use the separate, reviewed `src/lib/daily-answers.js` pool.
-Deploy before that date; if deployment is delayed, move the cutover date and
-its boundary tests forward before release so an active puzzle does not change.
+From 20 November 2026, daily answers use `src/lib/balanced-daily-answers.js`.
+Difficulty groups are in `src/lib/answer-tiers.js`; accepted guesses are in
+`src/lib/words.js`.
 
-The pool starts with the original frequent-word list, excluding names, some
-English words and less familiar entries. Familiar inflections and everyday
-loanwords remain eligible. Entries are ordered by their oldest last appearance
-in the historical schedule through 15 November 2026. The 839-word schedule
-repeats after roughly 2.3 years. This is an editorial starting point, not a
-corpus-backed frequency ranking.
-
-An answer should be recognisable to an ordinary Swedish speaker without
-specialist knowledge. A word may be a valid guess without meeting that standard.
-Keep published answer arrays and their ordering stable. Future editorial changes
-need a separately dated schedule to preserve past answers and ongoing games.
-Game numbers continue from 7 January 2022; earlier schedules are preserved.
+Keep published schedules unchanged. Use a new start date for future revisions
+so past answers and ongoing games stay intact.
