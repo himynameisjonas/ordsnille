@@ -15,7 +15,7 @@ afterEach(cleanup);
 test("removes the notice when an open page reaches 1 December", async () => {
   gameNumber.set(gameNumberForDate(new Date(2026, 10, 30)));
   render(WordListNotice);
-  expect(screen.getByRole("complementary", { name: "Vanligare ord i Ordsnille" })).toBeTruthy();
+  expect(screen.getByRole("complementary", { name: "En ny blandning av ord" })).toBeTruthy();
 
   gameNumber.set(gameNumberForDate(new Date(2026, 11, 1)));
   await tick();
