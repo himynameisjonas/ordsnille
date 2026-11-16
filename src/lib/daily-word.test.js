@@ -68,7 +68,7 @@ describe("daily answer schedule", () => {
       ...dailyAnswers.slice(0, 4),
     ]);
     expect(uncommonAnswers).toHaveLength(120);
-    expect(rareAnswers).toHaveLength(160);
+    expect(rareAnswers).toHaveLength(192);
     expect([...balancedDailyAnswers].sort()).toEqual(
       [...dailyAnswers, ...uncommonAnswers, ...rareAnswers].sort()
     );
@@ -104,6 +104,27 @@ describe("daily answer schedule", () => {
       const today = balancedDailyAnswers[day];
       const tomorrow = balancedDailyAnswers[(day + 1) % balancedDailyAnswers.length];
       expect(rare.has(today) && rare.has(tomorrow)).toBe(false);
+    }
+  });
+
+  test("harder tiers rotate weekdays without recurring on the same day in adjacent weeks", () => {
+    for (const tier of [uncommonAnswers, rareAnswers]) {
+      const words = new Set(tier);
+      const weekdays = Array(7).fill(0);
+      const weeks = new Map();
+      const startWeekday = (balancedStartDate.getDay() + 6) % 7;
+      for (let day = 0; day < balancedDailyAnswers.length * 2; day++) {
+        const date = addDays(balancedStartDate, day);
+        if (!words.has(wordForDate(date))) continue;
+        const weekday = date.getDay();
+        const week = Math.floor((day + startWeekday) / 7);
+        expect(weeks.get(week - 1)?.has(weekday) ?? false).toBe(false);
+        if (!weeks.has(week)) weeks.set(week, new Set());
+        weeks.get(week).add(weekday);
+        if (day < balancedDailyAnswers.length) weekdays[weekday]++;
+      }
+      expect(Math.min(...weekdays)).toBeGreaterThan(0);
+      expect(Math.max(...weekdays) - Math.min(...weekdays)).toBeLessThanOrEqual(2);
     }
   });
 

@@ -27,7 +27,7 @@ repeats after roughly 2.3 years. This is an editorial starting point, not a
 corpus-backed frequency ranking.
 
 The revised pool has three editorial tiers: all 839 familiar answers, 120
-intermediate words and 160 very rare words. Intermediate words include older
+intermediate words and 192 very rare words. Intermediate words include older
 and literary words such as `fager`, `sämja` and `kutym`, contemporary words such
 as `emoji` and `chatt`, and additions such as `dreja`, `bävan` and `sorla`.
 Very rare words include `avrad`, `kvesa` and `triör`. The two added tiers are
@@ -35,11 +35,14 @@ listed in `src/lib/answer-tiers.js`; the dated answer schedule is a separate
 snapshot, so changing a tier cannot silently change published puzzles.
 
 Intermediate words are spread among the familiar answers. Very rare words
-follow five or six other answers, guaranteeing at least one in every rolling
+follow four or five other answers, guaranteeing at least one in every rolling
 seven-day period, including when the schedule repeats, without consecutive
-very rare answers. The existing familiar sequence continues where the previous
+very rare answers. The five- or six-day gaps move the rare answers between
+weekdays. Both harder tiers cover all seven weekdays evenly, and neither tier
+recurs on the same weekday in adjacent calendar weeks, including across repeats.
+The existing familiar sequence continues where the previous
 schedule left off; its first four words move to the end of that sequence.
-The 1,119-word schedule repeats after roughly 3.1 years.
+The 1,151-word schedule repeats after roughly 3.2 years.
 
 Aim for a mix of familiar words and less common discoveries across generations,
 including older vocabulary and modern loanwords. Players need not already know
