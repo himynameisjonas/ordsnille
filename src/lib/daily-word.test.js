@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 import { addDays } from "date-fns";
 import { dailyAnswers } from "./daily-answers.js";
 import { balancedDailyAnswers } from "./balanced-daily-answers.js";
+import { uncommonAnswers, rareAnswers } from "./answer-tiers.js";
 import { allWords, answers, frequentWords } from "./words.js";
 import {
   balancedStartDate,
@@ -60,32 +61,54 @@ describe("daily answer schedule", () => {
     }
   });
 
-  test("keeps the familiar pool and spaces the 100 additions eight or nine familiar words apart", () => {
+  test("keeps all three editorial pools and the familiar answer order", () => {
     const familiar = new Set(dailyAnswers);
     expect(balancedDailyAnswers.filter((word) => familiar.has(word))).toEqual([
       ...dailyAnswers.slice(4),
       ...dailyAnswers.slice(0, 4),
     ]);
-    const additions = balancedDailyAnswers.filter((word) => !familiar.has(word));
-    expect(additions).toHaveLength(100);
-    expect(additions).toEqual(
-      expect.arrayContaining(["fager", "sämja", "kutym", "emoji", "chatt"])
+    expect(uncommonAnswers).toHaveLength(120);
+    expect(rareAnswers).toHaveLength(160);
+    expect([...balancedDailyAnswers].sort()).toEqual(
+      [...dailyAnswers, ...uncommonAnswers, ...rareAnswers].sort()
     );
+  });
+
+  test("spaces the intermediate words six or seven familiar answers apart", () => {
+    const rare = new Set(rareAnswers);
+    const familiar = new Set(dailyAnswers);
     let familiarSinceAddition = 0;
-    for (const word of balancedDailyAnswers) {
+    for (const word of balancedDailyAnswers.filter((word) => !rare.has(word))) {
       if (familiar.has(word)) {
         familiarSinceAddition++;
       } else {
-        expect(familiarSinceAddition).toBeGreaterThanOrEqual(8);
-        expect(familiarSinceAddition).toBeLessThanOrEqual(9);
+        expect(familiarSinceAddition).toBeGreaterThanOrEqual(6);
+        expect(familiarSinceAddition).toBeLessThanOrEqual(7);
         familiarSinceAddition = 0;
       }
     }
     expect(familiarSinceAddition).toBe(0);
   });
 
-  test("excluded specialist words and names remain valid guesses", () => {
-    for (const word of ["manta", "latta", "cesur", "ambra", "laura", "crazy"]) {
+  test("every rolling seven-day window includes a very rare word, including across repeats", () => {
+    const rare = new Set(rareAnswers);
+    for (let day = 0; day < balancedDailyAnswers.length; day++) {
+      const week = Array.from({ length: 7 }, (_, offset) =>
+        wordForDate(addDays(balancedStartDate, day + offset))
+      );
+      const rareCount = week.filter((word) => rare.has(word)).length;
+      expect(rareCount).toBeGreaterThanOrEqual(1);
+      expect(rareCount).toBeLessThanOrEqual(2);
+    }
+    for (let day = 0; day < balancedDailyAnswers.length; day++) {
+      const today = balancedDailyAnswers[day];
+      const tomorrow = balancedDailyAnswers[(day + 1) % balancedDailyAnswers.length];
+      expect(rare.has(today) && rare.has(tomorrow)).toBe(false);
+    }
+  });
+
+  test("excluded names and English words remain valid guesses", () => {
+    for (const word of ["laura", "crazy"]) {
       expect(allWords).toContain(word);
       expect(dailyAnswers).not.toContain(word);
       expect(balancedDailyAnswers).not.toContain(word);
