@@ -26,8 +26,8 @@ in the historical schedule through 15 November 2026. The 839-word schedule
 repeats after roughly 2.3 years. This is an editorial starting point, not a
 corpus-backed frequency ranking.
 
-The revised pool has three editorial tiers: 767 familiar answers, 386
-intermediate words and 244 very rare words. Intermediate words include older
+The revised pool has three editorial tiers: 839 familiar answers, 440
+intermediate words and 256 very rare words. Intermediate words include older
 and literary words such as `fager`, `sämja` and `kutym`, contemporary words such
 as `emoji` and `chatt`, and additions such as `dreja`, `bävan` and `sorla`.
 Very rare words include `avrad`, `kvesa` and `triör`. The two added tiers are
@@ -42,16 +42,15 @@ seven-day period, including when the schedule repeats, without consecutive
 very rare answers. The five- or six-day gaps move the rare answers between
 weekdays. Both harder tiers cover all seven weekdays evenly, and neither tier
 recurs on the same weekday in adjacent calendar weeks, including across repeats.
-The remaining familiar answers retain their relative order from the previous
-proposal. The 1,397-word schedule repeats after roughly 3.8 years.
+The 1,535-word schedule repeats after roughly 4.2 years.
 
-Exclude words that were actually daily answers from **16 May through
-16 November 2026, inclusive**, using the historical schedules. This fixed
-six-month lookback is anchored to the review date, not a minimum interval
-between a past answer and its future return. The 185 historical answers are
-recorded in `src/lib/answer-tiers.js`; 138 were in the proposal and have been
-removed entirely from the revised pool. They remain valid guesses, and the
-historical schedules are unchanged.
+The 138 pool entries that were actually daily answers from **16 May through
+16 November 2026, inclusive**, are retained but spread across the second half
+of the new schedule. They first return at entry 773 and last at entry 1,529;
+each quarter of the second half contains 34 or 35 of them. They occupy slots
+from their own difficulty tier, preserving the weekly and weekday balance.
+They are listed as `recentAnswers` in `src/lib/answer-tiers.js`. This fixed
+lookback is anchored to the review date; the historical schedules are unchanged.
 
 Aim for a mix of familiar words and less common discoveries across generations,
 including older vocabulary and modern loanwords. Players need not already know

@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { addDays } from "date-fns";
 import { dailyAnswers } from "./daily-answers.js";
 import { balancedDailyAnswers } from "./balanced-daily-answers.js";
-import { familiarAnswers, uncommonAnswers, rareAnswers } from "./answer-tiers.js";
+import { uncommonAnswers, rareAnswers } from "./answer-tiers.js";
 import { allWords, answers, frequentWords } from "./words.js";
 import {
   balancedStartDate,
@@ -61,14 +61,12 @@ describe("daily answer schedule", () => {
     }
   });
 
-  test("keeps all three editorial pools and the familiar answer order", () => {
-    const familiar = new Set(familiarAnswers);
-    expect(balancedDailyAnswers.filter((word) => familiar.has(word))).toEqual(familiarAnswers);
-    expect(familiarAnswers).toHaveLength(767);
-    expect(uncommonAnswers).toHaveLength(386);
-    expect(rareAnswers).toHaveLength(244);
+  test("keeps all three editorial pools", () => {
+    expect(dailyAnswers).toHaveLength(839);
+    expect(uncommonAnswers).toHaveLength(440);
+    expect(rareAnswers).toHaveLength(256);
     expect([...balancedDailyAnswers].sort()).toEqual(
-      [...familiarAnswers, ...uncommonAnswers, ...rareAnswers].sort()
+      [...dailyAnswers, ...uncommonAnswers, ...rareAnswers].sort()
     );
   });
 
