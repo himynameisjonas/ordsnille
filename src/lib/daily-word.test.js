@@ -67,27 +67,25 @@ describe("daily answer schedule", () => {
       ...dailyAnswers.slice(4),
       ...dailyAnswers.slice(0, 4),
     ]);
-    expect(uncommonAnswers).toHaveLength(120);
-    expect(rareAnswers).toHaveLength(192);
+    expect(uncommonAnswers).toHaveLength(440);
+    expect(rareAnswers).toHaveLength(256);
     expect([...balancedDailyAnswers].sort()).toEqual(
       [...dailyAnswers, ...uncommonAnswers, ...rareAnswers].sort()
     );
   });
 
-  test("spaces the intermediate words six or seven familiar answers apart", () => {
-    const rare = new Set(rareAnswers);
-    const familiar = new Set(dailyAnswers);
-    let familiarSinceAddition = 0;
-    for (const word of balancedDailyAnswers.filter((word) => !rare.has(word))) {
-      if (familiar.has(word)) {
-        familiarSinceAddition++;
-      } else {
-        expect(familiarSinceAddition).toBeGreaterThanOrEqual(6);
-        expect(familiarSinceAddition).toBeLessThanOrEqual(7);
-        familiarSinceAddition = 0;
-      }
+  test("keeps about 45 percent harder answers and a mix in every seven-day period", () => {
+    const harder = new Set([...uncommonAnswers, ...rareAnswers]);
+    const share = harder.size / balancedDailyAnswers.length;
+    expect(share).toBeGreaterThanOrEqual(0.44);
+    expect(share).toBeLessThanOrEqual(0.46);
+    for (let day = 0; day < balancedDailyAnswers.length; day++) {
+      const count = Array.from({ length: 7 }, (_, offset) =>
+        wordForDate(addDays(balancedStartDate, day + offset))
+      ).filter((word) => harder.has(word)).length;
+      expect(count).toBeGreaterThanOrEqual(2);
+      expect(count).toBeLessThanOrEqual(5);
     }
-    expect(familiarSinceAddition).toBe(0);
   });
 
   test("every rolling seven-day window includes a very rare word, including across repeats", () => {
