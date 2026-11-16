@@ -14,9 +14,9 @@
       En ny blandning av ord
     </h2>
     <p class="mt-2 leading-relaxed">
-      Det blev lite väl många ovanliga ord på rad. Från <time datetime="2026-11-16"
-        >16 november 2026</time
-      > har dagens ord en genomgången ordlista. Både välbekanta ord och klurigare bekantskaper ska få
+      Det blev lite väl många ovanliga ord på rad. Från <time datetime="2026-11-20"
+        >20 november 2026</time
+      > får dagens ord en genomgången ordlista. Både välbekanta ord och klurigare bekantskaper ska få
       plats, och tidigare ord får återkomma efter ett par år.
     </p>
   </aside>
